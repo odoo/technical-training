@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="library_book_action" model="ir.actions.act_window">
+        <field name="name">Books</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="library_partner_action" model="ir.actions.act_window">
+        <field name="name">Partner</field>
+        <field name="res_model">library.partner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="library_publisher_action" model="ir.actions.act_window">
+        <field name="name">Publisher</field>
+        <field name="res_model">library.publisher</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="library_rental_action" model="ir.actions.act_window">
+        <field name="name">Rental</field>
+        <field name="res_model">library.rental</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="library_root_menu"
+        name="Library" />
+
+    <menuitem
+        id="library_book_menu"
+        parent="library_root_menu"
+        action="library_book_action"
+        name="Books" />
+
+    <menuitem
+        id="library_partner_menu"
+        parent="library_root_menu"
+        action="library_partner_action"
+        name="Partner" />
+
+    <menuitem
+        id="library_publisher_menu"
+        parent="library_root_menu"
+        action="library_publisher_action"
+        name="Publisher" />
+
+    <menuitem
+        id="library_rental_menu"
+        parent="library_root_menu"
+        action="library_rental_action"
+        name="Rental" />
+
+</odoo>
