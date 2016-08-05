@@ -26,8 +26,11 @@
                     </div>
                     <group>
                         <group>
-                            <field name="task_template_id"  />
-                            <field name="task_type_id" />
+                            <!-- Solution -->
+                            <field name="task_template_id" readonly="1"
+                                   attrs="{ 'invisible' : [('task_template_id', '=', False)]}" />
+                            <field name="task_type_id" options="{'no_create': True}"
+                                   attrs="{ 'readonly' : [('task_template_id', '!=', False)], 'required' : [('task_template_id', '=', False)]}" />
                             <field name="worker_id" />
                         </group>
                         <group>
