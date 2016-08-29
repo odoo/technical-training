@@ -1,0 +1,7 @@
+<openerp>
+    <data>
+        <record id="course1" model="academy.course">
+            <field name="name">Technical Training</field>
+        </record>
+    </data>
+</openerp>
