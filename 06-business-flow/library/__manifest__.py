@@ -24,11 +24,15 @@
     # always loaded
     'data': [
         "data/library_data.xml",
+        "data/cron.xml",
+        "data/prices.xml",
         "views/menus.xml",
         "views/customer.xml",
         "views/book.xml",
         "views/author.xml",
         "views/rental.xml",
+        "views/payment.xml",
+        "views/price.xml",
     ],
     # only loaded in demonstration mode
     'demo': [],

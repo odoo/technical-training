@@ -21,3 +21,7 @@ class Books(models.Model):
         'book_id',
         string='Rentals',)
     book = fields.Boolean('is a book', default=False)
+    book_state = fields.Selection(
+        [('available', 'Available'), ('rented', 'Rented'), ('lost', 'Lost')],
+        default="available",
+    )
