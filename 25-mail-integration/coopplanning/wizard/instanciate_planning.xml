@@ -1,0 +1,20 @@
+<odoo>
+    <record model="ir.ui.view" id="planning_instanciate_view_form">
+        <field name="name">Planning Form</field>
+        <field name="model">coopplanning.instanciate_planning.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="date_start" />
+                    <field name="planning_id" invisible="1" />
+                </group>
+                <footer>
+                    <button type="object" name="generate_task" string="Confirm" class="oe_highlight"/>
+                    or
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>
