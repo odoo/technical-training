@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from datetime import timedelta
-from openerp import models, fields, api, exceptions, _
+from odoo import models, fields, api, exceptions, _
 
 class Course(models.Model):
     _name = 'openacademy.course'
@@ -12,18 +11,18 @@ class Course(models.Model):
     level = fields.Selection([(1, 'Easy'), (2, 'Medium'), (3, 'Hard')], string="Difficulty Level")
     session_count = fields.Integer("Session Count", compute="_compute_session_count")
 
-    @api.one
     @api.depends('session_ids')
     def _compute_session_count(self):
-        self.session_count = len(self.session_ids)
+        for course in self:
+            course.session_count = len(course.session_ids)
 
 
 class Session(models.Model):
     _name = 'openacademy.session'
 
     name = fields.Char(required=True)
-    start_date = fields.Date(default=lambda self : fields.Date.today())
-    end_date = fields.Date(default=lambda self : fields.Date.today())
+    start_date = fields.Date(default=fields.Date.today)
+    end_date = fields.Date(default=fields.Date.today)
     active = fields.Boolean(default=True)
     duration = fields.Float(digits=(6, 2), help="Duration in days")
     seats = fields.Integer(string="Number of seats")
@@ -37,24 +36,27 @@ class Session(models.Model):
 
     attendees_count = fields.Integer(string="Attendees count", compute='_get_attendees_count', store=True)
 
-    @api.one
     @api.depends('seats', 'attendee_ids')
     def _taken_seats(self):
-        if not self.seats:
-            self.taken_seats = 0.0
-        else:
-            self.taken_seats = 100.0 * len(self.attendee_ids) / self.seats
+        for session in self:
+            if not session.seats:
+                session.taken_seats = 0.0
+            else:
+                session.taken_seats = 100.0 * len(session.attendee_ids) / session.seats
 
-    @api.one
     @api.depends('attendee_ids')
     def _get_attendees_count(self):
-        self.attendees_count = len(self.attendee_ids)
+        for session in self:
+            session.attendees_count = len(session.attendee_ids)
 
     @api.onchange('start_date', 'end_date')
     def _compute_duration(self):
         if not (self.start_date and self.end_date):
             return
         if self.end_date < self.start_date:
-            return self._warning("Incorrect date value", "End date is earlier then start date")
+            return {'warning': {
+                'title': "Incorrect date value",
+                'message': "End date is earlier then start date",
+            }}
         delta = fields.Date.from_string(self.end_date) - fields.Date.from_string(self.start_date)
         self.duration = delta.days + 1

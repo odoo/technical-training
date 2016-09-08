@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-from datetime import timedelta
-from openerp import models, fields, api, exceptions, _
-
 import math
+
+from odoo import models, fields, api
+
 
 def float_to_time(f):
     decimal, integer = math.modf(f)
     return "%s:%s" % (str(int(integer)).zfill(2), str(int(round(decimal * 60))).zfill(2))
+
 
 class TaskType(models.Model):
     _name = 'coopplanning.task.type'
@@ -15,6 +16,7 @@ class TaskType(models.Model):
     description = fields.Text()
     area = fields.Char()
     active = fields.Boolean(default=True)
+
     
 class DayNumber(models.Model):
     _name = 'coopplanning.daynumber'
@@ -38,8 +40,6 @@ class TaskTemplate(models.Model):
     worker_ids = fields.Many2many('res.partner', string="Recurrent worker assigned")
     active = fields.Boolean(default=True)
 
-
-    @api.multi
     @api.depends('start_time', 'end_time')
     def _get_duration(self):
         for rec in self:

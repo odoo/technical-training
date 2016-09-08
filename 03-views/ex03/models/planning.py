@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-from datetime import timedelta, datetime
-from openerp import models, fields, api, exceptions, _
-
-from pytz import UTC, timezone
 import math
+from datetime import datetime
+from pytz import UTC
+
+from odoo import models, fields, api
+
 
 def float_to_time(f):
     decimal, integer = math.modf(f)
@@ -13,6 +14,7 @@ def floatime_to_hour_minute(f):
     decimal, integer = math.modf(f)
     return int(integer), int(round(decimal * 60))
 
+
 class TaskType(models.Model):
     _name = 'coopplanning.task.type'
 
@@ -20,6 +22,7 @@ class TaskType(models.Model):
     description = fields.Text()
     area = fields.Char()
     active = fields.Boolean(default=True)
+
 
 class DayNumber(models.Model):
     _name = 'coopplanning.daynumber'
@@ -44,7 +47,6 @@ class TaskTemplate(models.Model):
     active = fields.Boolean(default=True)
     floating = fields.Boolean("Floating Task", help="This task will be not assigned to someone and will be available for non recurring workers")
 
-    @api.multi
     @api.depends('start_time', 'end_time')
     def _get_duration(self):
         for rec in self:

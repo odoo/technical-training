@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from openerp import models, fields, api
+from odoo import models, fields, api
 
 class Task(models.Model):
     _name = 'coopplanning.task'
@@ -10,7 +10,3 @@ class Task(models.Model):
     worker_id = fields.Many2one('res.partner')
     start_time = fields.Datetime()
     end_time = fields.Datetime()
-
-
-
-
