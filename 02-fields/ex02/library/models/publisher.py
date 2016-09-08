@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
-from openerp import models, fields, api, exceptions, _
+from odoo import models, fields
 
 class Editor(models.Model):
     _name = 'library.publisher'
 
     name = fields.Char(string='Name')
-
-
-

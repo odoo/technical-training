@@ -2,7 +2,6 @@
 <odoo>
     <data>
 
-
         <record id="customer_daenerys" model="library.partner">
             <field name="name">Daenerys Targaryan</field>
             <field name="email">daenerys@targaryan.org</field>
@@ -28,12 +27,9 @@
             <field name="isbn">0-553-10354-7 </field>
         </record>
 
-
         <record id="publisher_got" model="library.publisher">
             <field name="name">Bantam Spectra</field>
         </record>
 
-
     </data>
 </odoo>
-

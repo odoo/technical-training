@@ -3,7 +3,6 @@
 from odoo import models, fields, api
 
 class Courses(models.Model):
-
     _name = 'openacademy.course'
 
     name = fields.Char()
@@ -11,7 +10,6 @@ class Courses(models.Model):
 
 
 class Sessions(models.Model):
-
     _name = 'openacademy.session'
 
     course_id = fields.Many2one('openacademy.course', string="Course")
