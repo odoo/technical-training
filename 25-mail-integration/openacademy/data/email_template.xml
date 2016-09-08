@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+        <!-- Ex03 : add email template, better than generate the mail in the code, the user can change it (+ translation etc..) -->
+        <!--Email template -->
+        <record id="email_template_reception" model="mail.template">
+            <field name="name">Attendee - Request Reception</field>
+            <field name="email_from">${(object.course_id.responsible_id.email and '%s &lt;%s&gt;' % (object.course_id.responsible_id.name, object.course_id.responsible_id.email) or '')|safe}</field>
+            <field name="subject">Reception of your request ${object.comment} for course ${object.course_id.name}</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="model_id" ref="model_openacademy_attendee"/>
+            <field name="auto_delete" eval="False"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+<p>Dear ${object.partner_id.name}</p>
+
+<p>Thank you for your subscription request to the course ${object.course_id.name}.<br />
+
+% if object.session_id:
+You have been automaticaly assigned to the session ${object.session_id.name} that will take place from ${object.session_id.start_date} to ${object.session_id.end_date}.<br />
+% endif
+You will receive soon a confirmation email.
+</p>
+
+<p>Best regards,</p>
+<p>${object.course_id.responsible_id.name}</p>
+
+<p>If you have any question, do not hesitate to reply to this email.</p>
+
+]]></field>
+        </record>
+
+
+        <record id="email_template_confirmation" model="mail.template">
+            <field name="name">Attendee - Confirmation</field>
+            <field name="email_from">${(object.session_id.instructor_id.email and '%s &lt;%s&gt;' % (object.session_id.instructor_id.name, object.session_id.instructor_id.email) or '')|safe}</field>
+            <field name="subject">Confirmation of your inscription to course ${object.course_id.name}</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="model_id" ref="model_openacademy_attendee"/>
+            <field name="auto_delete" eval="False"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+<p>Dear ${object.partner_id.name}</p>
+
+<p>We confirm your inscription to the course ${object.course_id.name}.<br />
+
+You have been assigned to the session ${object.session_id.name} that will take place from ${object.session_id.start_date} to ${object.session_id.end_date}.<br />
+</p>
+
+<p>Best regards,</p>
+<p>${object.session_id.instructor_id.name}</p>
+
+<p>If you have any question, do not hesitate to reply to this email.</p>
+
+]]></field>
+        </record>
+</odoo>

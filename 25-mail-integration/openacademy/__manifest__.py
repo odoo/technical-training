@@ -18,7 +18,8 @@
     'category': 'Academy',
     'version': '0.1',
 
-    'depends': ['base'],
+    # EX01 : add mail in dependencies
+    'depends': ['base', 'mail'],
 
     # always loaded
     'data': [
@@ -32,6 +33,7 @@
         'views/attendee.xml',
         'wizard/add_attendee_view.xml',
         'data/partner.xml',
+        'data/email_template.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

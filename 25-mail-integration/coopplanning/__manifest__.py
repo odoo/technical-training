@@ -19,7 +19,8 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'contacts'],
+    #EX01: ADD dependency
+    'depends': ['base', 'contacts', 'mail'],
 
     # always loaded
     'data': [
@@ -30,6 +31,8 @@
         "wizard/instanciate_planning.xml",
         "data/coopplanning_data.xml",
         "data/task_template_demo.xml",
+        #Ex02 add subtypes
+        "data/subtypes.xml",
     ],
     # only loaded in demonstration mode
     'demo': [],

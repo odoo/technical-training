@@ -1,0 +1,10 @@
+<odoo>
+    <!-- Exercise 2: New subtype -->
+    <record id="task_assign" model="mail.message.subtype">
+        <field name="name">Task Assignation</field>
+        <field name="res_model">coopplanning.task</field>
+        <field name="internal" eval="False" />
+        <field name="default" eval="True" />
+    </record>
+
+</odoo>
