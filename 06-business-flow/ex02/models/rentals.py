@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from openerp import models, fields, api, exceptions, _
+from odoo import models, fields, api, exceptions, _
 
 class Rentals(models.Model):
     _name = 'library.rental'
@@ -18,5 +18,5 @@ class Rentals(models.Model):
         domain=[('book','=',True)],
         required=True,
     )
-    rental_date =  fields.Date(string='Rental date', required=True, default=lambda self : fields.Date.today())
+    rental_date =  fields.Date(string='Rental date', required=True, default=lambda self: fields.Date.today())
     return_date =  fields.Date(string='Return date', required=True)

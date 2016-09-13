@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from openerp import models, fields, api, exceptions, _
+from odoo import models, fields, api, exceptions, _
 
 class Partner(models.Model):
     _inherit = 'res.partner'
@@ -20,4 +20,3 @@ class Partner(models.Model):
         'Nationality',
     )
     birthdate =  fields.Date('Birthdate',)
-

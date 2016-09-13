@@ -1,34 +1,59 @@
-# Business flow
+# Business Flow
 
 ## Goal
 
-The goal of this module is to learn how to create a business workflow. The learner will be able to:
+The goal of this module is to learn how to create a business workflow. The learner will be able to
 
-* Trigger actions, methods from manual input and depending on specific conditions
-* Automate action based on time conditions
+* trigger actions, methods from manual input and depending on specific conditions;
+* automate action based on time conditions.
+
 
 ## Requirements
 
-* [01. Models](../01-models/)
-* [02. Fields](../02-fields/)
-* [03. Views](../03-views/)
-* [04. Model Inheritance](../04-model-inheritance/)
-* [09. Orm](../02-orm/)
-
-## Problem 01: Citadel
-
-The citadel is pleased with the way odoo allows the Archmaesters to have more time to take care of their ravens which are the only trustworthy way of communicating in all Westeros. They've noticed that in the current state of the system, the sessions are all considered equal, they would like to be able to differentiate session that are in preparation to those who are ready to be given. They would love to have a way to automatically set sessions as confirmed when you have at least 50% of the seats filled. The Maesters would grant you an addtional link to your chain if the instructor and teacher involved could be notified and keep an history of those notifications, they heard about something called the chatter.
+* [Models, Fields and Relations](../01-models)
+* [Computed Fields, Onchange and Constraints](../02-fields)
+* [Basic Views](../03-views)
+* [Model Inheritance](../04-inheritance)
+* [ORM](../09-orm)
 
 
-## Problem 02: Library management
+## Problem 1: The Citadel
 
-Brussels' library uses odoo to manage their customers and the books. Their module has been built on top of existing modules: to modelise the books, they inherited the product.product model and the customers, authors and publishers inherit the model res.partner. They would like to enhance their existing system: they want to be able to manage the payments of the customers, what they owe: for regular payments depending on the length of the rental but also a fine when the book is never returned and is lost. To avoid having to manage, the rental, the books and the customer everywhere, it would be neat to be able to trigger most of the actions from the rental form view. The total amount owed would be visible on the customers and should be searchable.
+The citadel is pleased with the way Odoo allows the Archmaesters to have more
+time to take care of their ravens, which are the only trustworthy way of
+communicating in all Westeros.
 
-- **Hint**: To manage the time, you can use methods defined on the date field.
+They have noticed that, in the current state of the system, the sessions are all
+considered equal. They would like to differentiate sessions that are in
+preparation from those that are ready to be given. They would love to have a way
+to automatically set sessions as confirmed when you have at least 50% of the
+seats filled.
+
+The Maesters would grant you an additional link to your chain if the instructor
+and teacher involved could be notified and keep an history of those
+notifications. They heard about something called the chatter...
+
+
+## Problem 2: Library management
+
+Brussels' library uses Odoo to manage their customers and books. Their module
+has been built on top of existing modules: for modeling the books, they
+inherited the model `product.product`, and for the customers, authors and
+publishers, they inherited the model `res.partner`.
+
+They would like to enhance the system: they want to manage the payments of the
+customers, what they owe. For regular payments, depending on the length of the
+rental, but also a fine when the book is never returned and is lost. To avoid
+having to manage the rental, the books and the customers everywhere, it would be
+neat to trigger most of the actions from the rental form view. The total amount
+owed should be visible on the customer's form view and should be searchable.
+
+- **Hint**: To manage the time, you can use methods defined on the Date field.
 
 #### Extra task
 
-* The librarians know most of the time people just forget about the rented book, so they would like to have a reminding mechanism to notify the customer.
+* The librarians know that most of the time, people just forget about a rented
+  book, so they would like to have a reminder mechanism to notify the customer.
 
 
 ## Resources

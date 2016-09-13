@@ -2,7 +2,6 @@
 <odoo>
     <data>
 
-
         <record id="customer_daenerys" model="res.partner">
             <field name="name">Daenerys Targaryan</field>
             <field name="email">daenerys@targaryan.org</field>
@@ -32,13 +31,10 @@
             <field name="book">1</field>
         </record>
 
-
         <record id="publisher_got" model="res.partner">
             <field name="name">Bantam Spectra</field>
             <field name="publisher">1</field>
         </record>
 
-
     </data>
 </odoo>
-

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from openerp import models, fields, api, exceptions, _
+from odoo import models, fields, api, exceptions, _
 
 class Books(models.Model):
     _inherit = 'product.product'
@@ -9,7 +9,7 @@ class Books(models.Model):
         string="Authors",
         domain=[('author','=',True), ],
     )
-    edition_date =  fields.Date(string='Edition date',)
+    edition_date = fields.Date(string='Edition date',)
     isbn = fields.Char(string='ISBN')
     publisher_id = fields.Many2one(
         'res.partner',
@@ -20,4 +20,4 @@ class Books(models.Model):
         'library.rental',
         'book_id',
         string='Rentals',)
-    book =  fields.Boolean('is a book', default=False)
+    book = fields.Boolean('is a book', default=False)
