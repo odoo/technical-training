@@ -17,5 +17,6 @@ The language [Python](https://www.python.org/) is a requirement for almost all m
 1. [Models, Fields and Relations](01-models)
 1. [Computed Fields, Onchange and Constraints](02-fields)
 1. [Basic Views](03-views)
-1. [Model Inheritance](04-inheritance)
+1. [Model Inheritance](04-model-inheritance)
+1. [View Inheritance](05-view-inheritance)
 1. [Business Flow](06-business-flow)

@@ -13,7 +13,7 @@ The goal of this module is to learn how to create a business workflow. The learn
 * [Models, Fields and Relations](../01-models)
 * [Computed Fields, Onchange and Constraints](../02-fields)
 * [Basic Views](../03-views)
-* [Model Inheritance](../04-inheritance)
+* [Model Inheritance](../04-model-inheritance)
 * [ORM](../09-orm)
 
 
