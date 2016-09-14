@@ -63,7 +63,7 @@ owed should be visible on the customer's form view and should be searchable.
 
 * [Status bar](http://www.odoo.com/documentation/9.0/reference/views.html#the-status-bar)
 * [Recordset operations](http://www.odoo.com/documentation/9.0/reference/orm.html#other-recordset-operations)
-* [Environment](http://www.odoo.com/documentation/9.0/reference/orm.html#environement)
+* [Environment](http://www.odoo.com/documentation/9.0/reference/orm.html#environment)
 * [Online Tutorial](http://www.odoo.com/documentation/9.0/howtos/backend.html#build-an-odoo-module)
 
 ### Code Sample
