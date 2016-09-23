@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <!-- Menu -->
+
+    <record id="library_book_action" model="ir.actions.act_window">
+        <field name="name">Books</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="library_partner_action" model="ir.actions.act_window">
+        <field name="name">Partners</field>
+        <field name="res_model">library.partner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="library_rental_action" model="ir.actions.act_window">
+        <field name="name">Rentals</field>
+        <field name="res_model">library.rental</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="library_publisher_action" model="ir.actions.act_window">
+        <field name="name">Publishers</field>
+        <field name="res_model">library.publisher</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Library -->
+    <menuitem
+        id="library_root_menu"
+        name="Library" />
+
+    <!-- Library/Library -->
+    <menuitem
+        id="library_menu"
+        parent="library_root_menu"
+        name="Library" />
+
+    <!-- Library/Library/Books -->
+    <menuitem
+        id="library_book_menu"
+        parent="library_menu"
+        action="library_book_action"
+        name="Books" />
+
+    <!-- Library/Library/Partners -->
+    <menuitem
+        id="library_partner_menu"
+        parent="library_menu"
+        action="library_partner_action"
+        name="Partners" />
+
+    <!-- Library/Library/Rentals -->
+    <menuitem
+        id="library_rental_menu"
+        parent="library_menu"
+        action="library_rental_action"
+        name="Rentals" />
+
+    <!-- Library/Settings -->
+    <menuitem
+        id="library_settings_menu"
+        name="Settings" />
+
+    <!-- Library/Settings/Publishers -->
+    <menuitem
+        id="library_publisher_menu"
+        parent="library_settings_menu"
+        action="library_publisher_action"
+        name="Publishers" />
+
+</odoo>
