@@ -59,11 +59,48 @@
                             </group>
                         </group>
                         <label for="attendee_ids"/>
-                        <!-- Used only on 4th extra task:
-                                x2many fields can declare a mode attribute to define the main
-                                view to be displayed
-                        -->
-                        <field name="attendee_ids"/>
+                        <field name="attendee_ids" mode="kanban">
+                            <kanban>
+                                <field name="color"/>
+                                <field name="name"/>
+                                <field name="title"/>
+                                <field name="type"/>
+                                <field name="email"/>
+                                <field name="parent_id"/>
+                                <field name="is_company"/>
+                                <field name="function"/>
+                                <field name="phone"/>
+                                <field name="street"/>
+                                <field name="street2"/>
+                                <field name="zip"/>
+                                <field name="city"/>
+                                <field name="country_id"/>
+                                <field name="mobile"/>
+                                <field name="fax"/>
+                                <field name="state_id"/>
+                                <field name="image"/>
+                                <field name="lang"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <t t-set="color" t-value="kanban_color(record.color.raw_value)"/>
+                                        <div t-att-class="color + (record.title.raw_value == 1 ? ' oe_kanban_color_alert' : '') + ' oe_kanban_global_click'">
+                                            <a t-if="!read_only_mode" type="delete" class="fa fa-times pull-right"/>
+                                            <div class="o_kanban_image">
+                                                <img t-if="record.image.raw_value" t-att-src="'data:image/png;base64,' + record.image.raw_value"/>
+                                            </div>
+                                            <div class="oe_kanban_details">
+                                                <field name="name"/>
+                                                <div t-if="record.function.raw_value"><field name="function"/></div>
+                                                <div t-if="record.email.raw_value"><field name="email"/></div>
+                                                <div t-if="record.phone.raw_value">Phone: <field name="phone"/></div>
+                                                <div t-if="record.mobile.raw_value">Mobile: <field name="mobile"/></div>
+                                                <div t-if="record.fax.raw_value">Fax: <field name="fax"/></div>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers"/>
@@ -88,12 +125,66 @@
             <field name="name">session kanban</field>
             <field name="model">openacademy.session</field>
             <field name="arch" type="xml">
-                <!-- Kanban views can declare a 'default_group_by' attribute -->
-                <kanban>
-                    <!-- Add here field's values used inside the kanban but not actually displayed -->
+                <kanban default_group_by="course_id">
+                    <field name="instructor_id"/>
+                    <field name="seats"/>
+                    <field name="attendees_count"/>
+                    <field name="state"/>
                     <templates>
                         <t t-name="kanban-box">
-                            <!-- Add here yours JS QWeb's HTML code -->
+                            <div class="o_kanban_record">
+                                <div class="o_dropdown_kanban dropdown" groups="base.group_user">
+                                    <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" >
+                                        <span class="fa fa-bars fa-lg"/>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <t t-if="widget.editable"><li><a type="edit">Edit Session</a></li></t>
+                                        <t t-if="widget.deletable"><li><a type="delete">Delete</a></li></t>
+                                        <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
+                                    </ul>
+                                </div>
+                                <div class="oe_kanban_content">
+                                    <div class="o_kanban_title">
+                                        <field name="name"/>
+                                    </div>
+                                    <field name="attendees_count"
+                                        widget="progress"
+                                        options="{
+                                            'current_value': 'attendees_count',
+                                            'max_value': 'seats',
+                                            'editable': true,
+                                            'edit_max_value': true,
+                                            'on_change': 'action_set_no_of_seats'
+                                        }"
+                                    />
+                                    <div class="text-muted" attrs="{
+                                            'invisible': [('state', 'in', 'done')]
+                                        }"
+                                    >
+                                        <div class="row">
+                                            <t t-if="record.start_date.raw_value and record.start_date.raw_value lt (new Date())" t-set="has_started">oe_kanban_text_red</t>
+                                            <div class="col-xs-3 text-right">Starts:</div>
+                                            <div class="col-xs-9"><span t-attf-class="#{has_started || ''}"><field name="start_date"/></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <t t-if="record.end_date.raw_value and record.end_date.raw_value lt (new Date())" t-set="has_ended">oe_kanban_text_red</t>
+                                            <div class="col-xs-3 text-right">Ends:</div>
+                                            <div class="col-xs-9"><span t-attf-class="#{has_ended || ''}"><field name="end_date"/></span></div>
+                                        </div>
+                                    </div>
+                                    <div class="oe_kanban_bottom_left">
+                                        <img t-att-src="kanban_image('res.partner', 'image_small', record.instructor_id.raw_value)" class="oe_kanban_avatar_smallbox"/>
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                        <div class="o_kanban_button">
+                                            <a name="open_attendees" type="object">
+                                                <span class="o_value"><field name="attendees_count"/></span>
+                                                <span class="o_label">Attendees</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </t>
                     </templates>
                 </kanban>

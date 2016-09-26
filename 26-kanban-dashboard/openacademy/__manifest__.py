@@ -26,7 +26,7 @@
         'views/courses.xml',
         'views/sessions.xml',
         'views/partners.xml',
-        # 'views/templates.xml',
+        'views/templates.xml',
     ],
     'qweb': [
         "static/src/xml/*.xml",
