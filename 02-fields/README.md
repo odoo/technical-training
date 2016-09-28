@@ -16,7 +16,7 @@ and to automatically compute values based on other fields. This includes:
 
 * [01. Models, Fields and Relations](../01-models/)
 
-## Problem 1: Facilitate Session Registration
+## Problem 1: Facilitate Session Registration (OpenAcademy)
 
 In our openacademy module, we already have a few concepts defined: a course and
 a session (an instance of a course) containing basic information like the subject,
@@ -27,12 +27,12 @@ To help the secretary registrating the attendees, we want to avoid to register
 more students than the instructor can take care of. Find one or more ways to
 prevent this scenario.
 
-- **directory** : [02-fields/ex01](./ex01/)
 - **Technical Hint**: the computed fields, onchange and constraint do not work
   the same way, are triggered at the same time or serve the same purpose but
   they all can help you.
 
-## Problem 2: Borrow a Book and Be Lazy
+
+## Problem 2: Borrow a Book and Be Lazy (Library)
 
 In the first module, we created a basic library module with information on the
 book, publisher and customer. When renting a book, we would like to display as
@@ -40,7 +40,6 @@ much information as possible on the renting form (about both the customer and
 the book) but without having to set this information all over again. Find ways
 to be informative and avoids adding workload to the librarians.
 
-- **directory** : [02-fields/ex02](./ex02/)
 
 ## Resources
 

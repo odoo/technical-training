@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "openacademy - 03 views - ex01",
+    'name': "OpenAcademy",
 
     'summary': """
         Course management""",

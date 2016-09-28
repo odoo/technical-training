@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Coop Task Management - 03 views - ex03",
+    'name': "Coop Task Management",
 
     'summary': """
         Volonteer Timetable Management""",

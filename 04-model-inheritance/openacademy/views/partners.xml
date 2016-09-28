@@ -73,14 +73,14 @@
             <field name="res_model">res.partner</field>
             <field name="view_mode">tree,form</field>
             <field name="context">{
-                'tree_view_ref': 'ex01.contact_tree_view',
-                'form_view_ref': 'ex01.contact_form_view',
-                'search_view_ref': 'ex01.contact_search_view',
+                'tree_view_ref': 'openacademy.contact_tree_view',
+                'form_view_ref': 'openacademy.contact_form_view',
+                'search_view_ref': 'openacademy.contact_search_view',
             }</field>
         </record>
 
         <menuitem id="configuration_menu" name="Configuration"
-                  parent="ex01.menu_root" />
+                  parent="menu_root" />
 
         <menuitem id="contact_menu" name="Contacts"
                   parent="configuration_menu"

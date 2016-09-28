@@ -17,7 +17,7 @@ The purpose of this module is to learn this inheritance mechanism.
 - [Model Inheritance](../04-model-inheritance)
 
 
-## Problem 1: Instructors
+## Problem 1: Instructors (OpenAcademy)
 
 In the previous training module ([Model Inheritance](../04-model-inheritance)),
 we have added fields on the contacts (model `res.partner`). The boolean field

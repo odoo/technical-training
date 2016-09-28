@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Library management - 01 models - ex02",
+    'name': "Library Management",
 
     'summary': """
         Library management""",

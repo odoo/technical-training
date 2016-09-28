@@ -14,7 +14,7 @@ and how they interact with each other. The learner will be able to:
 
 * [Python](https://www.python.org/)
 
-## Problem 1: The Citadel
+## Problem 1: The Citadel (OpenAcademy)
 
 The citadel of the seven kingdoms, located in Oldtown would like to use Odoo to
 manage the training of its future maesters. In this system, the citadel wants to

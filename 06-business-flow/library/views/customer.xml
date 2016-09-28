@@ -62,11 +62,11 @@
                 (5, 0, 0),
                 (0, 0, {
                     'view_mode': 'tree',
-                    'view_id': ref('ex02.customer_view_tree_id'),
+                    'view_id': ref('library.customer_view_tree_id'),
                     }),
                 (0, 0, {
                     'view_mode': 'form',
-                    'view_id': ref('ex02.customer_view_form_id'),
+                    'view_id': ref('library.customer_view_form_id'),
                     }),
                 ]"/>
         </record>

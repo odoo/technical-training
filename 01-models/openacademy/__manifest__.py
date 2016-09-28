@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Openeacademy - 01 models - ex01",
+    'name': "OpenAcademy",
 
     'summary': """
         Openacademy""",
 
     'description': """
-        Manage course, classes, teachers, students, ... 
+        Manage course, classes, teachers, students, ...
     """,
 
     'author': "Odoo",

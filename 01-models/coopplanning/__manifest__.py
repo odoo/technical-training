@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Cooperative management - 01 models - ex03",
+    'name': "Cooperative Management",
 
     'summary': """
         Cooperative management""",

@@ -10,7 +10,7 @@
         </record>
 
         <menuitem id="configuration_menu" name="Configuration"
-                  parent="ex01.menu_root" />
+                  parent="menu_root" />
 
         <menuitem id="contact_menu" name="Contacts"
                   parent="configuration_menu"

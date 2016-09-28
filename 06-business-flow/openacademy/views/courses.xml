@@ -56,9 +56,9 @@
         <!-- Top menu item -->
         <menuitem name="Academy" id="menu_root"/>
         <!-- menu categories -->
-        <menuitem name="Courses" id="menu_course_top" parent="ex01.menu_root"/>
+        <menuitem name="Courses" id="menu_course_top" parent="menu_root"/>
         <!-- actions -->
-        <menuitem name="Courses" id="menu_course" parent="ex01.menu_course_top"
+        <menuitem name="Courses" id="menu_course" parent="menu_course_top"
                             action="action_course"/>
 
     </data>

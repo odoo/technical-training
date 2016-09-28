@@ -17,7 +17,7 @@ The goal of this module is to learn how to create a business workflow. The learn
 * [ORM](../09-orm)
 
 
-## Problem 1: The Citadel
+## Problem 1: The Citadel (OpenAcademy)
 
 The citadel is pleased with the way Odoo allows the Archmaesters to have more
 time to take care of their ravens, which are the only trustworthy way of

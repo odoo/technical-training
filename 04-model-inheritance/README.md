@@ -19,7 +19,7 @@ The purpose of this module is to learn these inheritance mechanisms.
 - [Basic Views](../03-views)
 
 
-## Problem 1: Instructors
+## Problem 1: Instructors (OpenAcademy)
 
 We assume that both session instructors and session attendees relate to the
 general model for contacts, namely `res.partner`. The model fits well for

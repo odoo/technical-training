@@ -19,7 +19,7 @@ users, to learn how to design basic views and how to alter field properties.
 * [02. Computed Fields, Onchange and Constraints](../02-fields/)
 
 
-## Problem 1: Display Course and Session for Openacademy
+## Problem 1: Display Course and Session (OpenAcademy)
 
 We have designed two models Course and Session, we have defined some fields on
 them but when we install the module, nothing changes in the Odoo user interface.
@@ -32,7 +32,6 @@ each session in a separate form.
 Of course, those features should be available directly once the module is
 installed.
 
-- **directory**: 03-views/ex01
 - **Technical Hint**: Explore the developer mode. Check for tree views and form
   views. Check for window actions and menu items.
 
@@ -58,7 +57,6 @@ For the task type and the day number, we want to able to find task templates
 based on the name of the task type but also the area, respectively the number
 for day number.
 
-- **directory**: 03-views/ex02
 - **Technical Hint**: Look at search views. Related fields could be handy, or
   you can explore the method `name_search`.
 
@@ -105,7 +103,6 @@ Finally, the fields `start_time`, `end_time` and `duration` represent times
 which are usually expressed in hours, but shown as 7:30 instead of 7.5. It would
 be great to show the data in that format.
 
-- **directory**: 03-views/ex03
 - **Technical Hint**:  Everything can be done in the views. Domains can be handy. 
 
 #### Extra Task

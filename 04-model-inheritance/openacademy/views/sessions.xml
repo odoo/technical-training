@@ -70,7 +70,7 @@
         </record>
 
         <!-- actions -->
-        <menuitem name="Sessions" id="menu_session" parent="ex01.menu_course_top"
+        <menuitem name="Sessions" id="menu_session" parent="menu_course_top"
                   action="action_session"/>
 
     </data>
