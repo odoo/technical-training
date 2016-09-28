@@ -25,3 +25,4 @@ The language [Python](https://www.python.org/) is a requirement for almost all m
 
 1. [Mail Integration](25-mail-integration)
 1. [Kanban Views and Dashboards](26-kanban-dashboard)
+1. [Advanced Widgets](27-widgets)
