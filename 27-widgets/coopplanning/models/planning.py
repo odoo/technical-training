@@ -88,3 +88,7 @@ class TaskTemplate(models.Model):
                 'start_time' : fields.Datetime.context_timestamp(self, today).replace(hour=h_begin, minute=m_begin, second=0).astimezone(UTC),
                 'end_time' :  fields.Datetime.context_timestamp(self, today).replace(hour=h_end, minute=m_end, second=0).astimezone(UTC),
             })
+
+    #EX04 : archive button
+    def toggle_active(self):
+        self.active = not self.active
