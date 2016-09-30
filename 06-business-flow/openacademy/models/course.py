@@ -5,12 +5,12 @@ from odoo.exceptions import ValidationError
 
 
 class Course(models.Model):
-    _name = 'academy.course'
+    _name = 'openacademy.course'
 
     name = fields.Char(name='Title', required=True)
     description = fields.Text()
     responsible_id = fields.Many2one('res.users', ondelete='set null', string="Responsible", index=True)
-    session_ids = fields.One2many('academy.session', 'course_id', string="Sessions")
+    session_ids = fields.One2many('openacademy.session', 'course_id', string="Sessions")
     level = fields.Selection([(1, 'Easy'), (2, 'Medium'), (3, 'Hard')], string="Difficulty Level")
     session_count = fields.Integer("Session Count", compute="_compute_session_count")
 
@@ -43,7 +43,7 @@ class Course(models.Model):
 
 
 class Session(models.Model):
-    _name = 'academy.session'
+    _name = 'openacademy.session'
     _order = 'name'
 
     name = fields.Char(required=True)
@@ -54,7 +54,7 @@ class Session(models.Model):
     duration = fields.Float(digits=(6, 2), help="Duration in days", default=1)
     seats = fields.Integer(string="Number of seats")
     instructor_id = fields.Many2one('res.partner', string="Instructor") #No ondelete = set null
-    course_id = fields.Many2one('academy.course', ondelete='cascade', string="Course", required=True)
+    course_id = fields.Many2one('openacademy.course', ondelete='cascade', string="Course", required=True)
     attendee_ids = fields.Many2many('res.partner', string="Attendees", domain=[('company_type', '=', 'person')])
     taken_seats = fields.Float(string="Taken seats", compute='_taken_seats')
     level = fields.Selection(related='course_id.level', readonly=True)

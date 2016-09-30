@@ -137,7 +137,7 @@
     </record>
 
     <record model="ir.ui.view" id="openacademy_session_pivot_view">
-        <field name="name">openacademy.session.pivot</field>
+        <field name="name">session pivot</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
             <pivot string="Participations by Courses">

@@ -3,8 +3,8 @@
     <data>
 
         <record model="ir.ui.view" id="course_view_list">
-            <field name="name">academy list</field>
-            <field name="model">academy.course</field>
+            <field name="name">course list</field>
+            <field name="model">openacademy.course</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -15,8 +15,8 @@
         </record>
 
         <record model="ir.ui.view" id="course_view_form">
-            <field name="name">academy form</field>
-            <field name="model">academy.course</field>
+            <field name="name">course form</field>
+            <field name="model">openacademy.course</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -47,8 +47,8 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_course">
-            <field name="name">academy course</field>
-            <field name="res_model">academy.course</field>
+            <field name="name">Courses</field>
+            <field name="res_model">openacademy.course</field>
             <field name="view_mode">tree,form</field>
         </record>
 

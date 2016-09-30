@@ -3,8 +3,8 @@
     <data>
 
         <record model="ir.ui.view" id="session_view_list">
-            <field name="name">academy session list</field>
-            <field name="model">academy.session</field>
+            <field name="name">session list</field>
+            <field name="model">openacademy.session</field>
             <field name="arch" type="xml">
                 <tree decoration-bf="(taken_seats &gt; 70)"
                       colors="#0000ff:duration&lt;5;red:duration&gt;15"
@@ -22,8 +22,8 @@
         </record>
 
         <record model="ir.ui.view" id="session_view_form">
-            <field name="name">academy session form</field>
-            <field name="model">academy.session</field>
+            <field name="name">session form</field>
+            <field name="model">openacademy.session</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -52,8 +52,8 @@
         </record>
 
         <record model="ir.ui.view" id="academy_session_pivot_view">
-            <field name="name">academy.session.pivot</field>
-            <field name="model">academy.session</field>
+            <field name="name">session pivot</field>
+            <field name="model">openacademy.session</field>
             <field name="arch" type="xml">
                 <pivot string="Participations by Courses">
                     <field name="course_id"/>
@@ -64,8 +64,8 @@
 
 
         <record model="ir.actions.act_window" id="action_session">
-            <field name="name">academy session</field>
-            <field name="res_model">academy.session</field>
+            <field name="name">Sessions</field>
+            <field name="res_model">openacademy.session</field>
             <field name="view_mode">tree,form</field>
         </record>
 
