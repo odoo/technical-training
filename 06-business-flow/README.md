@@ -68,9 +68,9 @@ owed should be visible on the customer's form view and should be searchable.
 
 ### Code Sample
 
-* [Form buttons](https://github.com/odoo/odoo/blob/d88aa53/addons/account/views/account_invoice_view.xml#L217)
-* [Chatter example](https://github.com/odoo/odoo/blob/d88aa53/addons/event/views/event_views.xml#L136)
-* [Date field information](https://github.com/odoo/odoo/blob/d88aa53/openerp/fields.py#L1335)
-* [Email template](https://github.com/odoo/odoo/blob/d88aa53/addons/event/data/email_template_data.xml)
-* [Send Email template](https://github.com/odoo/odoo/blob/d88aa53/addons/event/models/event.py#L260)
-* [Cron](https://github.com/odoo/odoo/blob/d88aa53/addons/membership/membership_data.xml)
+* [Form buttons](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/account/views/account_invoice_view.xml#L220)
+* [Chatter example](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/event/views/event_views.xml#L138)
+* [Date field information](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/odoo/fields.py#L1447)
+* [Email template](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/event/data/email_template_data.xml)
+* [Send Email template](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/event/models/event.py#L275)
+* [Cron](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/membership/data/membership_data.xml)

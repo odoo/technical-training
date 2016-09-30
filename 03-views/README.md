@@ -128,9 +128,9 @@ be great to show the data in that format.
 
 ### Code Samples
 
-* [Views](https://github.com/odoo/odoo/blob/9.0/addons/product/product_view.xml)
-* [Menu Item](https://github.com/odoo/odoo/blob/9.0/addons/account/views/account_menuitem.xml)
-* [Example of a fancy module description](https://github.com/odoo/odoo/tree/9.0/addons/account/static/description)
-* [CRM tree view ordered](https://github.com/odoo/odoo/blob/9.0/addons/crm/crm_lead_view.xml#L661)
-* [Attrs](https://github.com/odoo/odoo/blob/9.0/addons/hr_recruitment/views/hr_recruitment_views.xml#L416)
-* [Use of Options in Views](https://github.com/odoo/odoo/blob/9.0/addons/hr_recruitment/views/hr_recruitment_views.xml#L411)
+* [Views](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/product/views/product_views.xml)
+* [Menu Item](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/account/views/account_menuitem.xml)
+* [Example of a fancy module description](https://github.com/odoo/odoo/tree/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/account/static/description)
+* [CRM tree view ordered](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/crm/views/crm_lead_views.xml#L540)
+* [Attrs](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/hr_recruitment/views/hr_recruitment_views.xml#L412)
+* [Use of Options in Views](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/hr_recruitment/views/hr_recruitment_views.xml#L102)

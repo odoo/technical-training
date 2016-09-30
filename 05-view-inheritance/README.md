@@ -44,7 +44,7 @@ book model.
 
 ### Code Sample
 
-* [Add elements to a form view](https://github.com/odoo/odoo/blob/d88aa539d463594fb203175dee667da0f65c31e5/addons/account/views/product_view.xml#L10)
-* [Add elements inside another](https://github.com/odoo/odoo/blob/d88aa539d463594fb203175dee667da0f65c31e5/addons/account/views/partner_view.xml#L96)
-* [Replace an element by another](https://github.com/odoo/odoo/blob/d88aa539d463594fb203175dee667da0f65c31e5/addons/product/product_view.xml#L199)
-* [Modify element attributes](https://github.com/odoo/odoo/blob/d88aa539d463594fb203175dee667da0f65c31e5/addons/product/product_view.xml#L460)
+* [Add elements to a form view](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/account/views/product_view.xml#L10)
+* [Add elements inside another](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/account/views/partner_view.xml#L98)
+* [Replace an element by another](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/product/views/product_views.xml#L139)
+* [Modify element attributes](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/product/views/product_views.xml#L277)

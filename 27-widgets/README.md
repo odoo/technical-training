@@ -80,4 +80,4 @@ list of all the tasks for this partner.
 
 * [Widget in view](https://www.odoo.com/documentation/9.0/reference/views.html)
 * [Stat button](http://fr.slideshare.net/openobject/odoo-smart-buttons)
-* [Widget list](https://github.com/odoo/odoo/blob/9.0/addons/web/static/src/js/views/form_widgets.js#L1771)
+* [Widget list](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/web/static/src/js/views/form_widgets.js#L1680)

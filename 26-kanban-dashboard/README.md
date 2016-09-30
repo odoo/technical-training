@@ -81,8 +81,8 @@ allow sending empty feedback.
 
 ### Code Samples
 
-* [Kanban picture](https://github.com/odoo/odoo/blob/9.0/openerp/addons/base/res/res_partner_view.xml#L391)
-* [Progress bar widget](https://github.com/odoo/odoo/blob/9.0/addons/hr_holidays/hr_dashboard.xml#L41)
-* [Warning color on field](https://github.com/odoo/odoo/blob/9.0/addons/hr_recruitment/views/hr_recruitment_views.xml#L305)
-* [Editable progress bar widget](https://github.com/odoo/odoo/blob/9.0/addons/hr_recruitment/views/hr_job_views.xml#L77)
-* [X2Many field as kanban view](https://github.com/odoo/odoo/blob/9.0/openerp/addons/base/res/res_partner_view.xml#L214)
+* [Kanban picture](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/odoo/addons/base/res/res_partner_view.xml#L378)
+* [Progress bar widget](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/hr_holidays/views/hr_views.xml#L48)
+* [Warning color on field](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/hr_recruitment/views/hr_recruitment_views.xml#L276)
+* [Editable progress bar widget](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/hr_recruitment/views/hr_job_views.xml#L68)
+* [X2Many field as kanban view](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/odoo/addons/base/res/res_partner_view.xml#L201)

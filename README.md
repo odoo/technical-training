@@ -1,4 +1,4 @@
-# Odoo Technical Training
+# Odoo 10.0 - Technical Training
 
 This repository contains training material for learning Odoo 10.
 It is split into modules, each module focusing on a given topic.

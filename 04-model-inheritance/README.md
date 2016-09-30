@@ -68,8 +68,8 @@ of books.
 
 ### Code Sample
 
-* [Add fields to a model](https://github.com/odoo/odoo/blob/d88aa53/addons/account/models/product.py#L7)
-* [Override a method on a model](https://github.com/odoo/odoo/blob/d88aa53/addons/account/models/product.py#L38)
-* [Create a model by extending another model](https://github.com/odoo/odoo/blob/d88aa539d463594fb203175dee667da0f65c31e5/addons/account/models/res_config.py#L14)
-* [Use abstract models as mixins](https://github.com/odoo/odoo/blob/d88aa539d463594fb203175dee667da0f65c31e5/addons/product/product.py#L381)
-* [Product variants](https://github.com/odoo/odoo/blob/d88aa539d463594fb203175dee667da0f65c31e5/addons/product/product.py#L779)
+* [Add fields to a model](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/account/models/product.py#L7)
+* [Override a method on a model](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/account/models/product.py#L39)
+* [Create a model by extending another model](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/account/models/res_config.py#L14)
+* [Use abstract models as mixins](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/product/models/product_template.py#L15)
+* [Product variants](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/product/models/product.py#L106)

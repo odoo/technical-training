@@ -86,8 +86,8 @@ in a recurring way 2-3 hours per week at a time.
 
 ### Code Sample
 
-* [API stuff to import](https://github.com/odoo/odoo/blob/d88aa53/openerp/addons/base/res/res_bank.py#L5)
-* [Simple model with some basic fields](https://github.com/odoo/odoo/blob/d88aa53/openerp/addons/base/res/res_bank.py#L14)
-* [Many2one](https://github.com/odoo/odoo/blob/d88aa53/addons/sale/sale.py#L639)
-* [One2many](https://github.com/odoo/odoo/blob/d88aa53/addons/sale/sale.py#L126)
-* [Many2many](https://github.com/odoo/odoo/blob/d88aa53/addons/account/models/product.py#L25)
+* [API stuff to import](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/odoo/addons/base/res/res_bank.py#L5)
+* [Simple model with some basic fields](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/odoo/addons/base/res/res_bank.py#L15)
+* [Many2one](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/sale/models/sale.py#L701)
+* [One2many](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/sale/models/sale.py#L128)
+* [Many2many](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/account/models/product.py#L25)

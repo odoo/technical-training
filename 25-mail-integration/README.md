@@ -106,14 +106,14 @@ default.
 
 ### References
 
-* [Mail Thread](https://github.com/odoo/odoo/blob/saas-13/addons/mail/models/mail_thread.py)
-* [Mail Alias](https://github.com/odoo/odoo/blob/saas-13/addons/mail/models/mail_alias.py)
-* [Mail Template](https://github.com/odoo/odoo/blob/saas-13/addons/mail/models/mail_template.py)
+* [Mail Thread](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/mail/models/mail_thread.py)
+* [Mail Alias](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/mail/models/mail_alias.py)
+* [Mail Template](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/mail/models/mail_template.py)
 
 ### Code Samples
 
-* [Sale Order](https://github.com/odoo/odoo/blob/9.0/addons/sale/sale.py)
-* [Task Suggests Recipient](https://github.com/odoo/odoo/blob/9.0/addons/project/project.py#L848)
-* [Mail Alias on Project](https://github.com/odoo/odoo/blob/saas-13/addons/project/models/project.py#L52)
-* [Email Template Example](https://github.com/odoo/odoo/blob/saas-13/addons/sale/data/mail_template_data.xml)
-* [Track Subtypes](https://github.com/odoo/odoo/blob/9.0/addons/project/project.py#L746)
+* [Sale Order](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/sale/models/sale.py)
+* [Task Suggests Recipient](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/project/models/project.py#L640)
+* [Mail Alias on Project](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/project/models/project.py#L52)
+* [Email Template Example](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/sale/data/mail_template_data.xml)
+* [Track Subtypes](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/project/models/project.py#L544)
