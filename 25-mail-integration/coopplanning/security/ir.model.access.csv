@@ -1,0 +1,6 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_coopplanning_task_type,access_coopplanning_task_type,model_coopplanning_task_type,,1,1,1,1
+access_coopplanning_daynumber,access_coopplanning_daynumber,model_coopplanning_daynumber,,1,1,1,1
+access_coopplanning_planning,access_coopplanning_planning,model_coopplanning_planning,,1,1,1,1
+access_coopplanning_task_template,access_coopplanning_task_template,model_coopplanning_task_template,,1,1,1,1
+access_coopplanning_task,access_coopplanning_task,model_coopplanning_task,,1,1,1,1
