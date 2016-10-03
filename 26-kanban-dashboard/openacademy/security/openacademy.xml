@@ -46,7 +46,7 @@
 
         <record id="academy_portal_user_session_attendee_feedback_rule" model="ir.rule">
             <field name="name">Academy: Portal User Session's Feedback</field>
-            <field name="model_id" ref="openacademy.model_openacademy_session_attendee_feedback"/>
+            <field name="model_id" ref="openacademy.model_openacademy_feedback"/>
             <field name="domain_force">[('attendee_id', '=', user.partner_id.id)]</field>
             <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
             <field name="perm_write" eval="False"/>
