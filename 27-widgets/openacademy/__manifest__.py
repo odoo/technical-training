@@ -29,13 +29,8 @@
         'views/courses.xml',
         'views/sessions.xml',
         'views/partners.xml',
-        'views/courses_kanban.xml',
         'wizard/add_attendee_view.xml',
-        'report/session.xml',
-        'report/board.xml',
-        'data/session_workflow.xml',
         'data/partner.xml',
-        'templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
