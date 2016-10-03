@@ -26,8 +26,6 @@
         "views/task_template.xml",
         "views/task.xml",
         "views/planning.xml",
-        #Solution EX03
-        "views/partner.xml",
         "wizard/instanciate_planning.xml",
         "views/configuration.xml",
         "data/coopplanning_data.xml",
