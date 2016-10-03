@@ -63,16 +63,15 @@
                 <tree>
                     <field name="partner_id" />
                     <field name="state" />
-                    <field name="comment" />
-                                <button name="action_draft" type="object"
-                string="Reset to draft"
-                attrs="{'invisible' : [('state', '=', 'draft')] }"   />
-            <button name="action_confirm" type="object"
-                string="Confirm" attrs="{'invisible' : [('state', 'in', ('confirmed', 'done'))] }"
-                class="oe_highlight"  />
-            <button name="action_done" type="object"
-                string="Mark as done" attrs="{'invisible' : [('state', 'in', ('draft', 'done'))] }"
-                class="oe_highlight"  />
+                    <button name="action_draft" type="object"
+                        string="Reset to draft"
+                        attrs="{'invisible' : [('state', '=', 'draft')] }"/>
+                    <button name="action_confirm" type="object"
+                        string="Confirm" attrs="{'invisible' : [('state', 'in', ('confirmed', 'done'))] }"
+                        class="oe_highlight"  />
+                    <button name="action_done" type="object"
+                        string="Mark as done" attrs="{'invisible' : [('state', 'in', ('draft', 'done'))] }"
+                        class="oe_highlight"  />
                 </tree>
               </field>
           </sheet>
