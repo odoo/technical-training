@@ -34,6 +34,7 @@
     # only loaded in demonstration mode
     'demo': [
         'data/partner_category_demo.xml',
-        'data/course_demo.xml'
+        'data/partner_demo.xml',
+        'data/course_demo.xml',
     ],
 }
