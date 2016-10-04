@@ -9,7 +9,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="task_template_view_form">
+    <record model="ir.ui.view" id="planning_view_form">
         <field name="name">Planning Form</field>
         <field name="model">coopplanning.planning</field>
         <field name="arch" type="xml">

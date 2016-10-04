@@ -43,8 +43,8 @@
                             <field name="floating" />
                         </group>
                     </group>
-                        <separator string="Pre defined Worker" />
-                        <field name="worker_ids" nolabel="1" />
+                    <separator string="Pre defined Worker" />
+                    <field name="worker_ids" nolabel="1" />
                 </sheet>
             </form>
         </field>
