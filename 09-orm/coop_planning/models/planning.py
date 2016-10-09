@@ -22,6 +22,35 @@ class TaskType(models.Model):
     description = fields.Text()
     area = fields.Char()
     active = fields.Boolean(default=True)
+    full_name = fields.Char(compute='_get_full_name')
+
+    @api.depends('name', 'description')
+    def _get_full_name(self):
+        for task_type in self:
+            if task_type.description:
+                task_type.full_name = '%s / %s' % (task_type.name, task_type.description)
+            else:
+                task_type.full_name = task_type.name
+
+    def name_get(self):
+        rec = []
+        for task_type in self:
+            rec.append([task_type.id, task_type.full_name])
+        return rec
+
+    @api.model
+    def name_search(self, name, args=None, operator='ilike', limit=100):
+        args = args or []
+        domain = []
+        if name:
+            domain = [
+                '|',
+                ('name', operator, name + '%'),
+                ('description', operator, name),
+            ]
+
+        task_type = self.search(domain + args, limit=limit)
+        return task_type.name_get()
 
 
 class DayNumber(models.Model):
