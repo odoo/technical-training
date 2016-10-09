@@ -1,0 +1,76 @@
+<odoo>
+    <data>
+        <template id="course">
+            <t t-call="website.layout">
+                <t t-set="title">Academy</t>
+                <div class="oe_structure">
+                </div>
+                <div class="oe_structure">
+                    <div class="container">
+                        <t t-foreach="courses" t-as="course">
+                            <p>
+                                <t t-esc="course.id"/>
+                                <t t-esc="course.name"/>
+                            </p>
+                            <p>Sessions</p>
+                                <t t-foreach="course.session_ids" t-as="session">
+                                    <p><a t-attf-href="/academy/{{ slug(session) }}"><t t-esc="session.name"/></a></p>
+                                    <p>Last modified: <i t-field="session.write_date" t-field-options='{"format": "long"}' /></p>
+                                    <div t-field="session.description" />
+                                </t>
+                        </t>
+                    </div>
+                </div>
+                <div class="oe_structure">
+                </div>
+            </t>
+        </template>
+
+        <template id="session">
+            <t t-call="website.layout">
+                <t t-set="title">Academy</t>
+                <div class="oe_structure"/>
+                <div class="oe_structure">
+                    <div class="container">
+                        <h3 t-field="session.name"/>
+                        <p>Last modified: <i t-field="session.write_date" t-field-options='{"format": "long"}'/></p>
+                        <div t-field="session.description" />
+                        <p>Course : <t t-esc="session.course_id.name"/> </p>
+                        <p>Nbr Attendee: <t t-esc="session.attendees_count"/></p>
+                    </div>
+                    <h3>Attendees:</h3>
+                    <ul>
+                        <t t-foreach="session.attendee_ids" t-as="attendee">
+                            <li><span t-field="attendee.name"/></li>
+                        </t>
+                    </ul>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <template id="session_list">
+               <t t-call="website.layout">
+            <t t-set="title">Session</t>
+             <div class="oe_structure">
+                    <div class="container">
+            <t t-foreach="sessions" t-as="session">
+                <h2>
+                    <t t-esc="session.name"/>
+                </h2>
+                <p>
+                    id:
+                    <t t-esc="session.id"/>
+                    , course:
+                    <t t-esc="session.course_id.name"/>
+                </p>
+                <p>
+                    nbr_seats:
+                    <t t-esc="session.seats"/>
+                    , nbr attendee:
+                    <t t-esc="session.attendees_count"/>
+                </p>
+            </t></div></div></t>
+        </template>
+    </data>
+</odoo>
