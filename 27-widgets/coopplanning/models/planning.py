@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import timedelta, datetime
-from openerp import models, fields, api, exceptions, _
+from odoo import models, fields, api, exceptions, _
 
 from pytz import UTC, timezone
 import math
