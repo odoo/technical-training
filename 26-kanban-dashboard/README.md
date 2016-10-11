@@ -71,12 +71,12 @@ allow sending empty feedback.
 
 ### References
 
-* [Kanban view](http://www.odoo.com/documentation/9.0/reference/views.html#kanban)
-* [Odoo's JS framework](https://www.odoo.com/documentation/9.0/reference/javascript.html#web-client)
-* [Odoo's widgets 101](https://www.odoo.com/documentation/9.0/howtos/web.html#widgets-basics)
-* [Odoo's JS Qweb engine](https://www.odoo.com/documentation/9.0/howtos/web.html#the-qweb-template-engine)
-* [Communication with the server](https://www.odoo.com/documentation/9.0/howtos/web.html#communication-with-the-odoo-server)
-* [Odoo's widget development ](https://www.odoo.com/documentation/9.0/reference/javascript.html#widgets)
+* [Kanban view](http://www.odoo.com/documentation/10.0/reference/views.html#kanban)
+* [Odoo's JS framework](https://www.odoo.com/documentation/10.0/reference/javascript.html#web-client)
+* [Odoo's widgets 101](https://www.odoo.com/documentation/10.0/howtos/web.html#widgets-basics)
+* [Odoo's JS Qweb engine](https://www.odoo.com/documentation/10.0/howtos/web.html#the-qweb-template-engine)
+* [Communication with the server](https://www.odoo.com/documentation/10.0/howtos/web.html#communication-with-the-odoo-server)
+* [Odoo's widget development ](https://www.odoo.com/documentation/10.0/reference/javascript.html#widgets)
 
 
 ### Code Samples

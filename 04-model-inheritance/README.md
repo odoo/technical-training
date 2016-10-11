@@ -61,10 +61,10 @@ of books.
 
 ### Reference
 
-* [Inheritance and Extension](http://www.odoo.com/documentation/9.0/reference/orm.html#reference-orm-inheritance)
-* [Domains](http://www.odoo.com/documentation/9.0/reference/orm.html#domains)
-* [Basic Fields Documentation](http://www.odoo.com/documentation/9.0/reference/orm.html#basic-fields)
-* [Online Tutorial](http://www.odoo.com/documentation/9.0/howtos/backend.html#inheritance)
+* [Inheritance and Extension](http://www.odoo.com/documentation/10.0/reference/orm.html#reference-orm-inheritance)
+* [Domains](http://www.odoo.com/documentation/10.0/reference/orm.html#domains)
+* [Basic Fields Documentation](http://www.odoo.com/documentation/10.0/reference/orm.html#basic-fields)
+* [Online Tutorial](http://www.odoo.com/documentation/10.0/howtos/backend.html#inheritance)
 
 ### Code Sample
 
