@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Top menu item -->
+        <menuitem name="Kindgom" id="menu_root"/>
+
+
+        <record model="ir.actions.act_window" id="action_kingdom">
+            <field name="name">Kingdom</field>
+            <field name="res_model">res.company</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_army">
+            <field name="name">Army</field>
+            <field name="res_model">kingdom.army</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_economy">
+            <field name="name">Cities</field>
+            <field name="res_model">kingdom.city</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_citizen">
+            <field name="name">Citizen</field>
+            <field name="res_model">res.users</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem name="Kindgom" id="menu_kindom" parent="menu_root" action="action_kingdom" />
+        <menuitem name="Army" id="menu_army" parent="menu_root" action="action_army" />
+        <menuitem name="Cities" id="menu_economy" parent="menu_root" action="action_economy" />
+        <menuitem name="Citizen" id="menu_citizen" parent="menu_root" action="action_citizen" />
+
+    </data>
+</odoo>
