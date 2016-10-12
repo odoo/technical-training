@@ -1,4 +1,4 @@
-<openerp>
+<odoo>
     <data>
         <record model="ir.ui.view" id="wizard_form_view">
             <field name="name">wizard.form</field>
@@ -27,4 +27,4 @@
                     target="new"
                     key2="client_action_multi"/>
     </data>
-</openerp>
+</odoo>

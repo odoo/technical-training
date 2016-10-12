@@ -1,4 +1,4 @@
-<openerp>
+<odoo>
     <data>
         <record id="group_user" model="res.groups">
             <field name="name">User</field>
@@ -44,4 +44,4 @@
             </field>
         </record>
     </data>
-</openerp>
+</odoo>

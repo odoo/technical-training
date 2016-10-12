@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
   <data>
 
     <record model="ir.ui.view" id="session_view_list">
@@ -169,4 +169,4 @@
               parent="menu_scheduling"
               action="action_session_schedule"/>
   </data>
-</openerp>
+</odoo>

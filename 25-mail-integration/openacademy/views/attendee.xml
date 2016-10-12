@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
   <data>
 
     <record model="ir.ui.view" id="attendee_view_list">
@@ -58,4 +58,4 @@
               parent="menu_course_top"
               action="action_attendee"/>
   </data>
-</openerp>
+</odoo>
