@@ -5,12 +5,14 @@ It is split into modules, each module focusing on a given topic.
 Each module provides some reference material, and proposes problems for the learnee to solve.
 It is therefore a hands-on, practical approach to the development of Odoo modules.
 
+
 ## Base Requirements
 
 This training uses Git for its repository, and Github as its platform.
 Start with module [Git and Github](00-git) if you never used them.
 
 The language [Python](https://www.python.org/) is a requirement for almost all modules.
+
 
 ## Modules
 
@@ -24,9 +26,15 @@ The language [Python](https://www.python.org/) is a requirement for almost all m
 1. [Play with the ORM](09-orm)
 1. [Reports](10-reports)
 
-### Advanced Modules
+
+## Advanced Modules
 
 1. [Mail Integration](25-mail-integration)
 1. [Kanban Views and Dashboards](26-kanban-dashboard)
 1. [Advanced Widgets](27-widgets)
 1. [Modify Business Flows](19-modify-business-flow)
+
+
+## Odoo System Administration
+
+* [Training Material](99-sysadmin)
