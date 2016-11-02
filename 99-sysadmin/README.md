@@ -1625,7 +1625,13 @@ Change IP in your host file...
 
 ## Sessions cleaning
 
-Avoid having odoo itself cleaning sessions
+### Avoid having odoo itself cleaning sessions
+
+Every ~1000 requests, Odoo list sessions, and remove the too old ones.
+As it's not a problem on a local filesystem, this can be problematic on a shared filesystem, like the NFS one we're using.
+To avoid this performance bottleneck, we'll stop to check this with Odoo itself, and use a linux cron to achieve this.
+
+### Creating the session cleaning cron
 
 ```bash
 $ crontab -e
@@ -1647,6 +1653,45 @@ Simply duplicate odoo server, change ip and hostname...
 That's it, you've a new server able to respond to odoo queries.
 
 As an exercice, deploy an odoo-3 vm and add it to the haproxy pool
+
+## Update source on a HA cluster
+
+Some process, like the bundle generation, rely on the last modified date of the files contained in the bundle.
+If those dates are different on the two servers, the bundle will be re-generated continously, and you'll face 404 errors.
+
+To ensure a proper bendle generation, all dates must be identical between the servers. To achive this, can have two 
+solutions:
+
+* A share drive
+* A rsync between the servers
+
+As we already have deployed a share drive for filestore, it's easy to achive this for code. 
+
+We'll explain here the rsync method
+
+### Sync code base
+
+To update source code on servers, we will do a **git checkout** on one server, or a **git pull**, and sync the code 
+on the other ones.
+
+On server **odoo-1**:
+
+```bash
+$ cd /opt/odoo10/odoo
+$ git pull
+$ cd /opt/odoo10/enterprise
+$ git pull
+[...]
+$ cd /opt/odoo10/my_modules
+$ git pull
+[...]
+```
+
+On server **odoo-2** (and odoo-3, odoo-xxx, ...):
+
+```bash
+$ rsync -az odoo@odoo-1:/opt/odoo10/ /opt/odoo10
+```
 
 # Etherpad
 
