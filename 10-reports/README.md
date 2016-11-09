@@ -5,6 +5,13 @@
 Create awesome reports!
 
 
+## Requirements
+
+- [Models, Fields and Relations](../01-models)
+- [Computed Fields, Onchange and Constraints](../02-fields)
+- [Basic Views](../03-views)
+
+
 ## Problem 1: OpenAcademy
 
 Create a paper invitation for all the attendees, with
