@@ -17,4 +17,4 @@ class Partner(models.Model):
                 if "Teacher / Level" in categ.name:
                     levels.append(int(categ.name.split(' ')[-1]))
 
-            partner.levels = max(levels) if levels else 0
+            partner.level = max(levels) if levels else 0
