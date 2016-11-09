@@ -22,6 +22,7 @@ The language [Python](https://www.python.org/) is a requirement for almost all m
 1. [Business Flow](06-business-flow)
 1. [Access Rights](08-access-right)
 1. [Play with the ORM](09-orm)
+1. [Reports](10-reports)
 
 ### Advanced Modules
 
