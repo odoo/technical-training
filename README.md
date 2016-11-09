@@ -20,6 +20,7 @@ The language [Python](https://www.python.org/) is a requirement for almost all m
 1. [Model Inheritance](04-model-inheritance)
 1. [View Inheritance](05-view-inheritance)
 1. [Business Flow](06-business-flow)
+1. [Access Rights](08-access-right)
 
 ### Advanced Modules
 
