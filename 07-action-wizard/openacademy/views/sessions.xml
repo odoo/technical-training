@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="session_view_list">
+            <field name="name">session list</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+                <tree decoration-bf="(taken_seats &gt; 70)"
+                      colors="#0000ff:duration&lt;5;red:duration&gt;15"
+                      default_order="start_date">
+                    <field name="name"/>
+                    <field name="course_id" />
+                    <field name="instructor_id"   />
+                    <field name="start_date" />
+                    <field name="duration" />
+                    <field name="seats" />
+                    <field name="taken_seats" widget="progressbar"/>
+                    <field name="attendees_count" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="session_view_form">
+            <field name="name">session form</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="course_id" />
+                                <field name="responsible_id" />
+                                <field name="level" />
+                                <field name="instructor_id" domain="['&amp;', ('instructor', '=', True), ('level', '&gt;=', level)]" />
+                                <field name="active" />
+                            </group>
+                            <group>
+                                <field name="start_date" />
+                                <field name="end_date" />
+                                <field name="duration" />
+                                <label for="percentage_per_day" string="Percentage per day" />
+                                <field name="percentage_per_day" nolabel="1"/>
+                                <field name="seats" />
+                                <field name="taken_seats" widget="progressbar"/>
+                            </group>
+                        </group>
+                        <label for="attendee_ids"/>
+                        <field name="attendee_ids"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="academy_session_pivot_view">
+            <field name="name">session pivot</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+                <pivot string="Participations by Courses">
+                    <field name="course_id"/>
+                    <field name="attendees_count" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="action_session">
+            <field name="name">Sessions</field>
+            <field name="res_model">openacademy.session</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- actions -->
+        <menuitem name="Sessions" id="menu_session" parent="menu_course_top"
+                  action="action_session"/>
+
+    </data>
+</odoo>
