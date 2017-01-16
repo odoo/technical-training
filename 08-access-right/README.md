@@ -1,4 +1,4 @@
-# Access rights
+# Access Rights
 
 ## Goal
 
@@ -14,7 +14,7 @@ learner will be able to
 * [Models, Fields and Relations](../01-models)
 * [Basic Views](../03-views)
 
-## Problem 1: Trust no one
+## Problem 1: Trust No One
 
 The paranoid king sees ennemies everywhere wanting to steal his crown.
 He keeps much information about the state of the realm (economy, army, citizen)
