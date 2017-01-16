@@ -1634,7 +1634,7 @@ To avoid this performance bottleneck, we'll stop to check this with Odoo itself,
 ### Stop cleaning session in Python code
 
 It's a bit tricky to change this behaviour. The method consist in a monkey patch of the method. Beware that this code
-will reside in a module, and even if the module is not installed, due the the monkey patch nature of the module, the code
+will reside in a module, and even if the module is not installed, due to the monkey patch nature of the module, the code
 will be executed.
 
 in session.py:
@@ -1682,7 +1682,7 @@ As an exercice, deploy an odoo-3 vm and add it to the haproxy pool
 Some process, like the bundle generation, rely on the last modified date of the files contained in the bundle.
 If those dates are different on the two servers, the bundle will be re-generated continously, and you'll face 404 errors.
 
-To ensure a proper bendle generation, all dates must be identical between the servers. To achive this, can have two 
+To ensure a proper bundle generation, all dates must be identical between the servers. To achive this, can have two 
 solutions:
 
 * A share drive
@@ -2416,3 +2416,39 @@ exit 0
 Once munin node restarted, and munin cron ran, a new graph appears.
 
 ![Munin alarm](./img/odootrmin.png )
+
+### Measure response time
+
+It's possible to extract the rpc response time from odoo logs. in /etc/munin/plugins/odooresponse:
+
+```bash
+#!/bin/sh
+#%# family=manual
+#%# capabilities=autoconf suggest
+case $1 in
+config)
+echo graph_category odoo
+echo graph_title odoo rpc requests min/average response time
+echo graph_vlabel seconds
+echo graph_args --units-exponent -3
+echo min.label min
+echo min.warning 1
+echo min.critical 5
+echo avg.label average
+echo avg.warning 1
+echo avg.critical 5
+exit 0
+;;
+esac
+# watch out for the time zone of the logs => using date -u for UTC timestamps
+result=$(tail -60000 /var/log/odoo/odoo.log | grep -a "odoo.http.rpc.request" | grep -a -v "poll" | awk "BEGIN{sum=0;count=0} (\$1 \" \" \$2) >= \"`date +'%F %H:%M:%S' -ud '5 min ago'`\" {split(\$8,t,\":\");time=0+t[2];if (min==\"\") { min=time}; sum += time; count+=1; min=(time>min)?min:time } END{print min, sum/count}")
+echo -n "min.value "
+echo ${result} | cut -d" " -f1
+echo -n "avg.value "
+echo ${result} | cut -d" " -f2
+exit 0
+```
+
+Once munin node restarted, and munin cron ran, a new graph appears.
+
+![Munin alarm](./img/responsetime.png )
