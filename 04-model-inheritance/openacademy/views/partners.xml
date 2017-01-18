@@ -50,7 +50,7 @@
             </field>
         </record>
 
-       <record model="ir.ui.view", id="contact_search_view">
+       <record model="ir.ui.view" id="contact_search_view">
             <field name="name">partner.instructor.search</field>
             <field name="model">res.partner</field>
             <field name="arch" type="xml">
