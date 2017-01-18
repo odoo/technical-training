@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Module 06 - ex 01",
+    'name': "Open Academy",
 
     'summary': """
         Academy module - module 06 - ex 01""",
