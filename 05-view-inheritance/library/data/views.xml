@@ -157,6 +157,7 @@
     <!-- Library/Settings -->
     <menuitem
         id="library_settings_menu"
+        parent="library_root_menu"
         sequence="100"
         name="Settings" />
 
