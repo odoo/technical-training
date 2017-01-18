@@ -9,7 +9,7 @@
         <field name="arch" type="xml">
             <search string="Books">
                 <field name="name"/>
-                <field name="author_ids"/>
+                <field name="authors_ids"/>
                 <field name="isbn"/>
             </search>
         </field>
@@ -46,7 +46,7 @@
         <field name="arch" type="xml">
             <search string="Books">
                 <field name="name"/>
-                <field name="author_ids"/>
+                <field name="authors_ids"/>
                 <field name="isbn"/>
                 <field name="reference"/>
             </search>
