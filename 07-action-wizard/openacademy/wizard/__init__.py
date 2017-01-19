@@ -1,0 +1,1 @@
+import academy_wizard
