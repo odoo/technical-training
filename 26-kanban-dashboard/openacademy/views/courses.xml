@@ -87,7 +87,7 @@
                                     </div>
                                 </div>
                                 <div class="o_kanban_button">
-                                    <a name="%(ex01.course_sessions_act_window)d" type="action">
+                                    <a name="%(course_sessions_act_window)d" type="action">
                                         <span class="o_value"><field name="session_count"/></span>
                                         <span class="o_label">Sessions</span>
                                     </a>
