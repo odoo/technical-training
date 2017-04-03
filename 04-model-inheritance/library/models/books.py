@@ -18,7 +18,7 @@ class BookCopy(models.Model):
     _description = 'Book Copy'
     _rec_name = 'reference'
 
-    book_id = fields.Many2one('library.book', string="Book"
+    book_id = fields.Many2one('library.book', string="Book",
                               required=True, ondelete="cascade", delegate=True)
     reference = fields.Char(string="Reference")
     rental_ids = fields.One2many('library.rental', 'copy_id', string='Rentals')
