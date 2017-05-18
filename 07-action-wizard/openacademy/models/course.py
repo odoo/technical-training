@@ -42,7 +42,7 @@ class Course(models.Model):
         self.ensure_one()
         attendee_ids = self.session_ids.mapped('attendee_ids')
         return {
-            'name': 'Attached seances',
+            'name': 'Attendees of %s' % (self.name),
             'type': 'ir.actions.act_window',
             'res_model': 'res.partner',
             'view_mode': 'tree,form',
@@ -58,8 +58,7 @@ class Course(models.Model):
     @api.depends('session_ids.attendees_count')
     def _compute_attendee_count(self):
         for course in self:
-            course.attendee_count = sum(course.session_ids.mapped('attendees_count'))
-
+            course.attendee_count = len(course.mapped('session_ids.attendee_ids'))
 
 class Session(models.Model):
     _name = 'openacademy.session'
@@ -180,3 +179,31 @@ class Session(models.Model):
         if vals.get('instructor_id'):
             res.message_subscribe([vals['instructor_id']])
         return res
+
+
+
+class Wizard(models.TransientModel):
+    _name = 'openacademy.wizard'
+
+    @api.model
+    def default_get(self, fields):
+
+        res = super(Wizard, self).default_get(fields)
+        res.update({'attendee_ids': [(6, 0, self._context.get('active_ids', []))] })
+        return res
+
+    session_ids = fields.Many2many('openacademy.session', string="Sessions", required=True)
+    attendee_ids = fields.Many2many('res.partner', string="Attendees", )
+
+    @api.model
+    def create(self, vals):
+        import ipdb; ipdb.set_trace()
+        print self,  vals
+        res = super(Wizard, self).create(vals)
+        return res
+
+    @api.multi
+    def subscribe(self):
+        for session in self.session_ids:
+            session.attendee_ids |= self.attendee_ids
+        return {}
