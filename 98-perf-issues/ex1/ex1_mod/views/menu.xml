@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <!-- actions -->
+    <record model="ir.actions.act_window" id="action_session">
+      <field name="name">openacademy session</field>
+      <field name="res_model">openacademy.session</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_course">
+     <field name="name">openacademy course</field>
+     <field name="res_model">openacademy.course</field>
+     <field name="view_mode">tree,form</field>
+   </record>
+   
+    <record model="ir.actions.act_window" id="action_registration">
+     <field name="name">openacademy registration</field>
+     <field name="res_model">openacademy.registration</field>
+     <field name="view_mode">tree,form</field>
+   </record>
+   
+    <record model="ir.actions.act_window" id="action_partners">
+     <field name="name">Partners</field>
+     <field name="res_model">res.partner</field>
+     <field name="view_mode">kanban,tree,form</field>
+     <field name="domain">[('registration_ids', '!=', False)]</field>
+   </record>
+    
+    <!-- Top menu item -->
+    <menuitem name="openacademy" id="menu_root"/>
+    <!-- menu categories -->
+    <menuitem name="Courses" id="menu_course_top" parent="menu_root"/>
+
+    <menuitem name="Courses" id="menu_course" parent="menu_course_top"
+              action="action_course"/>
+              
+    <menuitem name="Sessions" id="menu_session" parent="menu_course_top"
+              action="action_session"/>
+              
+    <menuitem name="Registrations" id="menu_registration" parent="menu_course_top"
+              action="action_registration"/>
+              
+    <menuitem name="Attendees" id="menu_partners" parent="menu_course_top"
+              action="action_partners"/>
+
+  </data>
+</openerp>
