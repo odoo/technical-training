@@ -53,7 +53,7 @@ We would like to search on the task type, on the day number and on the
 predefined worker. We would also like to easily switch from active templates to
 archived ones.
 
-For the task type and the day number, we want to able to find task templates
+For the task type and the day number, we want to be able to find task templates
 based on the name of the task type but also the area, respectively the number
 for day number.
 

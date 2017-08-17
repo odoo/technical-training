@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Module 06 - ex 01",
+    'name': "Module 07 - ex 01",
 
     'summary': """
-        Academy module - module 06 - ex 01""",
+        Academy module - module 07 - ex 01""",
 
     'description': """
         

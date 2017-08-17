@@ -1682,13 +1682,13 @@ As an exercice, deploy an odoo-3 vm and add it to the haproxy pool
 Some process, like the bundle generation, rely on the last modified date of the files contained in the bundle.
 If those dates are different on the two servers, the bundle will be re-generated continously, and you'll face 404 errors.
 
-To ensure a proper bundle generation, all dates must be identical between the servers. To achive this, can have two 
+To ensure a proper bundle generation, all dates must be identical between the servers. To achieve this, can have two 
 solutions:
 
 * A share drive
 * A rsync between the servers
 
-As we already have deployed a share drive for filestore, it's easy to achive this for code. 
+As we already have deployed a share drive for filestore, it's easy to achieve this for code. 
 
 We'll explain here the rsync method
 
