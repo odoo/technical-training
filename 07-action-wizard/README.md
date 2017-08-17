@@ -16,7 +16,7 @@
 ## Problem 1: The Citadel (OpenAcademy)
 
 In order to see who followed a course, we want to add a smart button on the `course`
-form to see the amount of participants and when and redirect to the list of participant
+form to see the amount of participants and redirect to the list of participant
 of any `session`.
 
 Also, to accelerate the registration to a session, from the the `res.partner` tree view,
