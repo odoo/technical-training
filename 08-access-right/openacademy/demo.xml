@@ -1,0 +1,53 @@
+<odoo>
+    <data>
+
+	    <record model="res.partner" id="partner_targaryan">
+	        <field name="name">Daenerys Targaryan</field>
+	        <field name="company_id" ref="base.main_company" />
+	        <field name="customer" eval="False" />
+	        <field name="instructor" eval="True" />
+	        <field name="category_id" eval="[
+	            (4,ref('teacher3'),0),
+	        ]"/>	        
+	    </record>
+	        <record model="res.users" id="user_targaryan">
+	            <field name="name">Daenerys Targaryan</field>
+	            <field name="login">daenerys@odoo.com</field>
+	            <field name="password">odoo</field>
+	            <field name="partner_id" ref="partner_targaryan"/>
+	            <field name="email">daenerys@odoo.com</field>
+	            <field name="company_id" ref="base.main_company"/>
+	            <field name="company_ids" eval="[(4, ref('base.main_company'))]"/>
+	            <field name="signature"><![CDATA[<span>-- <br/>
+	Daenerys Targaryan</span>]]></field>
+	    </record>
+
+	    <record model="res.partner" id="partner_stark">
+	        <field name="name">Ned Stark</field>
+	        <field name="company_id" ref="base.main_company" />
+	        <field name="customer" eval="False" />
+	        <field name="instructor" eval="True" />
+	        <field name="category_id" eval="[
+	            (4,ref('teacher1'),0),
+	        ]"/>	        
+	    </record>
+
+	    <record model="res.users" id="user_stark">
+	        <field name="name">Ned Stark</field>
+	        <field name="login">ned@odoo.com</field>
+	        <field name="password">odoo</field>
+	        <field name="partner_id" ref="partner_stark" />
+	        <field name="company_id" ref="base.main_company" />
+	        <field name="company_ids" eval="[(4, ref('base.main_company'))]" />
+	        <field name="signature"><![CDATA[<span>-- <br/>
+	Ned Stark</span>]]></field>
+<!-- 	        <field name="groups_id" eval="[
+	            (4,ref('wavestone_purchase.wavestone_purchases_cdg'),0),
+	        ]"/> -->
+	    </record>
+
+        <record id="course1" model="openacademy.course">
+            <field name="name">Technical Training</field>
+        </record>
+    </data>
+</odoo>
