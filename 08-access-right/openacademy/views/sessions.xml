@@ -29,14 +29,14 @@
                     <header>
                         <button name="action_draft" type="object"
                                 string="Reset to draft"
-                                attrs="{'invisible' : [('state', '=', 'draft')] }"  />
+                                attrs="{'invisible' : [('state', '=', 'draft')] }"  groups="openacademy.group_maesters"/>
                         <button name="action_confirm" type="object"
                                 string="Confirm" attrs="{'invisible' : [('state', 'in', ('confirmed', 'done'))] }"
-                                class="oe_highlight"/>
+                                class="oe_highlight" groups="openacademy.group_maesters"/>
                         <button name="action_done" type="object"
                                 string="Mark as done" attrs="{'invisible' : [('state', 'in', ('draft', 'done'))] }"
                                 class="oe_highlight"/>
-                        <field name="state" widget="statusbar"/>
+                        <field name="state" widget="statusbar" groups="openacademy.group_maesters"/>
                     </header>
                     <sheet>
                         <div class="oe_title">
@@ -61,8 +61,8 @@
                                 <field name="taken_seats" widget="progressbar"/>
                             </group>
                         </group>
-                        <label for="attendee_ids"/>
-                        <field name="attendee_ids"/>
+                        <label for="attendee_ids" groups="openacademy.group_maesters"/>
+                        <field name="attendee_ids" groups="openacademy.group_maesters"/>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers"/>
