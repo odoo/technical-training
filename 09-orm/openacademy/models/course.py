@@ -81,6 +81,7 @@ class Session(models.Model):
                     ], default='draft')
 
     is_paid = fields.Boolean('Is paid')
+    product_id = fields.Many2one('product.template', 'Product')
 
     def _warning(self, title, message):
         return {
@@ -180,7 +181,7 @@ class Session(models.Model):
             'product_id': self.product_id.id,
             'price_unit': self.product_id.lst_price,
             'account_id': self.env.ref("l10n_generic_coa.1_conf_a_expense").id,  # install module accounting
-            'name': 'Insurance claim',
+            'name': 'Session',
             'quantity': 1,
         })
 
