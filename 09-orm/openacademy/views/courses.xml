@@ -80,7 +80,7 @@
     </record>
 
     <!-- Top menu item -->
-    <menuitem name="openacademy" id="openacademy.menu_root"/>
+    <menuitem name="Academy" id="openacademy.menu_root" web_icon="fa fa-graduation-cap,#FFFFFF,#51CAB2"/>
     <!-- menu categories -->
     <menuitem name="Courses" id="openacademy.menu_course_top" parent="openacademy.menu_root"/>
     <!-- actions -->

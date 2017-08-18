@@ -52,10 +52,9 @@ class Course(models.Model):
 
 class Session(models.Model):
     _name = 'openacademy.session'
-    _inherits = {'product.template': 'product_id'}
-
     _order = 'name'
 
+    name = fields.Char(required=True)
     start_date = fields.Date(default=lambda self : fields.Date.today())
     end_date = fields.Date(string='End date', store=True, compute='_get_end_date', inverse='_set_end_date')
     active = fields.Boolean(default=True)
@@ -82,7 +81,6 @@ class Session(models.Model):
                     ], default='draft')
 
     is_paid = fields.Boolean('Is paid')
-    product_id = fields.Many2one('product.template', 'Product')
 
     def _warning(self, title, message):
         return {
