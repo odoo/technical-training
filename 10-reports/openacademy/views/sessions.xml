@@ -36,12 +36,6 @@
             <button name="done" type="workflow"
                 string="Mark as done" attrs="{'invisible' : [('state', 'in', ('draft', 'done'))] }"
                 class="oe_highlight"  groups="openacademy.group_manager"/>
-
-            <button name="create_invoice_teacher"
-                    string="Invoice Teacher"
-                    type="object"
-                    attrs="{'invisible' : [('is_paid', '=', True)]}"/>
-              <field name="state" widget="statusbar"/>
           </header>
           <sheet>
               <group>
