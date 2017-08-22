@@ -52,10 +52,9 @@ class Course(models.Model):
 
 class Session(models.Model):
     _name = 'openacademy.session'
-    _inherits = {'product.template': 'product_id'}
-
     _order = 'name'
 
+    name = fields.Char(required=True)
     start_date = fields.Date(default=lambda self : fields.Date.today())
     end_date = fields.Date(string='End date', store=True, compute='_get_end_date', inverse='_set_end_date')
     active = fields.Boolean(default=True)
@@ -82,7 +81,6 @@ class Session(models.Model):
                     ], default='draft')
 
     is_paid = fields.Boolean('Is paid')
-    product_id = fields.Many2one('product.template', 'Product')
 
     def _warning(self, title, message):
         return {
@@ -165,25 +163,3 @@ class Session(models.Model):
         rec = super(Session, self).create(vals)
         rec._auto_transition()
         return rec
-
-    @api.multi
-    def create_invoice_teacher(self):
-        teacher_invoice = self.env['account.invoice'].search([
-            ('partner_id', '=', self.instructor_id.id)
-        ], limit=1)
-
-        if not teacher_invoice:
-            teacher_invoice = self.env['account.invoice'].create({
-                'partner_id': self.instructor_id.id,
-            })
-
-        self.env['account.invoice.line'].create({
-            'invoice_id': teacher_invoice.id,
-            'product_id': self.product_id.id,
-            'price_unit': self.product_id.lst_price,
-            'account_id': self.env.ref("l10n_generic_coa.1_conf_a_expense").id,  # install module accounting
-            'name': 'Insurance claim',
-            'quantity': 1,
-        })
-
-        self.write({'is_paid': True})

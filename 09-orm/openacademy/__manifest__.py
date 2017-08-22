@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'board', 'website', 'website_sale'],
+    'depends': ['base', 'mail', 'board'],
 
     # always loaded
     'data': [
@@ -32,11 +32,8 @@
         'views/partners.xml',
         'views/courses_kanban.xml',
         'wizard/add_attendee_view.xml',
-        'report/session.xml',
         'report/board.xml',
-        'data/session_workflow.xml',
         'data/partner.xml',
-        'templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
