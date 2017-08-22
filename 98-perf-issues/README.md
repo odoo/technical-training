@@ -123,7 +123,7 @@ mydbv9         | nse      | 3483 MB
 mydbv8         | nse      | 3001 MB
 ```
 
-### Table Size (and Toast)</h2>
+### Table Size (and Toast)
 
 ```
 SELECT x.relation, pg_size_pretty(x.total_size) total, pg_size_pretty(x.size) notoast,
@@ -421,131 +421,116 @@ $ locust -f my_file.py Seller Buyer
 * Use it
 ![Locust](./img/locust.png )
 
-<section class="nested">
-    <section class="chapter">
-        <h1>SQL</h1>
-    </section>
-    <section>
-        <h2>Which queries are running</h2>
-        <p>Thanks to the ORM, you have a few control on the executed queries.</p>
-        <p>Majority of read queries must be performed in less than 100 ms.</p>
-        <p>You can choose to either check in real time the executed queries. With <b>pg_activity</b>, you'll see running queries, blocked ones, ...</p>
-        <p>You can also choose to log what's executed and analyse them after. <b>PgBadger</b> is your friend</p>
-    </section>
+## SQL
+
+### Which queries are running?
+
+Thanks to the ORM, you have a few control on the executed queries. Majority of read queries must be performed in less than 100 ms.
+You can choose to either check in real time the executed queries. With *pg_activity*, you'll see running queries, blocked ones, ...
+You can also choose to log what's executed and analyse them after. *PgBadger* is your friend
+
     
-    <section>
-        <h2>pgActivity</h2>
-        <p>PgActivity is one of the tools you can use in production. You have a real-time overview on the running queries, the blocked and blocking ones, ...</p>
-        <center><img src="perf/pgactivity.png"/></center>
-    </section>
-    
-    <section>
-        <h2>Log in postgreSQL...</h2>
-        <pre><code>
+### pgActivity
+
+PgActivity is one of the tools you can use in production. You have a real-time overview on the running queries, the blocked and blocking ones, ...
+![Pg activity](./img/pgactivity.png )
+
+### Log in postgreSQL...
+
+```
 log_destination = 'csvlog'
 logging_collector = on
 log_directory = '/var/log/postgresql/pg_log/'
 log_filename = 'postgresql-%Y-%m-%d_%H%M%S.log'
 log_min_duration_statement = 0
 log_line_prefix = '%t [%p-%l] %q%u@%d '
-        </code></pre>
-        <p>You can also choose to log only queries running in more than 150ms, you'll get only the slowest ones, but maybe miss some slow ones due to the number of time they're executed.</p>
-        <pre><code>
+```
+
+You can also choose to log only queries running in more than 150ms, you'll get only the slowest ones, but maybe miss some slow ones due to the number of time they're executed.
+
+```
 log_min_duration_statement = 150
-        </code></pre>
-        <p>Doing the two is not bad.</p>
-    </section>
+```
+
+Doing the two is not bad.
     
-    <section>
-        <h2>...To analyse in pgBadger</h2>
-        <p>Try to use the github version, more up-to-date than stock distribution one: <a href="https://github.com/dalibo/pgbadger">https://github.com/dalibo/pgbadger</a></p>
-        <pre><code>
+### ...To analyse in pgBadger
+
+Try to use the github version, more up-to-date than stock distribution one: <a href="https://github.com/dalibo/pgbadger">https://github.com/dalibo/pgbadger</a>
+
+```
 pgbadger /var/log/postgresql/pg_log/*.csv -f csv
-        </code></pre>
-        <center><img src="perf/pgbadger.png"/></center>
-    </section>
-    <section>
-        <h2>Being able to read a query plan</h2>
-        <pre><code class="sql">
+```
+
+![Pg badger](./img/pgbadger.png )
+
+### Being able to read a query plan
+
+```
 EXPLAIN ANALYSE [myquery]
-        </code></pre>
-        <p><a href="https://explain.depesz.com/">https://explain.depesz.com/</a> is your friend.</p>
-        <p><table><tr><td>
-            <img src="perf/roughexplain.png"/>
-        </td><td>
-            <img src="perf/explain.png"/>
-        </td></tr></table>
-        <p>Each node is a link to the explaination of what is the node kind (nested loop, Hash, ...)</p>
-    </section>
+```
+
+<a href="https://explain.depesz.com/">https://explain.depesz.com/</a> is your friend.
+
+![Rough explain](./img/roughexplain.png )
+
+![Explain](./img/explain.png )
+
+Each node is a link to the explaination of what is the node kind (nested loop, Hash, ...)
     
-    <section>
-        <h3>Index in odoo</h3>
-        <ul>
-            <li>you can add a btree index (<a href="https://www.postgresql.org/docs/9.5/static/indexes-types.html">the default in postgresql</a>), by simply add index=True at the field definition</li>
-            <li>You maybe need (in rare case, PostgreSQL is able to combine indices) to add custom type of index or index on more then one field at the same type</li>
-            <li>Use the init method to declare them</li>
-            <pre><code class="python" data-trim>
+### Index in odoo
+
+* you can add a btree index (<a href="https://www.postgresql.org/docs/9.5/static/indexes-types.html">https://www.postgresql.org/docs/9.5/static/indexes-types.html</a>), by simply add index=True at the field definition
+* You maybe need (in rare case, PostgreSQL is able to combine indices) to add custom type of index or index on more than one field at the same time -> Use the init method to declare them
+
+```
 #Example on mail.message, index on two fields
 @api.model_cr
 def init(self):
-self._cr.execute("""
-SELECT indexname FROM pg_indexes 
-WHERE indexname = 'mail_message_model_res_id_idx'
-""")
-if not self._cr.fetchone():
-self._cr.execute("""
-CREATE INDEX mail_message_model_res_id_idx 
-ON mail_message (model, res_id)
-""")
-            </code></pre>
-        </ul>
-    </section>
+    self._cr.execute("""
+        SELECT indexname FROM pg_indexes 
+        WHERE indexname = 'mail_message_model_res_id_idx'
+    """)
+    if not self._cr.fetchone():
+        self._cr.execute("""
+            CREATE INDEX mail_message_model_res_id_idx 
+            ON mail_message (model, res_id)
+        """)
+```
     
-    <section>
-        <h3>Auto join</h3>
-        <ul>
-            <li>Make a join when searching for subfield instead of two select</li>
-            <li>you can find more details <a href="http://odoo-docs.readthedocs.io/en/latest/06_misc_auto_join.html">http://odoo-docs.readthedocs.io/en/latest/06_misc_auto_join.html</a></li>
-            <li>Problem 1: using auto_join bypasses the business logic; no name search is performed, only direct matches between ids using join conditions</li>
-            <li>Problem 2: ir.rules are not taken into account when analyzing and adding the join conditions</li>
-            <pre><code class="python" data-trim>
+### Auto join
+
+* Make a join when searching for subfield instead of two select
+* you can find more details <a href="http://odoo-docs.readthedocs.io/en/latest/06_misc_auto_join.html">http://odoo-docs.readthedocs.io/en/latest/06_misc_auto_join.html</a>
+    * Problem 1: using auto_join bypasses the business logic; no name search is performed, only direct matches between ids using join conditions
+    * Problem 2: ir.rules are not taken into account when analyzing and adding the join conditions
+
+```
 #See there is two query, one on sale.order.line and one on analytic line
 self.env['account.analytic.line'].search([('so_line.name', '=', 'Consultant')])
 #Now add auto_join on the field so_line
 self.env['account.analytic.line'].search([('so_line.name', '=', 'Consultant')])
 #Only one query
-            </code></pre>
-        </ul>
-    </section>
-    
-</section>
+```
 
-</section>
+## Code
 
-<section class="nested">
-    <section class="chapter">
-        <h1>Code</h1>
-    </section>
-    <section>
-        <h2>Which code is executed</h2>
-        <p>Send a kill -3 to the process, the stack trace will be outputed on stdout of the Odoo process.<p>
-        <p>If process is often in the same piece of code, you've located a starting point for your code investigation.</p>
-    </section>
-    <section>
-        <h2>Measure CPU usage</h2>
-        <ul>
-            <li>htop<br/>
-                <img src="perf/htop.png" style="width:70%"/>
-            </li>
-            <li>atop<br/>
-                <img src="perf/atop.png" style="width:70%"/>
-            </li>
-        </ul>
-    </section>
-    <section>
-        <h2>Measure I/O</h2>
-        <ul><li>vmstat</li></ul>
-        <pre><code  class="bash" data-trim>
+### Which code is executed
+
+Send a kill -3 to the process, the stack trace will be outputed on stdout of the Odoo process.
+If process is often in the same piece of code, you've located a starting point for your code investigation.
+
+### Measure CPU usage
+
+![htop](./img/htop.png )
+
+![atop](./img/atop.png )
+
+### Measure I/O
+
+* vmstat
+
+```
 $ vmstat -w 2
 procs ---------------memory-------------- ---swap-- -----io---- -system-- ------cpu-----
 r  b     swpd     free     buff    cache   si   so    bi    bo   in   cs us sy id wa st
@@ -553,9 +538,11 @@ r  b     swpd     free     buff    cache   si   so    bi    bo   in   cs us sy i
 0  0        0  3990136  1434984  5438044    0    0     0    74  703 3098  3  1 96  0  0
 0  0        0  3989488  1434996  5438052    0    0     0   336  947 3822  3  1 96  1  0
 0  0        0  3987196  1434996  5438464    0    0     0    88  781 3406  5  1 94  0  0
-        </code></pre>
-        <ul><li>iotop</li></ul>
-        <pre><code  class="bash" data-trim>
+```
+
+* iotop
+
+```
 Total DISK READ :       0.00 B/s | Total DISK WRITE :      42.21 K/s
 Actual DISK READ:       0.00 B/s | Actual DISK WRITE:     161.18 K/s
 TID  PRIO  USER     DISK READ  DISK WRITE  SWAPIN     IO>    COMMAND                                                                                                                                                           
@@ -566,18 +553,15 @@ TID  PRIO  USER     DISK READ  DISK WRITE  SWAPIN     IO>    COMMAND
 2185 be/4 root        0.00 B/s    7.68 K/s  0.00 %  0.00 % rsyslogd [rs:main Q:Reg]
 4848 be/4 nse         0.00 B/s    7.68 K/s  0.00 %  0.00 % chrome [Chrome_IOThread]
 1 be/4 root        0.00 B/s    0.00 B/s  0.00 %  0.00 % init [2]
-        </code></pre>
-        <ul><li>strace</li></ul>
-    </section>
-    
-</section>
-<section class="nested">
-    <section class="chapter">
-        <h1>Code profiling</h1>
-    </section>
-    <section>
-        <h2>Profiling a piece of code</h2>
-        <pre><code  class="python" data-trim>
+```
+
+* strace
+
+## Code profiling
+
+### Profiling a piece of code
+
+```
 from openerp.tools.misc import profile
 
 [...]
@@ -588,81 +572,93 @@ def mymethod(...)
         <pre><code>
 gprof2dot -f pstats -o /temp/prof.xdot /temp/prof.profile
 xdot /temp/prof.xdot
-        </code></pre>
-    </section>
-    <section>
-        <h2>Profiling result</h2>
-        <ul>
-<li>total time % is the percentage of the running time spent in this function and all its children;</li>
-<li>self time % is the percentage of the running time spent in this function alone;</li>
-<li>total calls is the total number of times this function was called (including recursive calls).</li>
-<li>An edge represents the calls between two functions.</li>
-</ul>
-    </section>
-    <section>
-        <h2>Profiling graph</h2>
-<center><img src="perf/prof.png"/></center>
-    </section>
-    <section>
-        <h2>Profiling using plop and flamegraph</h2>
-        <ol><li>Prerequisites
-        <pre><code  class="bash" data-trim>
-$ sudo pip install plop
-$ git clone git@github.com:brendangregg/FlameGraph.git
-        </code></pre></li>
-        <li>Run odoo with profiling enabled
-        <pre><code  class="bash" data-trim>
-python -m plop.collector -f flamegraph odoo.py -c my_config_file
-        </code></pre></li>
-        <li>Render svg from flamegraph data
-        <pre><code class="bash" data-trim>
-flamegraph.pl profiles/odoo.py-44.flame > res.svg
-        </code></pre></li></ol>
-    </section>
-    <section>
-        <h2>Flamegraph result</h2>
-<center><img src="perf/flamegraph.svg" width="70%"/></center>
-    </section>
+```
+
+### Profiling result
+
+* total time % is the percentage of the running time spent in this function and all its children;
+* self time % is the percentage of the running time spent in this function alone;
+* total calls is the total number of times this function was called (including recursive calls).
+* An edge represents the calls between two functions.
+
+![Profiling graph](./img/prof.png )
+
+### Profiling using pyflame to generate a flamegraph
+
+This method will efficently replace the *kill -3* method, by catching the stack x times a second, and render it as a graph.
+The graph is an SVG, which will be zoomable with a web browser. The most usefull way up to now to determine a code issue origin.
+
+The main idea is to launch odoo, launch the problematic odoo process, attach to it using pyflame and analyse the result
+
+And, last but not least, it's usable on production environment!
+
+* Prerequisites
+
+```
+$ sudo apt install autoconf automake autotools-dev g++ pkg-config python-dev python3-dev libtool make
+$ git clone https://github.com/uber/pyflame.git
+$ git clone https://github.com/brendangregg/FlameGraph.git
+$ cd pyflame
+$ ./autogen.sh
+$ ./configure
+$ make
+$ sudo make install
+```
+
+* Run odoo and attach to it
+
+```
+$ ./odoo-bin
+```
+
+```
+pyflame --exclude-idle -s 3600 -r 0.2 -p <PID> -o test.flame
+```
+
+### Render svg from flamegraph data
+
+```
+flamegraph.pl test.flame > res.svg
+```
+
+![Flame graph](./img/flamegraph.svg )
     
-</section>
-<section class="nested">
-    
-    <section class="chapter">
-        <h1>Understand the ORM and optimize</h1>
-    </section>
-    <section>
-        <h3>Search</h3>
-        <ul>
-            <li>A common mistake is a search in a loop: <pre><code class="python" data-trim>
+## Understand the ORM and optimize
+
+### Search
+
+* A common mistake is a search in a loop:
+```
 For record in self:
-self.env['other_object'].search([('link_id', '=', object.id)])
-            </code></pre></li>
-            <li>Store your result in a dictionnaries</li>
-            <li>Search is better than filtered and sorted: <pre><code class="python" data-trim>
+    self.env['other_object'].search([('link_id', '=', record.id)])
+```
+* Store your result in a dictionnaries
+* Search is better than filtered and sorted:
+```
 #No
 self.env['other_object'].search([]).filtered(lamba x: x.state=='done').sorted(key=lambda r: r.date)[:80]
 
 #Better
 self.env['other_object'].search([('state', '=', 'done')], order='date asc', limit=80)
-            </code></pre></li>
-            <li>Filtered is good if you need all the data but for different purpose, or on a O2M: <pre><code class="python" data-trim>
+```
+* Filtered is good if you need all the data but for different purpose, or on a O2M:
+```
 #No
 for record in self:
-env['other.model'].search(['&amp', ('previous_model_id', '=', record.id), ('state', '=', 'done')])
+    env['other.model'].search(['&', ('previous_model_id', '=', record.id), ('state', '=', 'done')])
 
 #Yes
 for record in self:
-record.other_model_ids.filtered(lamba x: x.state=='done')
-            </code></pre></li>
-        </ul>
-    </section>
-    <section>
-        <h3>Read</h3>
-        <ul>
-            <li>Rarely use directly, call through recordset.field</li>
-            <li>There is a cache per env</li>
-            <li>Changing the user, the context or the cursor will change the env and thus you'll change the cache.</li>
-            <pre><code class="python" data-trim>
+    record.other_model_ids.filtered(lamba x: x.state=='done')
+```
+
+### Read
+
+* Rarely use directly, call through recordset.field
+* There is a cache per env
+* Changing the user, the context or the cursor will change the env and thus you'll change the cache.
+
+```
 #First query
 self.env['res.partner'].search([]).mapped('name')
 #No cache
@@ -670,38 +666,38 @@ self.env['res.partner'].sudo().search([]).mapped('name')
 #Still no cache
 self.env['res.partner'].search([]).with_context(test=True).mapped('name')
 #Total = 3 queries
-            </code></pre>
-            <li>Any modification of a record invalid the cache for this record</li>
-            <pre><code class="python" data-trim>
+```
+
+* Any modification of a record invalid the cache for this record
+
+```
 titles = self.env['res.partner.title'].search([]
 titles.mapped('name')
 titles[0].write({'name' : 'Madame'})
 titles.mapped('name')
-            </code></pre>
-        </ul>
-    </section>
-    <section>
-        <h3>Prefetch</h3>
-        <ul>
-            <li>When you access access with . or mapped, the system will check in the cache, if the information is not in the cache, all the stored fields from the current recordset are prefetched.</li>
-            <li>This is not the case when you use read directly</li>
-<pre><code class="python" data-trim>
+```
+
+### Prefetch
+
+When you access access with . or mapped, the system will check in the cache, if the information is not in the cache, all the stored fields from the current recordset are prefetched.
+
+```
 self.env['res.users'].search([]).read(['login'])
+# Only the login is in the cache
 self.env['res.users'].search([]).mapped('password')
-</code></pre>
-            <li>all the stored fields with <b>prefetch=True</b> are prefetched, only the binary have prefetch=False by default</li>
+# Now all stored fields are in the cache
+```
+
+All the stored fields with **prefetch=True** are prefetched, only the binary have prefetch=False by default.
             
-        </ul>
-    </section>
-    <section>
-        <h3>Disable Prefetch</h3>
-        <ul>
-            <li>You can disable prefetching with prefetch_fields=False in the context</li>
-            <li>It's only a good idea when you have an object with lot of field end you need only few of them for your computation</li>
-            <li>Be carefull dot access of 2 fields will trigger two select query</li>
-            <li>Use read to fetch at once only the field you need, and then feel free to use the dot access</li>
-        </ul>
-        <pre><code class="python" data-trim>
+### Disable Prefetch
+
+* You can disable prefetching with prefetch_fields=False in the context
+* It's only a good idea when you have an object with lot of field end you need only few of them for your computation
+* Be carefull dot access of 2 fields will trigger two select query
+* Use read to fetch at once only the field you need, and then feel free to use the dot access
+
+```
 #No
 line = self.env['account.analytic.line'].with_context(prefetch_fields=False).search([])
 line.mapped('amount')
@@ -712,83 +708,83 @@ line = self.env['account.analytic.line'].with_context(prefetch_fields=False).sea
 line.read(['amount', 'amount_currency'])
 line.mapped('amount')
 line.mapped('amount_currency')
-        </code></pre>
-    </section>
-    <section>
-        <h3>Write</h3>
-        <ul>
-            <li>One write can hide another one or several: <a href="https://github.com/odoo/odoo/blob/10.0/addons/sale/models/sale_analytic.py#L121">Example</a></li>
-            <li>Avoid at any cost to loop inside the redefinition of a write, at least avoid it each time you can, filter the case where it's really needed like</li>
-            <li>Computed field store may be trigger: Check in _write</li>
-            <li>Assignation trigger a write
-            <pre><code class="python" data-trim>
+```
+
+### Write
+
+* One write can hide another one or several: <a href="https://github.com/odoo/odoo/blob/10.0/addons/sale/models/sale_analytic.py#L121">https://github.com/odoo/odoo/blob/10.0/addons/sale/models/sale_analytic.py#L121</a>
+* Avoid at any cost to loop inside the redefinition of a write, at least avoid it each time you can, filter the case where it's really needed like
+* Computed field store may be triggerred: Check in _write
+* Assignation trigger a write
+
+```
 #Slower -> 2 update queries
 rec.field1 = value1 
 rec.field2 = value2
 
 #Faster -> 1 update query
 rec.write({'field1': value1, 'field2': value2})
-            </code></pre></li>
-            <li>Write as much field at the same time and on much object at the same time
-            <pre><code class="python" data-trim>
+```
+
+Write as much field at the same time and on much object at the same time
+
+```
 #n update queries
 for record in self:
-record.write({'field1': value1, 'field2': value2})
+    record.write({'field1': value1, 'field2': value2})
 
 #1 update query
 self.write({'field1': value1, 'field2': value2})
-            </code></pre></li>
-            <li>Not always possible when you write different value on each record</li>
-            <li>But sometimes they are not all different, only few different value</li>
-            <li>It make sense to group record per value to write before writing the value</li>
-        </ul>
-    </section>
-    <section>
-        <h3>_batch_write and _flush</h3>
-        <ul>
-            <li>Group similar write to execute the write with a batch of record</li>
+```
+
+* Not always possible when you write different value on each record
+* But sometimes they are not all different, only few different value
+* It make sense to group record per value to write before writing the value
+
+### _batch_write and _flush
+
+Group similar write to execute the write with a batch of record
         
-        <pre><code class="python" data-trim>
+```
 #253 records, 253 write
 country =  self.env['res.country'].search([])
 for rec in country:
-rec.write({'phone_code': random.randint(1,10)}) 
+    rec.write({'phone_code': random.randint(1,10)}) 
+    
 #253 records, 10 write max, 10 possible value
 for rec in country:
-rec._batch_write({'phone_code': random.randint(1,10)})
+    rec._batch_write({'phone_code': random.randint(1,10)})
 country._flush()
+
 #253 record, 100 Possible Value, 100 write max
 for rec in country:
-rec._batch_write({'phone_code': random.randint(1,10),
-         'currency_id': random.randint(3,13)})
+    rec._batch_write({'phone_code': random.randint(1,10),
+                      'currency_id': random.randint(3,13)})
 country._flush() 
+
 #2 Step: 20 Write max
 for rec in country:
-rec._batch_write({'phone_code': random.randint(1,10)})
+    rec._batch_write({'phone_code': random.randint(1,10)})
 country._flush() 
 for rec in country:
-rec._batch_write({'currency_id': random.randint(3,13)})
+    rec._batch_write({'currency_id': random.randint(3,13)})
 country._flush() 
+
 #But if value are linked, only 10 write
 for rec in country:
-rnd = random.randint(1,10)
-rec._batch_write({'phone_code': rnd, 'currency_id': rnd + 2})
+    rnd = random.randint(1,10)
+    rec._batch_write({'phone_code': rnd, 'currency_id': rnd + 2})
 country._flush() 
-        </code></pre> 
-            <li>Worse case: as much write as the number of record same as using write
-            <li>_batch_write store the value to write on the env, don't change env before the flush</li>
-        </ul>
+```
 
-    </section>
-    <section>
-        <h3>Computed Field</h3>
-        <ul>
-            <li>Non stored field need to be recomputed at each read, but they are stored in the cache<li>
-            <li>Stored fields are triggered each time one of the dependency is updated even if it's with the same value</li>
-            <li>recompute=False in the context disable the update of stored computed field: good idea when you write on lot of records that trigger modifications on the same record</li>
-            <li>Do not forget to call self.recompute() at least at the end of the transaction or when you need it</li>
-            <li>Even when you have set recompute=False, the modification of field in a depends will trigger a search to mark the record and field as "to recompute", only if the depends is on another object</li>
-            <li>Stored field has a high cost during modification, store the field only if you need it and maybe sometimes it's better to define it as a normal field and compute the value manually when needed</li>
-        </ul>
-    </section>
-</section>
+* Worse case: as much write as the number of record same as using write
+* _batch_write store the value to write on the env, don't change env before the flush
+
+### Computed Field
+
+* Non stored field need to be recomputed at each read, but they are stored in the cache
+* Stored fields are triggered each time one of the dependency is updated even if it's with the same value
+* recompute=False in the context disable the update of stored computed field: good idea when you write on lot of records that trigger modifications on the same record
+* Do not forget to call self.recompute() at least at the end of the transaction or when you need it
+* Even when you have set recompute=False, the modification of field in a depends will trigger a search to mark the record and field as "to recompute", only if the depends is on another object
+* Stored field has a high cost during modification, store the field only if you need it and maybe sometimes it's better to define it as a normal field and compute the value manually when needed
