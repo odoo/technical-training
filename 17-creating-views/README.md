@@ -8,6 +8,7 @@
 
 ## Starting point
 
+* [Library app from 'Advanced Customization'](../advanced-customization)
 * [Map skeleton application](./awesome_map)
 
 ## Problem 1: Our very own Map view (Library)
@@ -27,29 +28,19 @@ The arch should look like this:
 
 In this code, the latitude and longitude attributes should describe a float field. The template tag is a small qweb template, which should be rendered on a marker at the corresponding record location.  The field tags determine which fields should be fetched.
 
+- install the awesome_map module
+- add the map view in the customer action
+- create a new JS module 'awesome_map.MapView', and register AbstractView to view registry
+- implement a map view, renderer, controller and model...
 
-Step 2: create a module from scratch, called 'awesome_map'.  Add the structure to register a new view type (look at web_grid for an example)
+### Extra tasks
 
-Step 3: make sure you add the map view in the customer actions, and start by rendering some static content
-
-Step 4: in your new map view, fetch the records for the current domain/context
-
-Then display a map centered on the current location
-
-And add all the pins at the correct location
-
-And add a rendering for the custom template in the arch
-
-And make sure the url is updated.  And if you modify the search view, it should be updated.
+- clicking on a pin open the customer in a form view
+- add buttons in the control panel to zoom in and out
 
 
-Extra task: clicking on a pin open the customer in a form view
-
-Extra task: add a button in the control panel to center the map on the current location
-
-Extra task: add a button in the control panel to geolocate the partner (there is already a geolocate button somewhere, base_geolocalize) (move this to next module???)
+## Resources
 
 ### References
 
-- geolocation API (see MDN)
-- leafletjs to display a map?
+* [Leaflet.js](http://leafletjs.com/)
