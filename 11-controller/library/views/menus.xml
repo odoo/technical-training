@@ -3,7 +3,7 @@
     <data>
 
         <!-- Top menu item -->
-        <menuitem name="Library" id="menu_root" web_icon="fa fa-book-cap,#FFFFFF,#51CAB2"/>
+        <menuitem name="Library" id="menu_root" web_icon="fa fa-book,#FFFFFF,#51CAB2"/>
         <!-- menu categories -->
         <menuitem name="Rental" id="menu_rental_top" parent="menu_root"/>
         <menuitem name="Customers" id="menu_customer_top" parent="menu_root"/>
