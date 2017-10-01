@@ -53,6 +53,7 @@ Finally, everyone likes charts, so let us add a fancy pie chart with the number 
 
 * [Chart.js](http://www.chartjs.org/)
 * Client actions (not really any documentation...)
+* [ControlPanelMixin](https://github.com/odoo/odoo/blob/962fa7325d6c9405890aa2d66385044099b0b1da/addons/web/static/src/js/chrome/control_panel.js#L15)
 
 ### Code samples
 
