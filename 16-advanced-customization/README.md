@@ -14,13 +14,7 @@ Note: there is no dependency between the various tasks.
 
 - [Widgets](../15-widgets)
 
-
-## Starting Point
-
-[Code from previous module](../widgets/library)
-
 ## Problem 1: Library Acquisition year
-
 
 You noticed that the book field 'acquisition_year' is always displayed with a comma: 1,996. This is usually a good formatting for a number, but this is kind of weird for a year. It would be nicer to remove the formatting in that case.  So, let us do that!
 

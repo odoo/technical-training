@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="payment_view_tree_id" model="ir.ui.view">
+            <field name="name">payment.tree.view</field>
+            <field name="model">library.payment</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="date"/>
+                    <field name="customer_id"/>
+                    <field name="amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_payment">
+            <field name="name">Payments</field>
+            <field name="res_model">library.payment</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <!-- actions -->
+        <menuitem name="Payments" id="menu_payment" parent="menu_rental_top"
+                  action="action_payment"/>
+
+    </data>
+</odoo>

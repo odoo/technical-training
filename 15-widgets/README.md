@@ -15,10 +15,6 @@
 * [Basic Views](../03-views)
 * Basic knowledge of Javascript
 
-## Starting point
-
-* [Library application](./library)
-
 ## Problem 1: Fancy Library Dashboard
 
 The library big boss just tried your Library application and he is not pleased.  He got a large amount of public funding to pay for the library application, but clearly, the work you did will not convince the auditors that the money was well spent.
