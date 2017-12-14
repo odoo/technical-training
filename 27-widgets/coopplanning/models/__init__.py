@@ -1,4 +1,4 @@
 # -*- coding: utf-8 -*-
-import planning
-import task
-import partner
+from . import planning
+from . import task
+from . import partner

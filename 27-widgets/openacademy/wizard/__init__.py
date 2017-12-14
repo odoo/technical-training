@@ -1,1 +1,1 @@
-import add_attendee
+from . import add_attendee

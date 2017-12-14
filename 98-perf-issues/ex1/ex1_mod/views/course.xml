@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record model="ir.ui.view" id="course_view_list">
+      <field name="name">openacademy course list</field>
+      <field name="model">openacademy.course</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="plannified_days" />
+          <field name="forecasted_days" />
+        </tree>
+      </field>
+    </record>
+    
+    <record model="ir.ui.view" id="course_view_form">
+      <field name="name">openacademy course form</field>
+      <field name="model">openacademy.course</field>
+      <field name="arch" type="xml">
+        <form>
+            <header>
+                
+            </header>
+          <sheet>
+              <group col='4'>
+                      <field name="name"/>
+                      <field name="description" />
+                      <field name="responsible_id"   />
+                      <field name="level" />
+                      <field name="plannified_days" />
+                      <field name="forecasted_days" />
+              </group>
+              <group col='2'>
+                  <field name="session_ids"/>
+              </group>
+          </sheet>
+         </form>
+      </field>
+    </record>
+
+  </data>
+</openerp>
