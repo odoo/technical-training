@@ -1,4 +1,4 @@
-# Odoo 10.0 - Technical Training
+# Odoo 11.0 - Technical Training
 
 This repository contains training material for learning Odoo 10. The training is divided in modules of roughly half a day. It will follow a problem-based learning approach. The learnees will handle ill-structured problems supervised framed by a teacher. That means that each problem has multiple solutions and therefore is not constrained to a single topic. Each module focuses on a given topic but with a similar approach.
 
@@ -42,10 +42,13 @@ The language [Python](https://www.python.org/) is a requirement for almost all m
 
 ## Advanced Modules
 
+1. [Mail Integration](15-widgets)
+1. [Mail Integration](16-advanced-customization)
+1. [Mail Integration](17-creating-views)
+1. [Modify Business Flows](19-modify-business-flow)
 1. [Mail Integration](25-mail-integration)
 1. [Kanban Views and Dashboards](26-kanban-dashboard)
 1. [Advanced Widgets](27-widgets)
-1. [Modify Business Flows](19-modify-business-flow)
 
 
 ## Odoo System Administration

@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
-import planning
-import task
+from . import planning
+from . import task

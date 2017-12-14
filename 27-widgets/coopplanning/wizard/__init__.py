@@ -1,1 +1,1 @@
-import instanciate_planning
+from . import instanciate_planning
