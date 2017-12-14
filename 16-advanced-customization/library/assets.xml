@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <template id="assets_backend" name="library assets backend" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/library/static/src/js/appswitcher.js"></script>
+            <script type="text/javascript" src="/library/static/src/js/chart_widget.js"></script>
+            <script type="text/javascript" src="/library/static/src/js/client_action.js"></script>
+            <script type="text/javascript" src="/library/static/src/js/fields.js"></script>
+            <script type="text/javascript" src="/library/static/src/js/library_kanban_view.js"></script>
+            <script type="text/javascript" src="/library/static/src/js/systray.js"></script>
+            <script type="text/javascript" src="/library/static/src/js/form_view.js"></script>
+        </xpath>
+
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/less" href="/library/static/src/less/library.less"/>
+        </xpath>
+    </template>
+
+</odoo>

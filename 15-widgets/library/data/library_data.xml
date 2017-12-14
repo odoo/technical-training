@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- CUSTOMERS -->
+        <record id="customer_daenerys" model="res.partner">
+            <field name="name">Daenerys Targaryan</field>
+            <field name="email">daenerys@targaryan.org</field>
+            <field name="address">Top of the Pyramid, Mereen</field>
+            <field name="customer">1</field>
+        </record>
+
+        <record id="customer_tyrion" model="res.partner">
+            <field name="name">Tyrion Lannister</field>
+            <field name="email">tyrion@lannister.org</field>
+            <field name="address">Red keep, King's Landing</field>
+            <field name="customer">1</field>
+        </record>
+
+        <!-- AUTHORS -->
+        <record id="author_martin" model="res.partner">
+            <field name="name">George R.R. Martin</field>
+            <field name="email">george@got.org</field>
+            <field name="address">Bayonne, New Jersey, United States</field>
+            <field name="partner_type">author</field>
+            <field name="author">1</field>
+        </record>
+
+        <record id="author_hugo" model="res.partner">
+            <field name="name">Victor Hugo</field>
+            <field name="email">victor@gmail.com</field>
+            <field name="address">Somewhere, Paris, France</field>
+            <field name="partner_type">author</field>
+            <field name="author">1</field>
+        </record>
+
+        <!-- PUBLISHERS -->
+        <record id="publisher_got" model="res.partner">
+            <field name="name">Bantam Spectra</field>
+            <field name="publisher">1</field>
+            <field name="customer">0</field>
+        </record>
+
+        <record id="publisher_lacroix" model="res.partner">
+            <field name="name">A. Lacroix</field>
+            <field name="publisher">1</field>
+            <field name="customer">0</field>
+        </record>
+
+        <!-- BOOKS -->
+        <record id="book_got" model="product.product">
+            <field name="name">Game of Thrones</field>
+            <field name="edition_date">1996-08-01</field>
+            <field name="isbn">0-553-10354-7 </field>
+            <field name="book">1</field>
+            <field name="acquisition_year">2015</field>
+            <field name="acquisition_price">12.50</field>
+            <field name="publisher_id" eval="ref('publisher_got')"/>
+            <field name="author_ids" eval="[(4, ref('author_martin'))]"/>
+        </record>
+
+        <record id="book_got_2" model="product.product">
+            <field name="name">Game of Thrones</field>
+            <field name="edition_date">1996-08-01</field>
+            <field name="isbn">0-553-10354-7 </field>
+            <field name="book">1</field>
+            <field name="acquisition_year">2015</field>
+            <field name="acquisition_price">12.50</field>
+            <field name="publisher_id" eval="ref('publisher_got')"/>
+            <field name="author_ids" eval="[(4, ref('author_martin'))]"/>
+        </record>
+
+        <record id="book_les_miserables" model="product.product">
+            <field name="name">Les Misérables</field>
+            <field name="edition_date">1993-08-01</field>
+            <field name="isbn">9-781-62686-5 </field>
+            <field name="book">1</field>
+            <field name="acquisition_year">1995</field>
+            <field name="acquisition_price">10.20</field>
+            <field name="publisher_id" eval="ref('publisher_lacroix')"/>
+            <field name="author_ids" eval="[(4, ref('author_hugo'))]"/>
+        </record>
+
+    </data>
+</odoo>

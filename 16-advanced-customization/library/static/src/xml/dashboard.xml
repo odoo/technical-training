@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+<div t-name="LibraryDashboard" class="o_library">
+    <div class="o_statistics">
+        <div>Money in this month: <t t-esc="widget.stats.money_in"/> €</div>
+        <div>Number of rentals this month: <t t-esc="widget.stats.nb_rentals"/></div>
+        <div>Number of books lost this month: <t t-esc="widget.stats.nb_lost_books"/></div>
+        <div>Money lost due to lost books this month: <t t-esc="widget.stats.money_lost"/> €</div>
+    </div>
+    <div class="o_fancy_chart"/>
+</div>
+
+<div t-name="LibraryDashboard.Buttons">
+    <button type="button" class="btn btn-primary o_lost_books">Lost Books</button>
+    <button type="button" class="btn btn-primary o_bad_customers">Bad Customers</button>
+</div>
+
+<div t-name="LibraryWarning" class="alert alert-danger" role="alert">
+    This customer owes <t t-esc="amount"/> euros. Ask him to pay right now!
+</div>
+
+<li t-name="LibrarySystrayItem" class="o_library_systray_item">
+    <input type="input" class="o_input"/>
+</li>
+
+<div t-name="AppSwitcherWarning" class="alert alert-danger">
+    Do not forget about <strong>Monday promotion</strong>!
+</div>
+
+<t t-name="LibraryCustomerButtons">
+    <button type="button" class="btn btn-primary o_geolocate">Geolocate</button>
+    <button type="button" class="btn btn-primary o_pay_amount">Pay Amount Owed</button>
+</t>
+
+<div t-name="CustomerList" class="o_library_list">
+    <table class="table table-striped">
+        <tbody>
+            <t t-foreach="customers" t-as="customer">
+                <tr t-att-data-id="customer.id" t-attf-class="o_customer #{customer.id === activeCustomerID ? ' o_active' : ''}">
+                    <td><t t-esc="customer.display_name"/></td>
+                </tr>
+            </t>
+        </tbody>
+    </table>
+</div>
+
+</templates>
