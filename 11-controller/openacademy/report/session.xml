@@ -29,7 +29,7 @@
             </t>
         </template>
 
-        <record id="openacademy.report_session" model="ir.actions.report.xml">
+        <record id="openacademy.report_session" model="ir.actions.report">
             <field name="report_type">qweb-html</field>
         </record>
 
