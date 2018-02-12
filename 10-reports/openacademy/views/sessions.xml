@@ -36,6 +36,7 @@
             <button name="done" type="workflow"
                 string="Mark as done" attrs="{'invisible' : [('state', 'in', ('draft', 'done'))] }"
                 class="oe_highlight"  groups="openacademy.group_manager"/>
+            <field name="state" invisible="1"/>
           </header>
           <sheet>
               <group>
