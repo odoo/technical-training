@@ -176,11 +176,13 @@ class Session(models.Model):
                 'partner_id': self.instructor_id.id,
             })
 
+        # install module accounting and a chart of account to have at least one expense account in your CoA
+        expense_account = self.env['account.account'].search([('user_type_id', '=', self.env.ref('account.data_account_type_expenses').id)], limit=1)
         self.env['account.invoice.line'].create({
             'invoice_id': teacher_invoice.id,
             'product_id': self.product_id.id,
             'price_unit': self.product_id.lst_price,
-            'account_id': self.env.ref("l10n_generic_coa.1_conf_a_expense").id,  # install module accounting
+            'account_id': expense_account.id,
             'name': 'Session',
             'quantity': 1,
         })
