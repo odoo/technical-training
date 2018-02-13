@@ -36,8 +36,8 @@ rent a given book only if nobody has rented this book before you.
 
 ## References
 
-* [Qweb](https://www.odoo.com/documentation/10.0/reference/qweb.html)
-* [Reports with Qweb](https://www.odoo.com/documentation/10.0/reference/reports.html)
+* [Qweb](https://www.odoo.com/documentation/11.0/reference/qweb.html)
+* [Reports with Qweb](https://www.odoo.com/documentation/11.0/reference/reports.html)
 
 ### Code Sample
 

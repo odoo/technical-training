@@ -78,11 +78,11 @@ in a recurring way 2-3 hours per week at a time.
 
 ### Reference
 
-* [Activate Debug Mode](https://www.odoo.com/documentation/10.0/howtos/web.html#a-simple-module)
-* [Models Documentation](http://www.odoo.com/documentation/10.0/reference/orm.html#model-reference)
-* [Basic Fields Documentation](http://www.odoo.com/documentation/10.0/reference/orm.html#basic-fields)
-* [Relational Fields Documentation](http://www.odoo.com/documentation/10.0/reference/orm.html##relational-fields)
-* [Online Tutorial](http://www.odoo.com/documentation/10.0/howtos/backend.html#build-an-odoo-module)
+* [Activate Debug Mode](https://www.odoo.com/documentation/11.0/howtos/web.html#a-simple-module)
+* [Models Documentation](http://www.odoo.com/documentation/11.0/reference/orm.html#model-reference)
+* [Basic Fields Documentation](http://www.odoo.com/documentation/11.0/reference/orm.html#basic-fields)
+* [Relational Fields Documentation](http://www.odoo.com/documentation/11.0/reference/orm.html##relational-fields)
+* [Online Tutorial](http://www.odoo.com/documentation/11.0/howtos/backend.html#build-an-odoo-module)
 
 ### Code Sample
 

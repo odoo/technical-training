@@ -117,14 +117,14 @@ be great to show the data in that format.
 
 ### Reference
 
-* [Activate Debug Mode](https://www.odoo.com/documentation/10.0/howtos/web.html#a-simple-module)
-* [Data Files](http://www.odoo.com/documentation/10.0/reference/data.html)
+* [Activate Debug Mode](https://www.odoo.com/documentation/11.0/howtos/web.html#a-simple-module)
+* [Data Files](http://www.odoo.com/documentation/11.0/reference/data.html)
 * [DOC] on menu ITEM : TODO
-* [Action](http://www.odoo.com/documentation/10.0/reference/actions.html)
-* [Views](http://www.odoo.com/documentation/10.0/reference/views.html)
-* [Fields](http://www.odoo.com/documentation/10.0/reference/orm.html#basic-fields)
-* [Online Tutorial](http://www.odoo.com/documentation/10.0/howtos/backend.html#basic-views)
-* [Domains](https://www.odoo.com/documentation/10.0/reference/orm.html#domains)
+* [Action](http://www.odoo.com/documentation/11.0/reference/actions.html)
+* [Views](http://www.odoo.com/documentation/11.0/reference/views.html)
+* [Fields](http://www.odoo.com/documentation/11.0/reference/orm.html#basic-fields)
+* [Online Tutorial](http://www.odoo.com/documentation/11.0/howtos/backend.html#basic-views)
+* [Domains](https://www.odoo.com/documentation/11.0/reference/orm.html#domains)
 
 ### Code Samples
 

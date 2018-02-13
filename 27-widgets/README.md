@@ -78,6 +78,6 @@ list of all the tasks for this partner.
 
 ## References
 
-* [Widget in view](https://www.odoo.com/documentation/10.0/reference/views.html)
+* [Widget in view](https://www.odoo.com/documentation/11.0/reference/views.html)
 * [Stat button](http://fr.slideshare.net/openobject/odoo-smart-buttons)
 * [Widget list](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/web/static/src/js/views/form_widgets.js#L1680)
