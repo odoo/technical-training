@@ -21,7 +21,7 @@ rent a given book only if nobody has rented this book before you.
 
 ## References
 
-* [URL and routing](http://www.odoo.com/documentation/10.0/howtos/website.html#urls-and-routing)
+* [URL and routing](http://www.odoo.com/documentation/11.0/howtos/website.html#urls-and-routing)
 
 ### Code Sample
 

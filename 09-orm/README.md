@@ -50,5 +50,5 @@ description.
 
 ## References
 
-* [The ORM API](https://www.odoo.com/documentation/10.0/reference/orm.html)
+* [The ORM API](https://www.odoo.com/documentation/11.0/reference/orm.html)
 * [The Code of the ORM](https://github.com/odoo/odoo/blob/10.0/odoo/models.py)
