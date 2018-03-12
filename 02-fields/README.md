@@ -56,7 +56,7 @@ to be informative and avoids adding workload to the librarians.
 
 * [Constraints](https://www.odoo.com/documentation/11.0/howtos/backend.html#model-constraints)
     * [Python constraints](https://www.odoo.com/documentation/11.0/reference/orm.html#odoo.api.constrains)
-        * [Code sample: date verification](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343a331b75bf5dfa7ec22b8eb22e1084343/addons/event/models/event.py#L218)
+        * [Code sample: date verification](https://github.com/odoo/odoo/blob/2021f44c0e053e23d769f1dc2be67b6e3ebed82b/addons/event/models/event.py#L217)
     * [Sql constraints](https://www.odoo.com/documentation/11.0/reference/orm.html#odoo.models.Model._sql_constraints)
         * [Code sample: debit/credit rules](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/account/models/account_move.py#L399)
 
