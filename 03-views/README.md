@@ -103,7 +103,7 @@ Finally, the fields `start_time`, `end_time` and `duration` represent times
 which are usually expressed in hours, but shown as 7:30 instead of 7.5. It would
 be great to show the data in that format.
 
-- **Technical Hint**:  Everything can be done in the views. Domains can be handy. 
+- **Technical Hint**:  Everything can be done in the views. Domains can be handy.
 
 #### Extra Task
 
@@ -119,7 +119,7 @@ be great to show the data in that format.
 
 * [Activate Debug Mode](https://www.odoo.com/documentation/11.0/howtos/web.html#a-simple-module)
 * [Data Files](http://www.odoo.com/documentation/11.0/reference/data.html)
-* [DOC] on menu ITEM : TODO
+* [Menu Items](http://www.odoo.com/documentation/11.0/reference/data.html#menuitem)
 * [Action](http://www.odoo.com/documentation/11.0/reference/actions.html)
 * [Views](http://www.odoo.com/documentation/11.0/reference/views.html)
 * [Fields](http://www.odoo.com/documentation/11.0/reference/orm.html#basic-fields)
