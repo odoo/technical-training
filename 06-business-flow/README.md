@@ -69,7 +69,9 @@ owed should be visible on the customer's form view and should be searchable.
 ### Code Sample
 
 * [Form buttons](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/account/views/account_invoice_view.xml#L220)
-* [Chatter example](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/event/views/event_views.xml#L138)
+* Chatter example:
+  - [Model](https://github.com/odoo/odoo/blob/d9235a8f14a2dbd23a5640ffd1ec6bef4f235640/addons/sale/models/sale.py#L22)
+  - [View](https://github.com/odoo/odoo/blob/d9235a8f14a2dbd23a5640ffd1ec6bef4f235640/addons/sale/views/sale_views.xml#L398)
 * [Date field information](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/odoo/fields.py#L1447)
 * [Email template](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/event/data/email_template_data.xml)
 * [Send Email template](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/event/models/event.py#L275)
