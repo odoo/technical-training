@@ -41,4 +41,5 @@ for a `res.partner` via a 2 level wizard:
 
 ### Code Sample
 
-* [Return action in Python](https://github.com/odoo/odoo/blob/10.0/addons/mrp_repair/wizard/mrp_repair_make_invoice.py#L26)
+* [Smart Button](https://github.com/odoo/odoo/blob/b669c71aa394d1ed7908555d54d69aec38590e20/addons/crm/views/crm_lead_views.xml#L380)
+* [Return action in Python](https://github.com/odoo/odoo/blob/b669c71aa394d1ed7908555d54d69aec38590e20/addons/mrp_repair/wizard/mrp_repair_make_invoice.py#L26)
