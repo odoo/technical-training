@@ -83,7 +83,7 @@ the task is created from a task template, the user should not be able to change
 the fields "Task Template" and "Task Type" on that task. If the task is created
 directly from the menu, the field "Task Template" should not be visible.
 
-We want to avoid a user creating by mistake "Day Number" and "Task Template" on
+We want to avoid a user creating by mistake "Day Number" and "Task Type" on
 the task and task template form.
 
 We add a new field on the task template: "Floating". It means that the task
