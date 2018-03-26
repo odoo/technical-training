@@ -57,7 +57,7 @@ being able to change it.
   the rental date and the return date.
 
 
-## Problem 03: Cooperative Volunteers 
+## Problem 03: Cooperative Volunteers
 
 A non profit organisation needs your help. They would like to use Odoo to
 organize the work of their volunteers. They are managing a cooperative shop
@@ -81,7 +81,7 @@ in a recurring way 2-3 hours per week at a time.
 * [Activate Debug Mode](https://www.odoo.com/documentation/11.0/howtos/web.html#a-simple-module)
 * [Models Documentation](http://www.odoo.com/documentation/11.0/reference/orm.html#model-reference)
 * [Basic Fields Documentation](http://www.odoo.com/documentation/11.0/reference/orm.html#basic-fields)
-* [Relational Fields Documentation](http://www.odoo.com/documentation/11.0/reference/orm.html##relational-fields)
+* [Relational Fields Documentation](http://www.odoo.com/documentation/11.0/reference/orm.html#relational-fields)
 * [Online Tutorial](http://www.odoo.com/documentation/11.0/howtos/backend.html#build-an-odoo-module)
 
 ### Code Sample
