@@ -134,3 +134,4 @@ be great to show the data in that format.
 * [CRM tree view ordered](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/crm/views/crm_lead_views.xml#L540)
 * [Attrs](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/hr_recruitment/views/hr_recruitment_views.xml#L412)
 * [Use of Options in Views](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/hr_recruitment/views/hr_recruitment_views.xml#L102)
+* [Display float as time](https://github.com/odoo/odoo/blame/fe42986ee2f886527d6cebc702903d039b15f509/addons/calendar/views/calendar_views.xml#L113)
