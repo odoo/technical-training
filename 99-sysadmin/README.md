@@ -106,7 +106,7 @@ We'll need some tools to check system, like htop for process checking, git for c
 and systat to check I/O. Others will be installed later when necessary.
 
 ```bash
-$ sudo apt-get install git htop iotop sysstat
+$ sudo apt install git htop iotop sysstat
 ```
 
 ## Fix locale issue
@@ -125,6 +125,16 @@ PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/u
 LC_ALL=en_US.UTF-8
 LANG=en_US.UTF-8
 ```
+## Change mirrors location
+
+On the default VM, the ubuntu mirrors are located in the US. This can be changed 
+
+```bash
+$ vi /etc/apt/sources.list
+```
+
+And replace *http://us.archive.ubuntu.com/ubuntu* with *http://archive.ubuntu.com/ubuntu*
+
 
 # Install PostgreSQL
 
@@ -144,9 +154,9 @@ $ sudo bash apt.postgresql.org.sh
 You'll need the postgresql server itself, the client lib, and pg-activity to check running queries on a real-time basis.
 
 ```bash
-$ sudo apt-get install postgresql-9.6 postgresql-client-9.6 \
+$ sudo apt install postgresql-10 postgresql-client-10 \
    postgresql-client-common postgresql-common \
-   postgresql-server-dev-9.6 pg-activity
+   postgresql-server-dev-10 pg-activity
 ```
 
 A PostgreSQL user is required by Odoo to connect. For now, we'll use same PostgreSQL username as the unix one to use unix socket.
@@ -175,22 +185,28 @@ Why using git instead of .deb?
 
 ## git clone
 
-We'll use /opt/odoo10 as base dir.
+We'll use /opt/odoo11 as base dir.
 
 ```bash
 $ cd /opt
-$ sudo mkdir odoo10
-$ sudo chown odoo odoo10
-$ cd odoo10
+$ sudo mkdir odoo11
+$ sudo chown odoo odoo11
+$ cd odoo11
 $ git clone git@github.com:odoo/odoo.git
    OR
-$ git clone -b 10.0 --single-branch git@github.com:odoo/odoo.git
+$ git clone -b 11.0 --single-branch git@github.com:odoo/odoo.git
+   OR
+$ git clone -b 11.0 --single-branch --depth 1 git@github.com:odoo/odoo.git
 ```
 
 The next one require enterprise access
 
 ```bash
 $ git clone git@github.com:odoo/enterprise.git
+   OR
+$ git clone -b 11.0 --single-branch git@github.com:odoo/enterprise.git
+   OR
+$ git clone -b 11.0 --single-branch --depth 1 git@github.com:odoo/enterprise.git
 ```
 
 ## Odoo prerequisites
@@ -199,14 +215,34 @@ Odoo have some required python packages (like the web server, db connection libr
 some C/C++ headers to compile. We install the required C/C++ dev libraries from distribution repo, then we use pip 
 to install the Odoo python required packages.
 
-** Odoo is running on CPython 2.7! **
+** Odoo is running on CPython >= 3.4! **
+
+### Compile and Install last python
 
 ```bash
-$ sudo apt install python-pip libxml2-dev libxslt-dev libjpeg-dev \
-   libjpeg8-dev libpng-dev libldap2-dev libsasl2-dev node-less
-$ cd /opt/odoo10/odoo
-$ sudo pip install pip --upgrade
-$ sudo pip install -r requirements.txt --upgrade
+$ wget https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tgz
+$ tar xvf Python-3.6.4.tgz
+$ cd Python-3.6.4
+$ ./configure --enable-optimizations
+$ make -j8
+$ sudo make install
+```
+
+### Use distribution stock python 3
+
+```bash
+$ sudo apt install python3 python3-dev python3-pip
+```
+
+### Prerequisites
+
+```bash
+$ sudo apt install libxml2-dev libxslt1-dev libjpeg-dev \
+   libjpeg8-dev libpng12-dev libldap2-dev libsasl2-dev node-less
+$ cd /opt/odoo11/odoo
+$ sudo pip3 install pip --upgrade
+$ sudo pip3 install -r requirements.txt --upgrade
+$ sudo pip3 install phonenumbers pyOpenSSL
 ```
 
 ## First launch
@@ -216,8 +252,8 @@ we'll just use one option on the command line to explain where we can find addon
 the community ones!
 
 ```bash
-$ cd /opt/odoo10/odoo
-$ ./odoo.py --addons-path=/opt/odoo10/enterprise,/opt/odoo10/odoo/addons
+$ cd /opt/odoo11/odoo
+$ ./odoo-bin --addons-path=/opt/odoo11/enterprise,/opt/odoo11/odoo/addons
 ```
 
 Hit CTRL+C twice to stop the server.
@@ -285,8 +321,8 @@ Re-Launch NGINX
 ```bash
 $ sudo ln -s /etc/nginx/sites-available/odoo /etc/nginx/sites-enabled/odoo
 $ sudo /etc/init.d/nginx restart
-$ ./odoo.py --proxy-mode \
-   --addons-path=/opt/odoo10/enterprise,/opt/odoo10/odoo/addons
+$ ./odoo-bin --proxy-mode \
+   --addons-path=/opt/odoo11/enterprise,/opt/odoo11/odoo/addons
 ```
 
 Odoo Seems to run behind NGINX. Proxy-mode because odoo is behing nginx. Forwarded headers are very important because 
@@ -318,7 +354,7 @@ User=odoo
 Group=odoo
 SyslogIdentifier=odoo-server
 PIDFile=/run/odoo/odoo-server.pid
-ExecStart=/opt/odoo10/odoo/odoo.py --config=/etc/odoo/odoo10.conf
+ExecStart=/opt/odoo11/odoo/odoo-bin --config=/etc/odoo/odoo11.conf
 
 [Install]
 WantedBy=multi-user.target
@@ -336,12 +372,12 @@ $ sudo mkdir /etc/odoo
 $ sudo chown odoo /etc/odoo
 $ sudo mkdir /var/log/odoo
 $ sudo chown odoo /var/log/odoo
-$ vi /etc/odoo/odoo10.conf
+$ vi /etc/odoo/odoo11.conf
 ```
 
 ```
 [options]
-addons_path = /opt/odoo10/enterprise,/opt/odoo10/odoo/addons
+addons_path = /opt/odoo11/enterprise,/opt/odoo11/odoo/addons
 proxy_mode = True
 ```
 
@@ -365,7 +401,7 @@ $ sudo chgrp odoo /var/log/odoo
 
 ```
 [options]
-addons_path = /opt/odoo10/enterprise,/opt/odoo10/odoo/addons
+addons_path = /opt/odoo11/enterprise,/opt/odoo11/odoo/addons
 proxy_mode = True
 logfile = /var/log/odoo/odoo.log
 syslog = False
@@ -773,14 +809,14 @@ the report.url can be set to _ http://localhost:8069 _ to enable direct connecti
 ## Perform a full update
 
 ```bash
-$ cd /opt/odoo10/odoo
+$ cd /opt/odoo11/odoo
 $ git pull
-$ cd /opt/odoo10/enterprise
+$ cd /opt/odoo11/enterprise
 $ git pull
 $ sudo service odoo stop
-$ cd /opt/odoo10/odoo
+$ cd /opt/odoo11/odoo
 #comment out logfile in config
-$ ./odoo.py -c /etc/odoo/odoo10.conf -d mydb -u all --stop-after-init
+$ ./odoo-bin -c /etc/odoo/odoo11.conf -d mydb -u all --stop-after-init
 $ sudo service odoo start
 ```
 
@@ -788,7 +824,7 @@ $ sudo service odoo start
 
 The idea is to remove the logfile from config, add it to startup script, to ease the update process
 
-in /etc/odoo/odoo10.conf :
+in /etc/odoo/odoo11.conf :
 
 ```
 #logfile = /var/log/odoo/odoo.log
@@ -797,7 +833,7 @@ in /etc/odoo/odoo10.conf :
 in /lib/systemd/system/odoo.service :
 
 ```
-ExecStart=/opt/odoo10/odoo/odoo.py --config=/etc/odoo/odoo10.conf --logfile /var/log/odoo/odoo.log
+ExecStart=/opt/odoo11/odoo/odoo-bin --config=/etc/odoo/odoo11.conf --logfile /var/log/odoo/odoo.log
 ```
 
 ```
@@ -809,7 +845,7 @@ $ sudo systemctl start odoo
 ## Install a module in command line
 
 ```
-$ ./odoo.py -c /etc/odoo/odoo10.conf -d mydb -i mymodule --stop-after-init
+$ ./odoo-bin -c /etc/odoo/odoo11.conf -d mydb -i mymodule --stop-after-init
 ```
 
 # Exercices
@@ -818,17 +854,17 @@ $ ./odoo.py -c /etc/odoo/odoo10.conf -d mydb -i mymodule --stop-after-init
 
 Without altering the running server, it's asked to deploy as a service, and only accessible through NGinx:
 
-| Workers, cron | FQDN                     | DB filter | Ports      | Edition
-| ------------- | ------------------------ | --------- | ---------- | ---------
-| 3, 2          | odoo10.training.internal | odoo10*c  | 9069, 9072 | community
-| 2, 2          | odoo10.training.internal | odoo10*c  | 9069, 9072 | community
+| Workers, cron | FQDN                      | DB filter | Ports      | Edition
+| ------------- | ------------------------- | --------- | ---------- | ---------
+| 3, 2          | odoo11e.training.internal | odoo11*e  | 9069, 9072 | enterprise
+| 2, 2          | odoo11c.training.internal | odoo11*c  | 9079, 9082 | community
 
 ## 1 instance, 2 customers
 
-Without altering the running servers, it's asked to deploy as a service, and only accessible through NGinx, one odoo 10 enterprise serving two customers, with 3 workers and 1 cron, on ports 8079 and 8082:
+Without altering the running servers, it's asked to deploy as a service, and only accessible through NGinx, one odoo 11 enterprise serving two customers, with 3 workers and 1 cron, on ports 8089 and 8092:
 
-| FQDN	| DB
-| ----- | ---
+| FQDN	                  | DB
+| ----------------------- | ---
 | cust1.training.internal | cust1
 | cust2.training.internal | cust2
 
@@ -1106,7 +1142,7 @@ After=network.target
 
 ```bash
 $ sudo systemctl daemon-reload
-$ sudo vi /etc/odoo/odoo10.conf
+$ sudo vi /etc/odoo/odoo11.conf
 ```
 
 ```
@@ -1258,7 +1294,7 @@ odoo-pg1:/export/odoo /filestore nfs rw,hard,intr 0 0
 $ sudo mount /filestore
 $ cd ~/.local/share/Odoo
 $ cp -R ./ /filestore/
-$ sudo vi /etc/odoo/odoo10.conf
+$ sudo vi /etc/odoo/odoo11.conf
 ```
 
 ```
@@ -1700,12 +1736,12 @@ on the other ones.
 On server **odoo-1**:
 
 ```bash
-$ cd /opt/odoo10/odoo
+$ cd /opt/odoo11/odoo
 $ git pull
-$ cd /opt/odoo10/enterprise
+$ cd /opt/odoo11/enterprise
 $ git pull
 [...]
-$ cd /opt/odoo10/my_modules
+$ cd /opt/odoo11/my_modules
 $ git pull
 [...]
 ```
@@ -1713,7 +1749,7 @@ $ git pull
 On server **odoo-2** (and odoo-3, odoo-xxx, ...):
 
 ```bash
-$ rsync -az odoo@odoo-1:/opt/odoo10/ /opt/odoo10
+$ rsync -az odoo@odoo-1:/opt/odoo11/ /opt/odoo11
 ```
 
 # Etherpad
