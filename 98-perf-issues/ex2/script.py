@@ -58,4 +58,4 @@ if __name__ == '__main__':
             ],
         })
         diff = datetime.datetime.now()-start_date
-        print "time taken : %s,%s" % (diff.seconds, diff.microseconds / 1000 )
+        print("time taken : %s,%s" % (diff.seconds, diff.microseconds / 1000 ))
