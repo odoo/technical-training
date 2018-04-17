@@ -197,8 +197,6 @@ class Wizard(models.TransientModel):
 
     @api.model
     def create(self, vals):
-        import ipdb; ipdb.set_trace()
-        print(self,  vals)
         res = super(Wizard, self).create(vals)
         return res
 
