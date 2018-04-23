@@ -27,13 +27,6 @@ Create a report with
 - one page showing all the tasks you have to do,
 - another page with the same information but ordered by partner.
 
-
-## Problem 03: Library
-
-Create a web page for users to rent a book directly from the website. You can
-rent a given book only if nobody has rented this book before you.
-
-
 ## References
 
 * [Qweb](https://www.odoo.com/documentation/11.0/reference/qweb.html)
