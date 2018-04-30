@@ -8,7 +8,7 @@
 
 ## Starting point
 
-* [Library app from 'Advanced Customization'](../advanced-customization)
+* [Library app from 'Advanced Customization'](../16-advanced-customization)
 * [Map skeleton application](./awesome_map)
 
 ## Problem 1: Our very own Map view (Library)
