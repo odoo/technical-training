@@ -238,7 +238,7 @@ $ sudo apt install python3 python3-dev python3-pip
 
 ```bash
 $ sudo apt install libxml2-dev libxslt1-dev libjpeg-dev \
-   libjpeg8-dev libpng12-dev libldap2-dev libsasl2-dev node-less
+   libjpeg8-dev libpng-dev libldap2-dev libsasl2-dev node-less
 $ cd /opt/odoo11/odoo
 $ sudo pip3 install pip --upgrade
 $ sudo pip3 install -r requirements.txt --upgrade
@@ -265,6 +265,8 @@ To print reports, odoo generates an html, send it to wkhtmltopdf which is in cha
 ```bash
 $ sudo apt install libxrender1 fontconfig
 $ wget http://nightly.odoo.com/deb/xenial/wkhtmltox-0.12.1_linux-trusty-amd64.deb
+$ wget http://ftp.fr.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb
+$ sudo dpkg -i libpng12-0_1.2.50-2+deb8u3_amd64.deb
 $ sudo dpkg -i wkhtmltox-0.12.1_linux-trusty-amd64.deb
 ```
 
