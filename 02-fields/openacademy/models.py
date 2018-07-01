@@ -37,12 +37,11 @@ class Sessions(models.Model):
     ###
     @api.onchange('seats', 'attendee_ids')
     def _change_taken_seats(self):
-        for session in self:
-            if session.taken_seats > 100:
-                return {'warning': {
-                    'title': 'Too many attendees',
-                    'message': 'The room has %s available seats and there is %s attendees registered' % (session.seats, len(session.attendee_ids))
-                }}
+        if self.taken_seats > 100:
+            return {'warning': {
+                'title': 'Too many attendees',
+                'message': 'The room has %s available seats and there is %s attendees registered' % (self.seats, len(self.attendee_ids))
+            }}
 
     ###
     ## using python constrains
