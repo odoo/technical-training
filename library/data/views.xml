@@ -1,0 +1,171 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <!-- Books views -->
+
+    <record id="library_book_search_view" model="ir.ui.view">
+        <field name="name">Book search view</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <search string="Books">
+                <field name="name"/>
+                <field name="authors_ids"/>
+                <field name="isbn"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="library_book_form_view" model="ir.ui.view">
+        <field name="name">Book form view</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form string="Book">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="authors_ids"/>
+                        <field name="publisher_id"/>
+                        <field name="edition_date"/>
+                        <field name="isbn"/>
+                    </group>
+                    <notebook>
+                        <page string="Book Copies" name="copies">
+                            <field name="copy_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Book Copies views -->
+
+    <record id="library_copy_search_view" model="ir.ui.view">
+        <field name="name">Book Copy search view</field>
+        <field name="model">library.copy</field>
+        <field name="arch" type="xml">
+            <search string="Books">
+                <field name="name"/>
+                <field name="authors_ids"/>
+                <field name="isbn"/>
+                <field name="reference"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="library_copy_form_view" model="ir.ui.view">
+        <field name="name">Book Copy form view</field>
+        <field name="model">library.copy</field>
+        <field name="arch" type="xml">
+            <form string="Book Copy">
+                <sheet>
+                    <group>
+                        <field name="book_id"/>
+                        <field name="name"/>
+                        <field name="authors_ids"/>
+                        <field name="publisher_id"/>
+                        <field name="edition_date"/>
+                        <field name="isbn"/>
+                        <field name="reference"/>
+                    </group>
+                    <notebook>
+                        <page string="Rentals" name="rentals">
+                            <field name="rental_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Menu -->
+
+    <record id="library_book_action" model="ir.actions.act_window">
+        <field name="name">Books</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="library_copy_action" model="ir.actions.act_window">
+        <field name="name">Book Copies</field>
+        <field name="res_model">library.copy</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="library_partner_action" model="ir.actions.act_window">
+        <field name="name">Partners</field>
+        <field name="res_model">library.partner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="library_rental_action" model="ir.actions.act_window">
+        <field name="name">Rentals</field>
+        <field name="res_model">library.rental</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="library_publisher_action" model="ir.actions.act_window">
+        <field name="name">Publishers</field>
+        <field name="res_model">library.publisher</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Library -->
+    <menuitem
+        id="library_root_menu"
+        name="Library" />
+
+    <!-- Library/Library -->
+    <menuitem
+        id="library_menu"
+        parent="library_root_menu"
+        sequence="10"
+        name="Library" />
+
+    <!-- Library/Library/Books -->
+    <menuitem
+        id="library_book_menu"
+        parent="library_menu"
+        sequence="10"
+        action="library_book_action"
+        name="Books" />
+
+    <!-- Library/Library/Book Copies -->
+    <menuitem
+        id="library_copy_menu"
+        parent="library_menu"
+        sequence="20"
+        action="library_copy_action"
+        name="Book Copies" />
+
+    <!-- Library/Library/Partners -->
+    <menuitem
+        id="library_partner_menu"
+        parent="library_menu"
+        sequence="30"
+        action="library_partner_action"
+        name="Partners" />
+
+    <!-- Library/Library/Rentals -->
+    <menuitem
+        id="library_rental_menu"
+        parent="library_menu"
+        sequence="40"
+        action="library_rental_action"
+        name="Rentals" />
+
+    <!-- Library/Settings -->
+    <menuitem
+        id="library_settings_menu"
+        parent="library_root_menu"
+        sequence="100"
+        name="Settings" />
+
+    <!-- Library/Settings/Publishers -->
+    <menuitem
+        id="library_publisher_menu"
+        parent="library_settings_menu"
+        action="library_publisher_action"
+        name="Publishers" />
+
+</odoo>
