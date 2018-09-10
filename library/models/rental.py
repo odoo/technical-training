@@ -5,7 +5,6 @@ from datetime import datetime
 class Rental(models.Model):
     _name = 'library.rental'
     _description = 'Book rental'
-    _rec_name = 'book_id'
     _order = "rental_date desc,return_date desc"
 
     customer_id = fields.Many2one(

@@ -24,7 +24,9 @@
 
     # always loaded
     'data': [
+        "assets.xml",
         "data/library_data.xml",
+        "data/cron.xml",
         "data/prices.xml",
         "views/menus.xml",
         "views/customer.xml",
@@ -33,7 +35,13 @@
         "views/rental.xml",
         "views/payment.xml",
         "views/price.xml",
+        "views/dashboard.xml",
     ],
     # only loaded in demonstration mode
     'demo': [],
+
+    # static templates
+    'qweb': [
+        "static/src/xml/dashboard.xml",
+    ],
 }
