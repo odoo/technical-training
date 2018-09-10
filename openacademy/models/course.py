@@ -9,7 +9,7 @@ class Course(models.Model):
     name = fields.Char(string='Title', required=True)
     description = fields.Text()
 
-    responsible_id = fields.Many2one('openacademy.partner', ondelete='set null', string="Responsible")
+    responsible_id = fields.Many2one('res.partner', ondelete='set null', string="Responsible")
     session_ids = fields.One2many('openacademy.session', 'course_id', string="Sessions")
 
     level = fields.Selection([('1', 'Easy'), ('2', 'Medium'), ('3', 'Hard')], string="Difficulty Level")
@@ -29,6 +29,9 @@ class Session(models.Model):
     description = fields.Html()
     active = fields.Boolean(default=True)
     state = fields.Selection([('draft', "Draft"), ('confirmed', "Confirmed"), ('done', "Done")], default='draft')
+    seats = fields.Integer(string="Number of seats")
+    instructor_id = fields.Many2one('res.partner', string="Instructor", domain=[('instructor', '=', True)])
+    taken_seats = fields.Float(string="Taken seats", compute='_taken_seats', store=True)
     level = fields.Selection(related='course_id.level', readonly=True)
     responsible_id = fields.Many2one(related='course_id.responsible_id', readonly=True, store=True)
 
@@ -36,12 +39,9 @@ class Session(models.Model):
     end_date = fields.Date(default=fields.Date.today)
     duration = fields.Float(digits=(6, 2), help="Duration in days", default=1)
 
-    instructor_id = fields.Many2one('openacademy.partner', string="Instructor")
     course_id = fields.Many2one('openacademy.course', ondelete='cascade', string="Course", required=True)
-    attendee_ids = fields.Many2many('openacademy.partner', string="Attendees")
+    attendee_ids = fields.Many2many('res.partner', string="Attendees", domain=[('is_company', '=', False)])
     attendees_count = fields.Integer(compute='_get_attendees_count', store=True)
-    seats = fields.Integer()
-    taken_seats = fields.Float(compute='_compute_taken_seats', store=True)
 
     @api.depends('seats', 'attendee_ids')
     def _compute_taken_seats(self):

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="partner_daenerys" model="openacademy.partner">
+    <record id="partner_daenerys" model="res.partner">
         <field name="name">Daenerys Targaryan</field>
         <field name="instructor" eval="True"/>
     </record>
 
-    <record id="partner_tyrion" model="openacademy.partner">
+    <record id="partner_tyrion" model="res.partner">
         <field name="name">Tyrion Lannister</field>
         <field name="instructor" eval="True"/>
     </record>
 
-    <record id="partner_arya" model="openacademy.partner">
+    <record id="partner_arya" model="res.partner">
         <field name="name">Arya Stark</field>
     </record>
 
