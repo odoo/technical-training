@@ -33,5 +33,20 @@
             <field name="authors_ids" eval="[(4, ref('author_martin'))]"/>
         </record>
 
+        <record id="copy01" model="library.copy">
+            <field name="book_id" ref="book_got"/>
+            <field name="reference">GOT-01</field>
+        </record>
+
+        <record id="copy02" model="library.copy">
+            <field name="book_id" ref="book_got"/>
+            <field name="reference">GOT-02</field>
+        </record>
+
+        <record id="copy03" model="library.copy">
+            <field name="book_id" ref="book_got"/>
+            <field name="reference">GOT-03</field>
+        </record>
+
     </data>
 </odoo>
