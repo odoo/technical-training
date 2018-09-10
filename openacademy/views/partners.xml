@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Specific views for contacts -->
+        <record model="ir.ui.view" id="contact_tree_view">
+            <field name="name">partner.instructor.tree</field>
+            <field name="model">res.partner</field>
+            <field eval="8" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Contacts">
+                    <field name="display_name" string="Name"/>
+                    <field name="function" invisible="1"/>
+                    <field name="phone"/>
+                    <field name="email"/>
+                    <field name="user_id" invisible="1"/>
+                    <field name="is_company" invisible="1"/>
+                    <field name="country_id" invisible="1"/>
+                    <field name="parent_id" invisible="1"/>
+                    <field name="active" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="contact_form_view">
+            <field name="name">partner.instructor.form</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <form string="Contact">
+                    <field name="is_company" invisible="1"/>
+                    <field name="type" invisible="1"/>
+                    <field name="image" widget='image' class="oe_avatar" options='{"preview_image": "image_medium"}'/>
+                    <div class="oe_title">
+                        <field name="company_type" options="{'horizontal': true}" class="oe_edit_only" widget="radio"/>
+                        <h1>
+                            <field name="name" default_focus="1" placeholder="Name" attrs="{'required' : [('type', '=', 'contact')]}"/>
+                        </h1>
+                        <field name="parent_id"
+                            placeholder="Company"
+                            domain="[('is_company', '=', True)]" context="{'default_is_company': True}"
+                            attrs="{'invisible': [('is_company','=', True)]}"/>
+                    </div>
+                    <group>
+                        <field name="function" placeholder="e.g. Sales Director"/>
+                        <field name="user_ids" invisible="1"/>
+                        <field name="email" widget="email" required="context.get('force_email', False)" attrs="{'required': [('user_ids','!=', [])]}"/>
+                        <field name="phone" widget="phone"/>
+                        <field name="mobile" widget="phone"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+       <record model="ir.ui.view" id="contact_search_view">
+            <field name="name">partner.instructor.search</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <search string="Search Partner">
+                   <field name="name"
+                       filter_domain="['|','|',('display_name','ilike',self),('ref','=',self),('email','ilike',self)]"/>
+                   <filter help="My Partners" domain="[('user_id','=',uid)]"/>
+                   <separator/>
+                   <filter string="Persons" name="type_person" domain="[('is_company','=',0)]"/>
+                   <filter string="Companies" name="type_company" domain="[('is_company','=',1)]"/>
+                   <separator/>
+                   <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+               </search>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="contact_list_action">
+            <field name="name">Contacts</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{
+                'tree_view_ref': 'openacademy.contact_tree_view',
+                'form_view_ref': 'openacademy.contact_form_view',
+                'search_view_ref': 'openacademy.contact_search_view',
+            }</field>
+        </record>
+
+        <menuitem id="configuration_menu" name="Configuration"
+                  parent="menu_root" />
+
+        <menuitem id="contact_menu" name="Contacts"
+                  parent="configuration_menu"
+                  action="contact_list_action" />
+    </data>
+</odoo>
