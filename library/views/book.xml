@@ -22,7 +22,7 @@
                             <field name="edition_date"/>
                             <field name="isbn"/>
                             <field name="publisher_id"/>
-                            <field name="acquisition_year"/>
+                            <field name="acquisition_year" widget="raw-field-integer"/>
                             <field name="acquisition_price"/>
                         </group>
                         <notebook>
@@ -50,7 +50,7 @@
                     <field name="edition_date"/>
                     <field name="author_ids"/>
                     <field name="publisher_id"/>
-                    <field name="acquisition_year"/>
+                    <field name="acquisition_year" widget="raw-field-integer"/>
                 </tree>
             </field>
         </record>

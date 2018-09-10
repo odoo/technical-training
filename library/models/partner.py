@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import time
 from odoo import models, fields, api, exceptions, _
 
 class Partner(models.Model):
@@ -46,3 +47,14 @@ class Partner(models.Model):
     def _amount_owed(self):
         for rec in self:
             rec.amount_owed = - sum(rec.payment_ids.mapped('amount'))
+
+    @api.multi
+    def pay_amount(self):
+        for rec in self:
+            self.env['library.payment'].create({
+                'customer_id': rec.id,
+                'date': time.strftime('%Y-%m-%d'),
+                'amount': rec.amount_owed,
+                })
+
+        return True

@@ -27,6 +27,8 @@ class Rental(models.Model):
 
     is_late = fields.Boolean(string='Is Late', compute='_compute_is_late')
 
+    amount_owed = fields.Float(related='customer_id.amount_owed')
+
     @api.multi
     def write(self, vals):
         if (vals.get('state') == 'returned'):
