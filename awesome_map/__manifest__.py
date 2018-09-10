@@ -11,6 +11,9 @@
     'depends': ['base_geolocalize'],
     'data': [
         "views/res_partner.xml",
+        "views/templates.xml"
     ],
-    'qweb': [],
+    'qweb': [
+        "static/src/xml/map_view.xml",
+    ]
 }
