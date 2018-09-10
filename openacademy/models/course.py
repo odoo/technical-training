@@ -81,6 +81,7 @@ class Session(models.Model):
                     ], default='draft')
 
     is_paid = fields.Boolean('Is paid')
+    product_id = fields.Many2one('product.template', 'Product')
 
     def _warning(self, title, message):
         return {
@@ -163,3 +164,27 @@ class Session(models.Model):
         rec = super(Session, self).create(vals)
         rec._auto_transition()
         return rec
+
+    @api.multi
+    def create_invoice_teacher(self):
+        teacher_invoice = self.env['account.invoice'].search([
+            ('partner_id', '=', self.instructor_id.id)
+        ], limit=1)
+
+        if not teacher_invoice:
+            teacher_invoice = self.env['account.invoice'].create({
+                'partner_id': self.instructor_id.id,
+            })
+
+        # install module accounting and a chart of account to have at least one expense account in your CoA
+        expense_account = self.env['account.account'].search([('user_type_id', '=', self.env.ref('account.data_account_type_expenses').id)], limit=1)
+        self.env['account.invoice.line'].create({
+            'invoice_id': teacher_invoice.id,
+            'product_id': self.product_id.id,
+            'price_unit': self.product_id.lst_price,
+            'account_id': expense_account.id,
+            'name': 'Session',
+            'quantity': 1,
+        })
+
+        self.write({'is_paid': True})
