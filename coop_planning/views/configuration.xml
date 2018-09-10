@@ -1,0 +1,23 @@
+<odoo>
+
+    <!-- Actions -->
+    <record model="ir.actions.act_window" id="action_daynumber">
+          <field name="name">Day Number</field>
+          <field name="res_model">coopplanning.daynumber</field>
+          <field name="view_mode">tree,form</field>
+
+    </record>
+    <record model="ir.actions.act_window" id="action_task_type">
+      <field name="name">Task Type</field>
+      <field name="res_model">coopplanning.task.type</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Configuration" id="menu_configuration_top" parent="menu_root" sequence="99" />
+    <menuitem name="Task Type" id="menu_task_type" parent="menu_configuration_top"
+              action="action_task_type"/>
+
+    <menuitem name="Day Number" id="menu_daynumber" parent="menu_configuration_top"
+              action="action_daynumber"/>
+
+</odoo>
