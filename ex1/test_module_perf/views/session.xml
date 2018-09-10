@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record model="ir.ui.view" id="session_view_list">
+      <field name="name">openacademy session list</field>
+      <field name="model">openacademy.session</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="course_id" />
+          <field name="instructor_id"   />
+          <field name="start_date" />
+          <field name="duration" />
+          <field name="attendee_ids" widget="many2many_tags"/>
+        </tree>
+      </field>
+    </record>
+
+    
+    <record model="ir.ui.view" id="session_view_search">
+      <field name="name">openacademy session search</field>
+      <field name="model">openacademy.session</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" filter_domain="['|', '|', ('course_id.name', 'ilike', self), ('name', 'ilike', self), ('attendee_ids.name', 'ilike', self)]"/>
+        </search>
+      </field>
+    </record>
+    
+    <record model="ir.ui.view" id="session_view_form">
+      <field name="name">openacademy session form</field>
+      <field name="model">openacademy.session</field>
+      <field name="arch" type="xml">
+        <form>
+            <header>
+                <field name="state" widget="statusbar" editable="True"/>
+            </header>
+          <sheet>
+              <group col='4'>
+                      <field name="name"/>
+                      <field name="course_id" />
+                      <field name="instructor_id"   />
+                      <field name="start_date" />
+                      <field name="duration" />
+              </group>
+              <group col='4'>
+                  <field name="session_cost"/>
+                  <field name="course_cost"/>
+              </group>
+              <label for="attendee_ids"/>
+              <field name="attendee_ids"/>
+          </sheet>
+         </form>
+      </field>
+    </record>
+
+  </data>
+</openerp>
