@@ -45,6 +45,8 @@ class TaskTemplate(models.Model):
     worker_nb = fields.Integer(string="Number of worker", help="Max number of worker for this task", default=1)
     worker_ids = fields.Many2many('res.partner', string="Recurrent worker assigned")
     active = fields.Boolean(default=True)
+    day_nb = fields.Integer(related='day_nb_id.number', string='Day Number')
+    task_area = fields.Char(related='task_type_id.area', string='Task Area')
     floating = fields.Boolean("Floating Task", help="This task will be not assigned to someone and will be available for non recurring workers")
 
     @api.depends('start_time', 'end_time')
@@ -68,3 +70,9 @@ class TaskTemplate(models.Model):
                 'start_time' : fields.Datetime.context_timestamp(self, today).replace(hour=h_begin, minute=m_begin, second=0).astimezone(UTC),
                 'end_time' :  fields.Datetime.context_timestamp(self, today).replace(hour=h_end, minute=m_end, second=0).astimezone(UTC),
             })
+
+    #Solution : Empty the field worker_ids when floating is selected to be sure no worker will be pre assigned to the task
+    @api.onchange('floating')
+    def _onchange_floating(self):
+        if self.floating:
+            self.worker_ids = self.env['res.partner']

@@ -25,6 +25,7 @@
     'data': [
         "views/task_template.xml",
         "views/task.xml",
+        "views/configuration.xml", #File for extra 03
         "data/coopplanning_data.xml",
         "data/task_template_demo.xml",
     ],
