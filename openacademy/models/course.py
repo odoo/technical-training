@@ -13,6 +13,7 @@ class Course(models.Model):
     session_ids = fields.One2many('openacademy.session', 'course_id', string="Sessions")
     level = fields.Selection([(1, 'Easy'), (2, 'Medium'), (3, 'Hard')], string="Difficulty Level")
     session_count = fields.Integer("Session Count", compute="_compute_session_count")
+    attendee_count = fields.Integer("Attendee Count", compute="_compute_attendee_count")
 
     _sql_constraints = [
        ('name_description_check', 'CHECK(name != description)',
@@ -36,14 +37,32 @@ class Course(models.Model):
         default['name'] = new_name
         return super(Course, self).copy(default)
 
+    @api.multi
+    def open_attendees(self):
+        self.ensure_one()
+        attendee_ids = self.session_ids.mapped('attendee_ids')
+        return {
+            'name': 'Attendees of %s' % (self.name),
+            'type': 'ir.actions.act_window',
+            'res_model': 'res.partner',
+            'view_mode': 'tree,form',
+            'view_type': 'form',
+            'domain': [('id', 'in', attendee_ids.ids)],
+        }
+
     @api.depends('session_ids')
     def _compute_session_count(self):
         for course in self:
             course.session_count = len(course.session_ids)
 
+    @api.depends('session_ids.attendees_count')
+    def _compute_attendee_count(self):
+        for course in self:
+            course.attendee_count = len(course.mapped('session_ids.attendee_ids'))
 
 class Session(models.Model):
     _name = 'openacademy.session'
+    _inherit = ['mail.thread']
     _order = 'name'
 
     name = fields.Char(required=True)
@@ -62,6 +81,11 @@ class Session(models.Model):
 
     percentage_per_day = fields.Integer("%", default=100)
     attendees_count = fields.Integer(string="Attendees count", compute='_get_attendees_count', store=True)
+    state = fields.Selection([
+                    ('draft', "Draft"),
+                    ('confirmed', "Confirmed"),
+                    ('done', "Done"),
+                    ], default='draft')
 
     def _warning(self, title, message):
         return {'warning': {
@@ -115,3 +139,71 @@ class Session(models.Model):
                 start_date = fields.Datetime.from_string(session.start_date)
                 end_date = fields.Datetime.from_string(session.end_date)
                 session.duration = (end_date - start_date).days + 1
+
+    @api.multi
+    def action_draft(self):
+        for rec in self:
+            rec.state = 'draft'
+            rec.message_post(body="Session %s of the course %s reset to draft" % (rec.name, rec.course_id.name))
+
+    @api.multi
+    def action_confirm(self):
+        for rec in self:
+            rec.state = 'confirmed'
+            rec.message_post(body="Session %s of the course %s confirmed" % (rec.name, rec.course_id.name))
+
+    @api.multi
+    def action_done(self):
+        for rec in self:
+            rec.state = 'done'
+            rec.message_post(body="Session %s of the course %s done" % (rec.name, rec.course_id.name))
+
+    def _auto_transition(self):
+        for rec in self:
+            if rec.taken_seats >= 50.0 and rec.state == 'draft':
+                rec.action_confirm()
+
+    @api.multi
+    def write(self, vals):
+        res = super(Session, self).write(vals)
+        for rec in self:
+            rec._auto_transition()
+        if vals.get('instructor_id'):
+            self.message_subscribe([vals['instructor_id']])
+        return res
+
+    @api.model
+    def create(self, vals):
+        res = super(Session, self).create(vals)
+        res._auto_transition()
+        if vals.get('instructor_id'):
+            res.message_subscribe([vals['instructor_id']])
+        return res
+
+
+
+class Wizard(models.TransientModel):
+    _name = 'openacademy.wizard'
+
+    @api.model
+    def default_get(self, fields):
+
+        res = super(Wizard, self).default_get(fields)
+        res.update({'attendee_ids': [(6, 0, self._context.get('active_ids', []))] })
+        return res
+
+    session_ids = fields.Many2many('openacademy.session', string="Sessions", required=True)
+    attendee_ids = fields.Many2many('res.partner', string="Attendees", )
+
+    @api.model
+    def create(self, vals):
+        import ipdb; ipdb.set_trace()
+        print self,  vals
+        res = super(Wizard, self).create(vals)
+        return res
+
+    @api.multi
+    def subscribe(self):
+        for session in self.session_ids:
+            session.attendee_ids |= self.attendee_ids
+        return {}
