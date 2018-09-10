@@ -32,6 +32,7 @@
         'views/partners.xml',
         'views/courses_kanban.xml',
         'wizard/add_attendee_view.xml',
+        'report/session.xml',
         'report/board.xml',
         'data/partner.xml',
     ],
