@@ -1,0 +1,41 @@
+<odoo>
+    <record model="ir.ui.view" id="planning_view_tree">
+        <field name="name">Planning List</field>
+        <field name="model">coopplanning.planning</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="planning_view_form">
+        <field name="name">Planning Form</field>
+        <field name="model">coopplanning.planning</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button type="object" name="open_task_generation_wizard" string="Generate Task" />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <field name="task_template_ids" />
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record model="ir.actions.act_window" id="action_planning">
+      <field name="name">Planning Action</field>
+      <field name="res_model">coopplanning.planning</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Planning" id="menu_planning" parent="menu_template_top"
+              action="action_planning"/>
+</odoo>

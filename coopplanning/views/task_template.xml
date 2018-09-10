@@ -1,0 +1,67 @@
+<odoo>
+    <record model="ir.ui.view" id="task_template_view_tree">
+        <field name="name">Task Template List</field>
+        <field name="model">coopplanning.task.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="task_type_id" />
+                <field name="name" />
+                <field name="day_nb_id" />
+                <field name="start_time" />
+                <field name="end_time" />
+                <field name="duration" />
+                <field name="worker_nb" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="task_template_view_form">
+        <field name="name">Task Template Form</field>
+        <field name="model">coopplanning.task.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button type="object" name="generate_task" string="Generate Task for Today" />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="task_type_id"   />
+                            <field name="day_nb_id" />
+                            <field name="worker_nb" />
+                            <field name="active" />
+                        </group>
+                        <group>
+                            <field name="start_time" />
+                            <field name="end_time"  />
+                            <field name="duration"  />
+                            <field name="floating" />
+                        </group>
+                    </group>
+                    <separator string="Pre defined Worker" />
+                    <field name="worker_ids" nolabel="1" />
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record model="ir.actions.act_window" id="action_task_template">
+      <field name="name">Task Template Action</field>
+      <field name="res_model">coopplanning.task.template</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem name="Coop Planning" id="menu_root"/>
+    <!-- menu categories -->
+    <menuitem name="Templates" id="menu_template_top" parent="menu_root"/>
+    <!-- actions -->
+    <menuitem name="Task" id="menu_task_template" parent="menu_template_top"
+              action="action_task_template"/>
+</odoo>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="attendee_view_list">
+      <field name="name">openacademy attendee list</field>
+      <field name="model">openacademy.attendee</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="partner_id"/>
+          <field name="course_id" />
+          <field name="session_id" />
+          <field name="state" />
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="attendee_view_form">
+      <field name="name">openacademy attendee form</field>
+      <field name="model">openacademy.attendee</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button name="action_draft" type="object"
+                string="Reset to draft"
+                attrs="{'invisible' : [('state', '=', 'draft')] }"   />
+            <button name="action_confirm" type="object"
+                string="Confirm" attrs="{'invisible' : [('state', 'in', ('confirmed', 'done'))] }"
+                class="oe_highlight"  />
+            <button name="action_done" type="object"
+                string="Mark as done" attrs="{'invisible' : [('state', 'in', ('draft', 'done'))] }"
+                class="oe_highlight"  />
+            <field name="state" widget="statusbar"/>
+          </header>
+          <sheet>
+              <group>
+                  <group>
+                      <field name="course_id" />
+                      <field name="session_id" />
+                  </group>
+                  <group>
+                      <field name="partner_id"/>
+                  </group>
+              </group>
+          </sheet>
+         </form>
+      </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_attendee">
+      <field name="name">openacademy attendee</field>
+      <field name="res_model">openacademy.attendee</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Attendees" id="menu_attendee"
+              parent="menu_course_top"
+              action="action_attendee"/>
+  </data>
+</odoo>
