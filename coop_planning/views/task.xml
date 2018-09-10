@@ -1,0 +1,55 @@
+<odoo>
+    <record model="ir.ui.view" id="task_view_tree">
+        <field name="name">Task Template List</field>
+        <field name="model">coopplanning.task</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="task_type_id" />
+                <field name="name" />
+                <field name="worker_id" />
+                <field name="start_time" />
+                <field name="end_time" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="task_view_form">
+        <field name="name">Task Template Form</field>
+        <field name="model">coopplanning.task</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="task_template_id" attrs="{ 'invisible' : [('task_template_id', '=', False)]}" readonly="1" />
+                            <field name="task_type_id" attrs="{ 'readonly' : [('task_template_id', '!=', False)], 'required' : [('task_template_id', '=', False)]}"  options="{'no_create': True}" />
+                            <field name="worker_id" />
+                        </group>
+                        <group>
+                            <field name="start_time" />
+                            <field name="end_time" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record model="ir.actions.act_window" id="action_task">
+      <field name="name">Task Action</field>
+      <field name="res_model">coopplanning.task</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem name="Planning" id="menu_task_top" parent="menu_root" sequence="1" />
+    <!-- actions -->
+    <menuitem name="Task" id="menu_task" parent="menu_task_top"
+              action="action_task"/>
+</odoo>
