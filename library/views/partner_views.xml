@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="partner_view_tree" model="ir.ui.view">
+        <field name="name">library.partner.tree</field>
+        <field name="model">library.partner</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="partner_type"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="partner_view_form" model="ir.ui.view">
+        <field name="name">library.partner.form</field>
+        <field name="model">library.partner</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title oe_left">
+                        <h1>
+                            <field name="name" placeholder="Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="email"/>
+                        <field name="address"/>
+                        <field name="partner_type"/>
+                    </group>
+                    <field name="rental_ids" attrs="{'invisible': [('partner_type','=','author')]}">
+                        <tree>
+                            <field name="book_id"/>
+                            <field name="rental_date"/>
+                            <field name="return_date"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="partner_action" model="ir.actions.act_window">
+        <field name="name">Partners</field>
+        <field name="res_model">library.partner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="publisher_action" model="ir.actions.act_window">
+        <field name="name">Publishers</field>
+        <field name="res_model">library.publisher</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

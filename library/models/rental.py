@@ -18,3 +18,9 @@ class Rentals(models.Model):
     book_authors = fields.Many2many(related='book_id.author_ids')
     book_edition_date = fields.Date(related='book_id.edition_date')
     book_publisher = fields.Many2one(related='book_id.publisher_id')
+
+    is_late = fields.Boolean(compute='_compute_is_late')
+
+    def _compute_is_late(self):
+        for rec in self:
+            rec.is_late = rec.return_date < fields.Date.today() if rec.return_date else False

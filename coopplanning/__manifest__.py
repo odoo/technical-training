@@ -18,14 +18,17 @@
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category':    'Cooperative Planning',
-    'version':     '0.2',
+    'version':     '0.3',
 
     # any module necessary for this one to work correctly
     'depends':     ['base'],
 
     # always loaded
-    'data':        [
+    'data': [
         "security/ir.model.access.csv",
+        "views/task_views.xml",
+        "views/daynumber_views.xml",
+        "views/menu_views.xml",
         "data/coop_data.xml",
         "data/task_template.xml",
     ],
