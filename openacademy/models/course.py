@@ -13,6 +13,12 @@ class Course(models.Model):
     color = fields.Integer()
     session_count = fields.Integer("Session Count", compute="_compute_session_count")
 
+    fname = fields.Char('Filename')
+    datas = fields.Binary('File')
+    currency_id = fields.Many2one('res.currency', 'Currency')
+
+    price = fields.Float('Price')
+
     _sql_constraints = [
        ('name_description_check', 'CHECK(name != description)',
         _("The title of the course should not be the description")),
@@ -64,6 +70,8 @@ class Session(models.Model):
     percentage_per_day = fields.Integer("%", default=100)
     attendees_count = fields.Integer(string="Attendees count", compute='_get_attendees_count', store=True)
     color = fields.Integer()
+
+    sequence = fields.Integer('sequence')
 
     state = fields.Selection([
                     ('draft', "Draft"),
