@@ -7,6 +7,9 @@
             <field name="model">product.product</field>
             <field name="arch" type="xml">
                 <form>
+                    <header>
+                        <field name="book_state" widget="statusbar" nolabel="1" statusbar_visible="available,rented,lost"/>
+                    </header>
                     <sheet>
                         <field name="image" widget='image' class="oe_left oe_avatar" />
                         <div class="oe_title oe_left">
