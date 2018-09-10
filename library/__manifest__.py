@@ -18,7 +18,7 @@
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category':    'Library',
-    'version':     '0.4',
+    'version':     '0.5',
 
     # any module necessary for this one to work correctly
     'depends':     ['base'],

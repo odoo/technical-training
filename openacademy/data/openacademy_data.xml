@@ -83,7 +83,7 @@
         <field name="name">Dragon Functional - Session 1</field>
         <field name="duration">7.5</field>
         <field name="seats">7</field>
-        <field name="instructor_id" ref="partner_ned"/>
+        <field name="instructor_id" ref="user_ned"/>
         <field name="course_id" ref="course_dragon_functional"/>
     </record>
 </odoo>

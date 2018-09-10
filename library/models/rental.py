@@ -22,4 +22,4 @@ class Rentals(models.Model):
 
     @api.depends('customer_id')
     def _compute_customer_address(self):
-        self.customer_address = self.customer_id.address_get()
+        self.customer_address = self.customer_id._display_address()

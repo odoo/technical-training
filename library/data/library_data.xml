@@ -25,7 +25,7 @@
     <record id="author_martin" model="res.partner">
         <field name="name">George R.R. Martin</field>
         <field name="email">george@got.org</field>
-        <field name="contact_address">Bayonne, New Jersey, United States</field>
+        <field name="street">Bayonne, New Jersey, United States</field>
         <field name="is_author" eval="True"/>
     </record>
 
