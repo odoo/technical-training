@@ -35,68 +35,77 @@ odoo.define('openacademy.portal_user_dashboard', function (require) {
         fetch_data: function () {
             var self = this;
             return this.academy_session.query(
-                [/** List of session's fields that are needed **/]
+                [
+                    'name',
+                    'start_date',
+                    'end_date',
+                    'attendee_feedback_ids'
+                ]
             )
-            .filter(/** Domain **/)         // Note that all widgets are linked to a session object which contains
-                                            // metadata like connected user and its partner ID, etc.
+            .filter([
+                ['attendee_ids', 'in', [this.session.partner_id]],
+                ['state', 'not in', 'done']
+            ])
             .all()
             .done(function (sessions) {
                 _(sessions).each(function (session) {
-                    /**
-                     * Check if there is already a feedback done, and mark session
-                     * accordingly.
-                     *
-                     * Also, format start and end dates to be displayed as the user
-                     * expects
-                     */
+                    session.feedback_done = !_(session.attendee_feedback_ids).isEmpty();
+                    session.start_date = formats.format_value(
+                        session.start_date, {
+                            'type': 'date'
+                        }
+                    );
+                    session.end_date = formats.format_value(
+                        session.end_date, {
+                            'type': 'date'
+                        }
+                    );
                 });
                 self.sessions = sessions;
                 self.waiting_feedback_sessions = _(sessions).filter(function (session) {
-                    /**
-                     * The widget should only display sessions that don't have
-                     * feedback from the user
-                     */
+                    return !session.feedback_done;
                 });
             });
         },
         render_dashboard: function () {
             this.$el.empty();
-            /**
-             * Render widget's template and add it to the DOM. Once done, we can cache important
-             * elements like the feedback textarea and the send button
-             */
+            this.$dashboard = $(QWeb.render('openacademy.portal_user_dashboard', this));
+            this.$el.append(this.$dashboard);
+            this.$textarea = this.$dashboard.find('textarea');
+            this.$send_button = this.$dashboard.find('.o_send_feedback');
         },
         open_session: function (ev) {
-            /**
-             * Tell the widget to open session's form view
-             */
+            this.do_action({
+                'type': 'ir.actions.act_window',
+                'res_model': 'openacademy.session',
+                'res_id': parseInt($(ev.currentTarget).data('id'), 10),
+                'views': [[false, 'form']]
+            });
         },
         toggle_send_button: function () {
-            /**
-             * Change send button's disabled property depending on textarea content,
-             * if empty disallow clicking it
-             */
+            var value = this.$textarea.val();
+            this.$send_button.prop('disabled', !value);
         },
         send_feedback: function (ev) {
             var self = this;
 
-            /**
-             * Get session ID from the DOM element and textarea value, in order to create
-             * a new session feedback record
-             */
+            var attended_session_id = parseInt($(ev.currentTarget).data('id'), 10);
+            var feedback = this.$textarea.val();
 
             this.session_feedback.call('create', [
                 {
-                    /**
-                     * Pass a dictionary where keys are field names, and the values
-                     * correspond to those fields values
-                     */
+                    'session_id': attended_session_id,
+                    'attendee_id': this.session.partner_id,
+                    'session_feedback': feedback
                 }
             ]).done(function (result) {
-                /**
-                 * We need to update the list of waiting feedback sessions, removing the
-                 * current one.
-                 */
+                self.waiting_feedback_sessions = _(self.sessions).reject(function (session) {
+                    if (session.id === attended_session_id) {
+                        session.attendee_feedback_ids = [result];
+                        session.feedback_done = true;
+                        return session;
+                    }
+                });
                 self.render_dashboard();
             });
         },

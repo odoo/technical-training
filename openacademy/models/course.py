@@ -182,11 +182,24 @@ class Session(models.Model):
 
     # Used only on 2nd extra task
     def open_attendees(self):
-        pass
+        self.ensure_one()
+
+        attendees_tree_view = self.env.ref('ex01.attendees_tree_view')
+
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Attendees',
+            'res_model': 'res.partner',
+            'views': [
+                (attendees_tree_view.id, 'tree'),
+                (False, 'form')
+            ],
+            'domain': [('id', 'in', self.attendee_ids.ids)],
+        }
 
     # Used only on 3th extra task
     def action_set_no_of_seats(self, value):
-        pass
+        return self.write({'seats': value})
 
 
 class Feedback(models.Model):

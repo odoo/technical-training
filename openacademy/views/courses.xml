@@ -53,12 +53,17 @@
             </field>
         </record>
 
-        <!-- New action to open courses' sessions -->
         <record id="course_sessions_act_window" model="ir.actions.act_window">
             <field name="name">Sessions</field>
             <field name="res_model">openacademy.session</field>
-            <field name="view_mode">tree,form</field>
-            <!-- Add here a sound domain and context -->
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[
+                ('course_id', '=', active_id)
+            ]</field>
+            <field name="context">{
+                'default_course_id': active_id,
+                'search_default_by_state': True
+            }</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                     Here, you can create new sessions
@@ -71,21 +76,36 @@
             <field name="model">openacademy.course</field>
             <field name="arch" type="xml">
                 <kanban>
-                    <!-- Add here field's values used inside the kanban but not actually displayed -->
+                    <field name="responsible_id"/>
                     <templates>
                         <t t-name="kanban-box">
-                            <!-- Add here yours JS QWeb's HTML code -->
+                            <div class="o_kanban_record oe_kanban_global_click_edit">
+                                <div class="oe_kanban_details">
+                                    <field name="theme_ids"/>
+                                    <div class="o_kanban_title">
+                                        <field name="name"/>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_button">
+                                    <a name="%(course_sessions_act_window)d" type="action">
+                                        <span class="o_value"><field name="session_count"/></span>
+                                        <span class="o_label">Sessions</span>
+                                    </a>
+                                </div>
+                                <div class="oe_kanban_bottom_left">
+                                    <img t-att-src="kanban_image('res.users', 'image_small', record.responsible_id.raw_value)" class="oe_kanban_avatar_smallbox"/>
+                                </div>
+                            </div>
                         </t>
                     </templates>
                 </kanban>
             </field>
         </record>
 
-        <!-- Modify the action to display the kanban view in first place -->
         <record id="action_course" model="ir.actions.act_window">
             <field name="name">Courses</field>
             <field name="res_model">openacademy.course</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">kanban,tree,form</field>
         </record>
 
         <!-- Top menu item -->
