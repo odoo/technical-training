@@ -29,33 +29,33 @@ The language [Python](https://www.python.org/) is a requirement for almost all m
 ## Modules
 
 1. [Models, Fields and Relations](https://github.com/odoo/technical-training/tree/12.0-01-models)
-1. [Computed Fields, Onchange and Constraints](https://github.com/odoo/technical-training/tree/02-fields)
-1. [Basic Views](https://github.com/odoo/technical-training/tree/03-views)
-1. [Model Inheritance](https://github.com/odoo/technical-training/tree/04-model-inheritance)
-1. [View Inheritance](https://github.com/odoo/technical-training/tree/05-view-inheritance)
-1. [Business Flow](https://github.com/odoo/technical-training/tree/06-business-flow)
-1. [Access Rights](https://github.com/odoo/technical-training/tree/08-access-right)
-1. [Play with the ORM](https://github.com/odoo/technical-training/tree/09-orm)
-1. [Reports](https://github.com/odoo/technical-training/tree/10-reports)
-1. [Controllers](https://github.com/odoo/technical-training/tree/11-controller)
+1. [Computed Fields, Onchange and Constraints](https://github.com/odoo/technical-training/tree/12.0-02-fields)
+1. [Basic Views](https://github.com/odoo/technical-training/tree/12.0-03-views)
+1. [Model Inheritance](https://github.com/odoo/technical-training/tree/12.0-04-model-inheritance)
+1. [View Inheritance](https://github.com/odoo/technical-training/tree/12.0-05-view-inheritance)
+1. [Business Flow](https://github.com/odoo/technical-training/tree/12.0-06-business-flow)
+1. [Access Rights](https://github.com/odoo/technical-training/tree/12.0-08-access-right)
+1. [Play with the ORM](https://github.com/odoo/technical-training/tree/12.0-09-orm)
+1. [Reports](https://github.com/odoo/technical-training/tree/12.0-10-reports)
+1. [Controllers](https://github.com/odoo/technical-training/tree/12.0-11-controller)
 
 
 ## Advanced Modules
 
-1. [Widget customization](https://github.com/odoo/technical-training/tree/15-widgets)
-1. [Advance frontend customization](https://github.com/odoo/technical-training/tree/16-advanced-customization)
-1. [Creating new views](https://github.com/odoo/technical-training/tree/17-creating-views)
-1. [Testing javascript](https://github.com/odoo/technical-training/tree/18-testing-javascript)
-1. [Modify Business Flows](https://github.com/odoo/technical-training/tree/19-modify-business-flow)
-1. [Mail Integration](https://github.com/odoo/technical-training/tree/25-mail-integration)
-1. [Kanban Views and Dashboards](https://github.com/odoo/technical-training/tree/26-kanban-dashboard)
-1. [Various Widgets usage](https://github.com/odoo/technical-training/tree/27-widgets)
-1. [Performance issues](https://github.com/odoo/technical-training/tree/98-perf-issues)
+1. [Widget customization](https://github.com/odoo/technical-training/tree/12.0-15-widgets)
+1. [Advance frontend customization](https://github.com/odoo/technical-training/tree/12.0-16-advanced-customization)
+1. [Creating new views](https://github.com/odoo/technical-training/tree/12.0-17-creating-views)
+1. [Testing javascript](https://github.com/odoo/technical-training/tree/12.0-18-testing-javascript)
+1. [Modify Business Flows](https://github.com/odoo/technical-training/tree/12.0-19-modify-business-flow)
+1. [Mail Integration](https://github.com/odoo/technical-training/tree/12.0-25-mail-integration)
+1. [Kanban Views and Dashboards](https://github.com/odoo/technical-training/tree/12.0-26-kanban-dashboard)
+1. [Various Widgets usage](https://github.com/odoo/technical-training/tree/12.0-27-widgets)
+1. [Performance issues](https://github.com/odoo/technical-training/tree/12.0-98-perf-issues)
 
 
 ## Odoo System Administration
 
-* [Training Material](https://github.com/odoo/technical-training/tree/99-sysadmin)
+* [Training Material](https://github.com/odoo/technical-training/tree/12.0-99-sysadmin)
 
 
 ## Possible solutions
