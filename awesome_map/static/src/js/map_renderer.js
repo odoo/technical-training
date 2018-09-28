@@ -21,6 +21,7 @@ const MapRenderer = AbstractRenderer.extend({
      */
     on_attach_callback: function () {
         this._initializeMap();
+        this._renderDataPoints();
         this._super.apply(this, arguments);
     },
 
@@ -39,13 +40,23 @@ const MapRenderer = AbstractRenderer.extend({
         }
         this.mapInitialized = true;
 
-        const initialLat = 51.505;
-        const initialLong = -0.09;
+        const initialLat = this.state[0] ? this.state[0].latitude : 51.505;
+        const initialLong = this.state[0] ? this.state[0].longitude : -0.09;
         const options = { zoomControl: false };
         this.leafletMap = L.map(this.el, options).setView([initialLat, initialLong], 13);
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(this.leafletMap);
+    },
+    /**
+     * Renders the data points on the map.
+     *
+     * @private
+     */
+    _renderDataPoints: function () {
+        _.each(this.state, point => {
+            L.marker([point.latitude, point.longitude]).addTo(this.leafletMap);
+        });
     },
 });
 
