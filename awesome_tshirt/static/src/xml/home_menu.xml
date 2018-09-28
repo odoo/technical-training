@@ -4,7 +4,7 @@
 <t t-name="HomeMenu.Message">
     <div class="p-2 alert-warning o_custom_message">
         <i class="fa fa-eye"></i><i class="fa fa-eye"></i>
-        Bafien Ckinpaers is watching you!
+        <t t-esc="message"/>
         <i class="fa fa-eye"></i><i class="fa fa-eye"></i>
     </div>
 </t>
