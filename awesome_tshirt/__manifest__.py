@@ -11,7 +11,7 @@
     'category': 'Extra Tools',
     'version': '1.0',
     'application': True,
-    'depends': ['base', 'web'],
+    'depends': ['base', 'web', 'base_geolocalize'],
     'data': [
         'assets.xml',
         'security/ir.model.access.csv',
@@ -20,6 +20,7 @@
     ],
     'qweb': [
         'static/src/xml/awesome_dashboard.xml',
+        'static/src/xml/form_view.xml',
         'static/src/xml/my_counter.xml',
         'static/src/xml/warning_widget.xml',
     ]

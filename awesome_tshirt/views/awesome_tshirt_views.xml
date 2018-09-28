@@ -6,7 +6,7 @@
       <field name="name">awesome_tshirt.orders.form</field>
       <field name="model">awesome_tshirt.order</field>
       <field name="arch" type="xml">
-        <form>
+        <form js_class="order_form_view">
           <header>
             <field name="state" widget="statusbar" clickable="1"/>
           </header>
@@ -83,6 +83,16 @@
           <field name="customer_id"/>
         </search>
       </field>
+    </record>
+    <record id="view_partner_form_geolocate" model="ir.ui.view">
+        <field name="name">awesome_tshirt.res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//form" position="attributes">
+            <attribute name="js_class">customer_form_view</attribute>
+          </xpath>
+        </field>
     </record>
 
     <!-- actions -->

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+<t t-name="CustomerFormView.Buttons">
+    <button type="button" class="btn btn-primary o_geolocate">Geolocate</button>
+</t>
+
+<t t-name="OrderFormView.Buttons">
+    <button type="button" class="btn btn-primary o_print_label">Print Label</button>
+</t>
+
+</templates>

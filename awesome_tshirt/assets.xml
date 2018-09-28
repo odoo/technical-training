@@ -4,12 +4,15 @@
         <xpath expr="." position="inside">
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/awesome_dashboard.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/chart_widget.js"/>
+            <script type="text/javascript" src="/awesome_tshirt/static/src/js/customer_form_view.js"/>
+            <script type="text/javascript" src="/awesome_tshirt/static/src/js/order_form_view.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/image_preview_widget.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/late_widget.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/my_counter.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/warning_widget.js"/>
 
             <link rel="stylesheet" type="text/scss" href="/awesome_tshirt/static/src/scss/awesome_dashboard.scss"/>
+            <link rel="stylesheet" type="text/scss" href="/awesome_tshirt/static/src/scss/form_view.scss"/>
             <link rel="stylesheet" type="text/scss" href="/awesome_tshirt/static/src/scss/late_widget.scss"/>
         </xpath>
     </template>
