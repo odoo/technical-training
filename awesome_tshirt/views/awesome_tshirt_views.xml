@@ -17,6 +17,7 @@
                 <field name="size"/>
                 <field name="quantity"/>
                 <field name="amount"/>
+                <field name="is_late" widget="late_boolean"/>
               </group>
               <group>
                 <field name="image_url" widget="image_preview"/>
@@ -53,6 +54,7 @@
                 <div>Size: <field name="size"/></div>
                 <div>Quantity: <field name="quantity"/></div>
                 <div>Amount: <field name="amount"/></div>
+                <div><field class="pull-right" name="is_late" widget="late_boolean" options="{'not_late_color':'yellow'}"/></div>
               </div>
             </t>
           </templates>
@@ -68,6 +70,7 @@
           <field name="size"/>
           <field name="quantity"/>
           <field name="amount"/>
+          <field name="is_late" widget="late_boolean"/>
         </tree>
       </field>
     </record>

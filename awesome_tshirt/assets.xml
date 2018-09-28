@@ -5,9 +5,11 @@
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/awesome_dashboard.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/chart_widget.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/image_preview_widget.js"/>
+            <script type="text/javascript" src="/awesome_tshirt/static/src/js/late_widget.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/my_counter.js"/>
 
             <link rel="stylesheet" type="text/scss" href="/awesome_tshirt/static/src/scss/awesome_dashboard.scss"/>
+            <link rel="stylesheet" type="text/scss" href="/awesome_tshirt/static/src/scss/late_widget.scss"/>
         </xpath>
     </template>
 </odoo>
