@@ -5,6 +5,7 @@ const AbstractView = require('web.AbstractView');
 const core = require('web.core');
 const viewRegistry = require('web.view_registry');
 
+const MapController = require('awesome_map.MapController');
 const MapModel = require('awesome_map.MapModel');
 const MapRenderer = require('awesome_map.MapRenderer');
 
@@ -12,6 +13,7 @@ const _lt = core._lt;
 
 const MapView = AbstractView.extend({
     config: _.extend({}, AbstractView.prototype.config, {
+        Controller: MapController,
         Model: MapModel,
         Renderer: MapRenderer,
     }),
