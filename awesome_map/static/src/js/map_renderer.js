@@ -2,6 +2,9 @@ odoo.define('awesome_map.MapRenderer', function (require) {
 "use strict";
 
 const AbstractRenderer = require('web.AbstractRenderer');
+const QWeb = require('web.QWeb');
+const session = require('web.session');
+const utils = require('web.utils');
 
 const MapRenderer = AbstractRenderer.extend({
     className: "o_map_view",
@@ -9,9 +12,15 @@ const MapRenderer = AbstractRenderer.extend({
     /**
      * @override
      */
-    init: function () {
+    init: function (parent, state, params) {
         this._super.apply(this, arguments);
+        this.latitudeField = params.latitudeField;
+        this.longitudeField = params.longitudeField;
+
         this.mapInitialized = false;
+
+        this.qweb = new QWeb(session.debug, {_s: session.origin}, false);
+        this.qweb.add_template(utils.json_node_to_xml(params.template));
     },
     /**
      * Initializes the map on the on_attach_callback hook, as the library
@@ -40,8 +49,8 @@ const MapRenderer = AbstractRenderer.extend({
         }
         this.mapInitialized = true;
 
-        const initialLat = this.state[0] ? this.state[0].latitude : 51.505;
-        const initialLong = this.state[0] ? this.state[0].longitude : -0.09;
+        const initialLat = this.state[0] ? this.state[0][this.latitudeField] : 51.505;
+        const initialLong = this.state[0] ? this.state[0][this.longitudeField] : -0.09;
         const options = { zoomControl: false };
         this.leafletMap = L.map(this.el, options).setView([initialLat, initialLong], 13);
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -55,7 +64,9 @@ const MapRenderer = AbstractRenderer.extend({
      */
     _renderDataPoints: function () {
         _.each(this.state, point => {
-            L.marker([point.latitude, point.longitude]).addTo(this.leafletMap);
+            L.marker([point[this.latitudeField], point[this.longitudeField]])
+                .addTo(this.leafletMap)
+                .bindPopup(this.qweb.render('map-popup', {record: point}));
         });
     },
 });
