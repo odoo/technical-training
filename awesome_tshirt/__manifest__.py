@@ -18,4 +18,7 @@
         'views/awesome_tshirt_views.xml',
         'views/templates.xml',
     ],
+    'qweb': [
+        'static/src/xml/my_counter.xml',
+    ]
 }
