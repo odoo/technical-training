@@ -15,6 +15,8 @@ var MapView = AbstractView.extend({
         Model: MapModel,
         Renderer: MapRenderer,
     }),
+    cssLibs: ['/awesome_map/static/lib/leaflet/leaflet.css'],
+    jsLibs: ['/awesome_map/static/lib/leaflet/leaflet.js'],
     display_name: _lt('Map'),
     icon: 'fa-globe',
     /**
