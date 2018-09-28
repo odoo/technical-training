@@ -27,16 +27,36 @@ const MapModel = AbstractModel.extend({
      * @override
      * @param {string} params.modelName
      * @param {string[]} [params.fieldNames]
-     * @param {Object} [params.context]
-     * @param {Array[]} [params.domain]
-     * @returns {Promise}
      */
     load: function (params) {
+        this.fieldNames = params.fieldNames || [];
+        this.modelName = params.modelName;
+        return this._load(params);
+    },
+    /**
+     * @override
+     */
+    reload: function (_, params) {
+        return this._load(params);
+    },
+
+    //--------------------------------------------------------------------------
+    // Private
+    //--------------------------------------------------------------------------
+
+    /**
+     * @private
+     * @param {Object} params
+     * @param {Object} [params.context]
+     * @param {Array[]} [params.domain]
+     * @returns {Deferred}
+     */
+    _load: function (params) {
         return this._rpc({
-            model: params.modelName,
+            model: this.modelName,
             method: 'search_read',
             context: params.context || {},
-            fields: params.fieldNames || [],
+            fields: this.fieldNames,
             domain: params.domain || [],
         }).then(results => {
             this.data = results;
