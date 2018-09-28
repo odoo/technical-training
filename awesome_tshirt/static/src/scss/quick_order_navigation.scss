@@ -1,0 +1,10 @@
+$systray_input_height: 24px;
+.o_quick_order_nav_item {
+    height: $o-navbar-height;
+    > input {
+        height: $systray_input_height;
+        margin-top: ($o-navbar-height - $systray_input_height) / 2;
+        padding: 4px;
+        color: black;
+    }
+}
