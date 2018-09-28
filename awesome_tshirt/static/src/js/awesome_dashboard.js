@@ -7,6 +7,8 @@ odoo.define('awesome_tshirt.dashboard', function (require) {
  * the orders and buttons to jump to specific views.
  */
 
+const MyCounter = require('awesome_tshirt.MyCounter');
+
 const AbstractAction = require('web.AbstractAction');
 const core = require('web.core');
 
@@ -15,8 +17,11 @@ const Dashboard = AbstractAction.extend({
      * @override
      */
     start: function () {
-        this.$el.html('Hello world');
-        return this._super.apply(this, arguments);
+        const myCounter = new MyCounter(this);
+        return Promise.all([
+            myCounter.appendTo(this.$('.o_content')),
+            this._super.apply(this, arguments)
+        ]);
     },
 });
 

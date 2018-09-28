@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+<div t-name="MyCounter">
+    <button class="btn btn-icon fa fa-minus o_decrement"/>
+    <span><t t-esc="widget.value"/></span>
+    <button class="btn btn-icon fa fa-plus o_increment"/>
+</div>
+
+</templates>

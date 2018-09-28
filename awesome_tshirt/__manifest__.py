@@ -18,5 +18,8 @@
         'views/awesome_tshirt_views.xml',
         'views/templates.xml',
     ],
-    'license': 'AGPL-3'
+    'license': 'AGPL-3',
+    'qweb': [
+        'static/src/xml/my_counter.xml',
+    ]
 }
