@@ -11,6 +11,7 @@ var FormController = require('web.FormController');
 var FormView = require('web.FormView');
 var viewRegistry = require('web.view_registry');
 
+var _t = core._t;
 var qweb = core.qweb;
 
 var OrderFormController = FormController.extend({
@@ -79,8 +80,13 @@ var OrderFormController = FormController.extend({
             model: 'awesome_tshirt.order',
             method: 'print_label',
             args: [res_id],
-        }).then(function () {
+        }).then(function (printed) {
             self.printing = false;
+            if (printed) {
+                self.do_notify(_t('Success'), _t('The label has been printed'));
+            } else {
+                self.do_warn(_t('Failure'), _t('The label cannot be printed'), {sticky: true});
+            }
             self.reload();
         });
     },
