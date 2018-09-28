@@ -12,7 +12,7 @@ var MapRenderer = AbstractRenderer.extend({
      * @override
      */
     _render: function () {
-        this.$el.text('Hello world');
+        this.$el.text(JSON.stringify(this.state));
         return this._super.apply(this, arguments);
     },
 });
