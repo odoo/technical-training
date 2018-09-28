@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+<div t-name="AwesomeDashboard" class="o_awesome_tshirt_dashboard">
+    <div class="o_controls">
+        <button class="btn btn-primary o_customers_btn">Customers</button>
+        <button class="btn btn-primary o_new_orders_btn">New Orders</button>
+        <button class="btn btn-primary o_cancelled_orders_btn">Cancelled Orders</button>
+    </div>
+</div>
+
+</templates>
