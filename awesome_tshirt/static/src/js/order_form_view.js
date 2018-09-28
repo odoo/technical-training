@@ -11,6 +11,7 @@ const FormController = require('web.FormController');
 const FormView = require('web.FormView');
 const viewRegistry = require('web.view_registry');
 
+const _t = core._t;
 const qweb = core.qweb;
 
 const OrderFormController = FormController.extend({
@@ -83,11 +84,17 @@ const OrderFormController = FormController.extend({
             model: 'awesome_tshirt.order',
             method: 'print_label',
             args: [resID],
-        }).then(() => {
+        }).then((printed) => {
             this.printing = false;
+            if (printed) {
+                this.do_notify(_t('Success'), _t('The label has been printed'));
+            } else {
+                this.do_warn(_t('Failure'), _t('The label cannot be printed'), {sticky: true});
+            }
             this.reload();
         }).guardedCatch(() => {
             this.printing = false;
+            this.do_warn(_t('Error'), _t('An unexpected error occured'), {sticky: true});
         });
     },
 });
