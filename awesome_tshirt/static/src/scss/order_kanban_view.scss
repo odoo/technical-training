@@ -1,0 +1,26 @@
+.o_order_kanban_view {
+    .o_content {
+        display: flex;
+    }
+    .o_customer_sidebar {
+        width: 220px;
+        border-right: 1px solid #ccc;
+        overflow: auto;
+
+        .o_customer_search {
+            padding: 6px;
+            width: 100%;
+        }
+
+        .o_customer {
+            cursor: pointer;
+            &.o_active {
+                background: lightgray;
+            }
+        }
+    }
+    .o_kanban_view {
+        flex: 0 1 100%;
+        overflow-y: auto;
+    }
+}
