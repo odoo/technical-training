@@ -1,0 +1,18 @@
+.o_order_kanban_view {
+    .o_customer_sidebar {
+        display: inline-block;
+        min-width: 150px;
+        border-right: 1px solid #ccc;
+
+        .o_customer_search {
+            width: 100%;
+        }
+
+        .o_customer {
+            cursor: pointer;
+            &.o_active {
+                background: lightgray;
+            }
+        }
+    }
+}

@@ -46,7 +46,7 @@
       <field name="name">awesome_tshirt.orders.kanban</field>
       <field name="model">awesome_tshirt.order</field>
       <field name="arch" type="xml">
-        <kanban class="o_kanban_small_column" on_create="quick_create" quick_create_view="awesome_tshirt.orders_form_view_simplified">
+        <kanban js_class="order_kanban_view" class="o_kanban_small_column" on_create="quick_create" quick_create_view="awesome_tshirt.orders_form_view_simplified">
           <field name="customer_id"/>
           <templates>
             <t t-name="kanban-box">

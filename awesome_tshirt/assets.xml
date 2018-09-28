@@ -7,6 +7,7 @@
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/customer_form_view.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/home_menu.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/order_form_view.js"/>
+            <script type="text/javascript" src="/awesome_tshirt/static/src/js/order_kanban_view.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/image_preview_widget.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/late_widget.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/my_counter.js"/>
@@ -15,6 +16,7 @@
 
             <link rel="stylesheet" type="text/scss" href="/awesome_tshirt/static/src/scss/awesome_dashboard.scss"/>
             <link rel="stylesheet" type="text/scss" href="/awesome_tshirt/static/src/scss/form_view.scss"/>
+            <link rel="stylesheet" type="text/scss" href="/awesome_tshirt/static/src/scss/order_kanban_view.scss"/>
             <link rel="stylesheet" type="text/scss" href="/awesome_tshirt/static/src/scss/late_widget.scss"/>
             <link rel="stylesheet" type="text/scss" href="/awesome_tshirt/static/src/scss/quick_order_navigation.scss"/>
         </xpath>
