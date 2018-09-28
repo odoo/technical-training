@@ -73,12 +73,3 @@ class OrderRoute(http.Controller):
             'orders_by_size': {g['size']: g['quantity'] for g in orders_by_size},
             'total_amount': total_amount or 0,
         }
-
-    @http.route('/awesome_tshirt/bafienistalkingtoyou', type='json', auth='user')
-    def bafienistalkingtoyou(self):
-        """
-        Returns a message to display in the HomeMenu
-        """
-        if random.random() > 0.5:
-            return "Bafien is watching you"
-        return "Bafien is totally sane. Also, please work harder."
