@@ -9,6 +9,7 @@ odoo.define('awesome_tshirt.dashboard', function (require) {
 
 const AbstractAction = require('web.AbstractAction');
 const core = require('web.core');
+const fieldUtils = require('web.field_utils');
 
 const _t = core._t;
 
@@ -18,6 +19,24 @@ const Dashboard = AbstractAction.extend({
         'click .o_new_orders_btn': '_onOpenNewOrders',
         'click .o_customers_btn': '_onOpenCustomers',
         'click .o_cancelled_orders_btn': '_onOpenCancelledOrders',
+    },
+
+    /**
+     * Override to load the statistics.
+     *
+     * @override
+     */
+    willStart: function () {
+        const statsProm = this._rpc({
+            route: '/awesome_tshirt/statistics',
+        }).then((stats) => {
+            stats.average_time = fieldUtils.format.float_time(stats.average_time);
+            this.stats = stats;
+        });
+        return Promise.all([
+            statsProm,
+            this._super.apply(this, arguments)
+        ]);
     },
 
     //--------------------------------------------------------------------------
