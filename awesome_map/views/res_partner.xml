@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="customer_map_view" model="ir.ui.view">
+            <field name="name">customer.map.view</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <map latitude="partner_latitude" longitude="partner_longitude">
+                    <field name="name"/>
+                    <template>
+                        <t t-name="map-popup">
+                            <div>
+                                Name <t t-esc="record.name"/>
+                            </div>
+                        </t>
+                    </template>
+                </map>
+            </field>
+        </record>
+    </data>
+
+    <!-- add map view to contacts action -->
+    <record id="awesome_map_contacts_map_view" model="ir.actions.act_window.view">
+        <field name="view_mode">map</field>
+        <field name="view_id" ref="customer_map_view"/>
+        <field name="act_window_id" ref="contacts.action_contacts"/>
+    </record>
+</odoo>
