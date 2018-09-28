@@ -55,9 +55,8 @@
             <field name="model">res.partner</field>
             <field name="arch" type="xml">
                 <search string="Search Partner">
-                   <field name="name"
+                   <field name="display_name"
                        filter_domain="['|','|',('display_name','ilike',self),('ref','=',self),('email','ilike',self)]"/>
-                   <filter help="My Partners" domain="[('user_id','=',uid)]"/>
                    <separator/>
                    <filter string="Persons" name="type_person" domain="[('is_company','=',0)]"/>
                    <filter string="Companies" name="type_company" domain="[('is_company','=',1)]"/>
