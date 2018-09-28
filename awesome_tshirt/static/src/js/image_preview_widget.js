@@ -21,7 +21,17 @@ var ImagePreview = FieldChar.extend({
     _renderReadonly: function () {
         if (this.value) {
             this.$el.html($('<img>', {src: this.value}));
+        } else {
+            this.$el.text(_("MISSING TSHIRT DESIGN"));
+            this.$el.addClass('alert-danger');
         }
+    },
+    /**
+     * Overrides to force this field to be always visible, as when it is unset,
+     * we want to display a warning.
+     */
+    isSet: function () {
+        return true;
     },
 });
 
