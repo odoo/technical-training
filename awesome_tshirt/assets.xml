@@ -3,6 +3,7 @@
    <template id="assets_backend" name="awesome tshirt assets backend" inherit_id="web.assets_backend">
         <xpath expr="." position="inside">
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/awesome_dashboard.js"/>
+            <script type="text/javascript" src="/awesome_tshirt/static/src/js/chart_widget.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/my_counter.js"/>
 
             <link rel="stylesheet" type="text/scss" href="/awesome_tshirt/static/src/scss/awesome_dashboard.scss"/>

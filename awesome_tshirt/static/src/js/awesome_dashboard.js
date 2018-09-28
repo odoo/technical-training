@@ -7,6 +7,8 @@ odoo.define('awesome_tshirt.dashboard', function (require) {
  * the orders and buttons to jump to specific views.
  */
 
+var ChartWidget = require('awesome_tshirt.ChartWidget');
+
 var AbstractAction = require('web.AbstractAction');
 var core = require('web.core');
 var fieldUtils = require('web.field_utils');
@@ -19,6 +21,9 @@ var Dashboard = AbstractAction.extend({
         'click .o_new_orders_btn': '_onOpenNewOrders',
         'click .o_customers_btn': '_onOpenCustomers',
         'click .o_cancelled_orders_btn': '_onOpenCancelledOrders',
+    },
+    custom_events: {
+        open_orders: '_onOpenOrders',
     },
 
     /**
@@ -37,29 +42,59 @@ var Dashboard = AbstractAction.extend({
         var superDef = this._super.apply(this, arguments);
         return $.when(statsDef, superDef);
     },
+    /**
+     * @override
+     */
+    start: function () {
+        var chartDef = this._renderChart();
+        var superDef = this._super.apply(this, arguments);
+        return $.when(chartDef, superDef);
+    },
 
     //--------------------------------------------------------------------------
     // Private
     //--------------------------------------------------------------------------
 
     /**
-     * Opens the list of orders created in the last 7 days.
+     * Opens the list of orders created in the last 7 days
      *
      * @private
      * @param {Object} params
      * @param {Array[]} [params.domain=[]] additional domain
-     * @param {string} params.name name of the action
      * @returns {Promise} resolved when the action is executed
      */
     _openLastWeekOrders: function (params) {
-       var aWeekAgo = moment().subtract(7,'d').locale('en').format('YYYY-MM-DD HH:mm:ss');
-        this.do_action({
+        var aWeekAgo = moment().subtract(7,'d').locale('en').format('YYYY-MM-DD HH:mm:ss');
+        params.domain = [['create_date', '>=', aWeekAgo]].concat(params.domain || []);
+        return this._openOrders(params);
+    },
+    /**
+     * Opens the list of orders matching a given domain.
+     *
+     * @private
+     * @param {Object} params
+     * @param {Array[]} [params.domain=[]]
+     * @param {string} params.name name of the action
+     * @returns {Promise} resolved when the action is executed
+     */
+    _openOrders: function (params) {
+        return this.do_action({
+            domain: params.domain,
             name: params.name,
             res_model: 'awesome_tshirt.order',
             type: 'ir.actions.act_window',
             views: [[false, 'list'], [false, 'form']],
-            domain: [['create_date', '>=', aWeekAgo]].concat(params.domain || []),
         });
+    },
+    /**
+     * Renders a PieChart widget.
+     *
+     * @private
+     */
+    _renderChart: function () {
+        var chart = new ChartWidget(this, this.stats.orders_by_size);
+        this.$('.o_fancy_chart').empty();
+        return chart.appendTo(this.$('.o_fancy_chart'));
     },
 
     //--------------------------------------------------------------------------
@@ -88,6 +123,19 @@ var Dashboard = AbstractAction.extend({
         this._openLastWeekOrders({
             name: _t('New Orders'),
             domain: [['state', '=', 'new']],
+        });
+    },
+    /**
+     * Opens the orders of t-shirt of the given size.
+     *
+     * @private
+     * @param {OdooEvent} ev
+     * @param {string} ev.data.size
+     */
+    _onOpenOrders: function (ev) {
+        this._openOrders({
+            name:  _.str.sprintf(_t("Orders of size %s"), ev.data.size.toUpperCase()),
+            domain: [['size', '=', ev.data.size]],
         });
     },
 });
