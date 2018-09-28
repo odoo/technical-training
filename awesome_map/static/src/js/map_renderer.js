@@ -87,6 +87,9 @@ var MapRenderer = AbstractRenderer.extend({
             var marker = L.marker([point[self.latitudeField], point[self.longitudeField]]);
             marker.addTo(self.leafletMap)
                   .bindPopup(self.qweb.render('map-popup', {record: point}));
+            marker.on('click', function () {
+                self.trigger_up('record_clicked', {id: point.id});
+            });
             self.markers.push(marker);
         });
     },
