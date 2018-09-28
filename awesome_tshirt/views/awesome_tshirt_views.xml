@@ -11,6 +11,7 @@
             <field name="state" widget="statusbar" clickable="1"/>
           </header>
           <sheet>
+            <widget name="warning_widget"/>
             <group>
               <group>
                 <field name="customer_id"/>

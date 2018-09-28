@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+<t t-name="WarningWidget.NoImage">
+    <div class="alert alert-danger" role="alert">
+        No image
+    </div>
+</t>
+
+<t t-name="WarningWidget.AddPromo">
+    <div class="alert alert-primary" role="alert">
+        Add promotional material
+    </div>
+</t>
+
+</templates>
