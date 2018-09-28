@@ -2,21 +2,19 @@
 <templates id="template" xml:space="preserve">
 
 <div t-name="AwesomeDashboard" class="o_awesome_tshirt_dashboard">
-    <div class="o_controls">
-        <button class="btn btn-primary o_customers_btn">Customers</button>
-        <button class="btn btn-primary o_new_orders_btn">New Orders</button>
-        <button class="btn btn-primary o_cancelled_orders_btn">Cancelled Orders</button>
+    <div class="o_statistics">
+        <div>Number of new orders this month: <t t-esc="widget.stats.nb_new_orders"/></div>
+        <div>Number of cancelled orders this month: <t t-esc="widget.stats.nb_cancelled_orders"/></div>
+        <div>Total amount this month: <t t-esc="widget.stats.total_amount"/> €</div>
+        <div>Average quantity: <t t-esc="widget.stats.average_quantity"/></div>
+        <div>Average time: <t t-esc="widget.stats.average_time"/></div>
     </div>
-    <div class="o_content">
-        <div class="o_statistics">
-            <div>Number of new orders this month: <t t-esc="widget.stats.nb_new_orders"/></div>
-            <div>Number of cancelled orders this month: <t t-esc="widget.stats.nb_cancelled_orders"/></div>
-            <div>Total amount this month: <t t-esc="widget.stats.total_amount"/> €</div>
-            <div>Average quantity: <t t-esc="widget.stats.average_quantity"/></div>
-            <div>Average time: <t t-esc="widget.stats.average_time"/></div>
-        </div>
-        <div class="o_fancy_chart"/>
-    </div>
+    <div class="o_fancy_chart"/>
+</div>
+<div t-name="AwesomeDashboard.Buttons">
+    <button class="btn btn-primary o_customers_btn">Customers</button>
+    <button class="btn btn-primary o_new_orders_btn">New Orders</button>
+    <button class="btn btn-primary o_cancelled_orders_btn">Cancelled Orders</button>
 </div>
 
 </templates>
