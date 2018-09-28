@@ -7,11 +7,27 @@ odoo.define('awesome_tshirt.ImagePreview', function (require) {
  */
 
 const basicFields = require('web.basic_fields');
+const core = require('web.core');
 const registry = require('web.field_registry');
 
+const _t = core._t;
 const FieldChar = basicFields.FieldChar;
 
 const ImagePreview = FieldChar.extend({
+    //--------------------------------------------------------------------------
+    // Public
+    //--------------------------------------------------------------------------
+
+    /**
+     * Overrides to force this field to be always visible, as when it is unset,
+     * we want to display a warning.
+     *
+     * @override
+     */
+    isSet: function () {
+        return true;
+    },
+
     //--------------------------------------------------------------------------
     // Private
     //--------------------------------------------------------------------------
@@ -28,6 +44,9 @@ const ImagePreview = FieldChar.extend({
                 class: 'o_image_preview',
                 src: this.value,
             }));
+        } else {
+            this.$el.text(_t("MISSING TSHIRT DESIGN"));
+            this.$el.addClass('alert-danger');
         }
     },
 });
