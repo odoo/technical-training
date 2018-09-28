@@ -24,8 +24,21 @@ var MapView = AbstractView.extend({
      */
     init: function () {
         this._super.apply(this, arguments);
-        this.loadParams.latitudeField = this.arch.attrs.latitude;
-        this.loadParams.longitudeField = this.arch.attrs.longitude;
+        this.rendererParams.latitudeField = this.arch.attrs.latitude;
+        this.rendererParams.longitudeField = this.arch.attrs.longitude;
+
+        var fieldNames = [this.rendererParams.latitudeField, this.rendererParams.longitudeField];
+        var template;
+        _.each(this.arch.children, function (node) {
+            if (node.tag === 'field') {
+                fieldNames.push(node.attrs.name);
+            }
+            if (node.tag === 'template') {
+                template = node;
+            }
+        });
+        this.loadParams.fieldNames = _.uniq(fieldNames);
+        this.rendererParams.template = template;
     },
 });
 

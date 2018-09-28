@@ -35,21 +35,14 @@ var MapModel = AbstractModel.extend({
      */
     load: function (params) {
         var self = this;
-        var fields = [params.latitudeField, params.longitudeField];
         return this._rpc({
             model: params.modelName,
             method: 'search_read',
             context: params.context,
-            fields: fields,
+            fields: params.fieldNames,
             domain: params.domain
         }).then(function (results) {
-            self.data = _.map(results, function (result) {
-                return {
-                    id: result.id,
-                    latitude: result[params.latitudeField],
-                    longitude: result[params.longitudeField],
-                };
-            });
+            self.data = results;
         });
     },
 });
