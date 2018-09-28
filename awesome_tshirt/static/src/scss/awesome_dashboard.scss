@@ -5,8 +5,15 @@
         margin-bottom: 20px;
     }
 
-    .o_statistics {
-        font-size: 14px;
-        line-height: 30px;
+    .o_content {
+        display: flex;
+        .o_statistics {
+            flex: 0 0 auto;
+            font-size: 14px;
+            line-height: 30px;
+        }
+        .o_fancy_chart {
+            flex: 1 1 0;
+        }
     }
 }

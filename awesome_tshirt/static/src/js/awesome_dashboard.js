@@ -7,6 +7,8 @@ odoo.define('awesome_tshirt.dashboard', function (require) {
  * the orders and buttons to jump to specific views.
  */
 
+const ChartWidget = require('awesome_tshirt.ChartWidget');
+
 const AbstractAction = require('web.AbstractAction');
 const core = require('web.core');
 const fieldUtils = require('web.field_utils');
@@ -38,6 +40,15 @@ const Dashboard = AbstractAction.extend({
             this._super.apply(this, arguments)
         ]);
     },
+    /**
+     * @override
+     */
+    start: function () {
+        return Promise.all([
+            this._renderChart(),
+            this._super.apply(this, arguments)
+        ]);
+    },
 
     //--------------------------------------------------------------------------
     // Private
@@ -61,6 +72,16 @@ const Dashboard = AbstractAction.extend({
             views: [[false, 'list'], [false, 'form']],
             domain: [['create_date', '>=', aWeekAgo]].concat(params.domain || []),
         });
+    },
+    /**
+     * Renders a PieChart widget.
+     *
+     * @private
+     */
+    _renderChart: function () {
+        const chart = new ChartWidget(this, this.stats.orders_by_size);
+        this.$('.o_fancy_chart').empty();
+        return chart.appendTo(this.$('.o_fancy_chart'));
     },
 
     //--------------------------------------------------------------------------
