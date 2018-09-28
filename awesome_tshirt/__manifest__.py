@@ -21,5 +21,6 @@
     'qweb': [
         'static/src/xml/awesome_dashboard.xml',
         'static/src/xml/my_counter.xml',
+        'static/src/xml/warning_widget.xml',
     ]
 }

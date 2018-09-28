@@ -7,6 +7,7 @@
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/image_preview_widget.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/late_widget.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/my_counter.js"/>
+            <script type="text/javascript" src="/awesome_tshirt/static/src/js/warning_widget.js"/>
 
             <link rel="stylesheet" type="text/scss" href="/awesome_tshirt/static/src/scss/awesome_dashboard.scss"/>
             <link rel="stylesheet" type="text/scss" href="/awesome_tshirt/static/src/scss/late_widget.scss"/>
