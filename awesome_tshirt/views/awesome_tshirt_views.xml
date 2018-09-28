@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- views -->
+    <record id="orders_form_view" model="ir.ui.view">
+      <field name="name">awesome_tshirt.orders.form</field>
+      <field name="model">awesome_tshirt.order</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <field name="state" widget="statusbar" clickable="1"/>
+          </header>
+          <sheet>
+            <group>
+              <group>
+                <field name="customer_id"/>
+                <field name="size"/>
+                <field name="quantity"/>
+                <field name="amount"/>
+              </group>
+              <group>
+                <field name="image_url"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record id="orders_form_view_simplified" model="ir.ui.view">
+      <field name="name">awesome_tshirt.orders.form.simplified</field>
+      <field name="model">awesome_tshirt.order</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <field name="customer_id"/>
+            <field name="size"/>
+            <field name="quantity"/>
+            <field name="image_url"/>
+          </group>
+        </form>
+      </field>
+    </record>
+    <record id="orders_kanban_view" model="ir.ui.view">
+      <field name="name">awesome_tshirt.orders.kanban</field>
+      <field name="model">awesome_tshirt.order</field>
+      <field name="arch" type="xml">
+        <kanban class="o_kanban_small_column" on_create="quick_create" quick_create_view="awesome_tshirt.orders_form_view_simplified">
+          <field name="customer_id"/>
+          <templates>
+            <t t-name="kanban-box">
+              <div t-attf-class="oe_kanban_global_click">
+                <div>Customer: <field name="customer_id"/></div>
+                <div>Size: <field name="size"/></div>
+                <div>Quantity: <field name="quantity"/></div>
+                <div>Amount: <field name="amount"/></div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+    <record id="orders_list_view" model="ir.ui.view">
+      <field name="name">awesome_tshirt.orders.list</field>
+      <field name="model">awesome_tshirt.order</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="customer_id"/>
+          <field name="size"/>
+          <field name="quantity"/>
+          <field name="amount"/>
+        </tree>
+      </field>
+    </record>
+    <record id="orders_search_view" model="ir.ui.view">
+      <field name="name">awesome_tshirt.orders.search</field>
+      <field name="model">awesome_tshirt.order</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="customer_id"/>
+        </search>
+      </field>
+    </record>
+
+    <!-- actions -->
+    <record model="ir.actions.act_window" id="orders">
+      <field name="name">Orders</field>
+      <field name="res_model">awesome_tshirt.order</field>
+      <field name="view_mode">kanban,form</field>
+      <field name="context">{'group_by': ['state']}</field>
+    </record>
+
+    <!-- menu items -->
+    <menuitem name="Awesome T-Shirts" id="awesome_tshirt.menu_root" groups="base.group_user" web_icon="awesome_tshirt,static/description/icon.png"/>
+    <menuitem name="Orders" id="awesome_tshirt.order" parent="awesome_tshirt.menu_root" action="awesome_tshirt.orders"/>
+
+</odoo>

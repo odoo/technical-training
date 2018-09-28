@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_awesome_tshirt_order,access_awesome_tshirt_order,model_awesome_tshirt_order,,1,1,1,1

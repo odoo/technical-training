@@ -1,65 +1,71 @@
-# Odoo 12.0 - Technical Training
 
-This repository contains training material for learning Odoo 12. The training is divided in modules of roughly half a day. It will follow a problem-based learning approach. The learnees will handle ill-structured problems supervised framed by a teacher. That means that each problem has multiple solutions and therefore is not constrained to a single topic. Each module focuses on a given topic but with a similar approach.
+![Odoo Logo](https://odoocdn.com/openerp_website/static/src/img/assets/png/odoo_logo_small.png)
 
-Each module provides some reference material, and proposes problems for the learnees to solve on the topic at hand.
-It is therefore a hands-on, practical approach to the development of Odoo modules. Each module is independent with requirement depending on skills and knowledge that may be learned from previous modules. The problems proposed in those modules have an existing starting situation but that are contextualised around a couple of [use cases](docs/use-case.md).
+# Odoo 13.0 - Technical Training
 
-## Organisation
+This branch contains the training material for the Odoo Javascript Training.
+This training focus on various interesting changes that can be done on the web
+client user interface.
 
-We consciously decided to give a training that will have "less content" with a better learning experience which is to lead the learnees to autonomy in their work with Odoo and acquire long term skills. "*True learning is based on discovery guided by mentoring rather than the transmission of knowledge*" (John Dewey). The problem-based approach we chose requires the learnees to first start with a problem without pregiven theory to create a better craddle for new skills to be learned. The teacher will be there to coach and guide the learnee through that process without forcing it. Emphasis will be put on interaction with other learnee as they solve the problems. 
+The goal of this training is to play with the code and to learn! So, do not be
+afraid to experiment...
 
-### Practical details
+## Requirements
 
-* The work will be with an odoo.sh environment except for our System administration modules. The odoo.sh environment will be set up with your github account on which you will fork this repository. For the System administration modules, it will be simulated with virtual machines that can be run with [Virtual Box](https://www.virtualbox.org/) on your own machines. The virtual to be ran can be downloaded here for the [Odoo System Administration](http://download.odoo.com/internal/sysadmin-training-vms.zip).
-* Per module, which takes around half a day, groups of 2 will be created to solve the problem (2 persons per computer). The groups will be switched after every single module. Not all problem per module have to be solved (it varies on the level of the given group).
-* At the end of a module, debriefing session will be given based on the questions and solutions that came from the process of solving the problems. The learnees will have to verbalize what they have learned with interaction with the rest of the group and feedback from the teacher.
-* In addition to the modules, the learnees will be required to provide 2 questions in the morning about Odoo based on the previous day for discussion in the morning as a way of putting everyone back in the right state ready to attack the next modules.
-
-#### [Introduction presentation](https://docs.google.com/a/odoo.com/presentation/d/1O2hd-jNtZN93-hhi_KFKgRVw90Yfdow6Su7YHF6oc_s/edit?usp=sharing)
-
-## Base Requirements
-
-This training uses Git for its repository, and Github as its platform.
-Start with module [Git and Github](00-git) if you never used them.
-
-The language [Python](https://www.python.org/) is a requirement for almost all modules.
+* Moderate knowledge of Odoo
+* Moderate knowledge of Javascript
+* working machine properly setup for development purpose
+* basic knowledge of git is a bonus
 
 
-## Modules
+## Scenario
 
-1. [Models, Fields and Relations](https://github.com/odoo/technical-training/tree/12.0-01-models)
-1. [Computed Fields, Onchange and Constraints](https://github.com/odoo/technical-training/tree/12.0-02-fields)
-1. [Basic Views](https://github.com/odoo/technical-training/tree/12.0-03-views)
-1. [Model Inheritance](https://github.com/odoo/technical-training/tree/12.0-04-model-inheritance)
-1. [View Inheritance](https://github.com/odoo/technical-training/tree/12.0-05-view-inheritance)
-1. [Business Flow](https://github.com/odoo/technical-training/tree/12.0-06-business-flow)
-1. [Access Rights](https://github.com/odoo/technical-training/tree/12.0-08-access-right)
-1. [Play with the ORM](https://github.com/odoo/technical-training/tree/12.0-09-orm)
-1. [Reports](https://github.com/odoo/technical-training/tree/12.0-10-reports)
-1. [Controllers](https://github.com/odoo/technical-training/tree/12.0-11-controller)
+For this training, we will put ourselves in the shoes of the IT staff for the
+fictional Awesome T-Shirt company, which is in the business of printing
+customised tshirts for online customers.
+
+The usual process is the following: a customer looking for a nice t-shirt can
+simply order it on the Awesome T-Shirt website, and give the url for any
+image that he wants.  He also has to fill some basic informations, such as the
+desired size, and amount of t-shirts.  Once he confirms his order, and once the
+payment is validated, the system will create a task in our project application.
+
+The Awesome T-Shirt company uses Odoo for managing its orders, and built a
+dedicated odoo module to manage their workflow. The project is currently a
+simple kanban view, with a few columns.
+
+The Awesome T-shirt big boss, Bafien Ckinpaers, is not happy with our
+implementation. He believe that by micromanaging more, he will be able to
+extract more revenue from his employees.
+
+As the IT staff for Awesome T-shirt, we are tasked with improving the system.
+Various independant tasks need to be done.
+
+The current starting point for this training is contained in this repository.
+We have two Odoo modules:
+
+* [awesome_tshirt/](awesome_tshirt/) this is an addon which implements the business
+flows/features for our fictional company.  It contains a few controllers, templates
+and files to start the training.
+* [awesome_map/](awesome_map/) a basic (incomplete) addon to add an awesome
+map view in Odoo (starting point for module 3)
+
+## Resources
+
+* Slides
+    * [Introduction slides for day 1](training_slides_day1.pdf)
+    * [Introduction slides for day 2](training_slides_day2.pdf)
+* Exercises
+    * [Exercises, part 1](exercises_1.md) Widgets
+    * [Exercises, part 2](exercises_2.md) Advanced JS
+    * [Exercises, part 3](exercises_3.md) Creating a new view
+    * [Exercises, part 4](exercises_4.md) Testing
 
 
-## Advanced Modules
+## Integration with Odoo.sh
 
-1. [Widget customization](https://github.com/odoo/technical-training/tree/12.0-15-widgets)
-1. [Advance frontend customization](https://github.com/odoo/technical-training/tree/12.0-16-advanced-customization)
-1. [Creating new views](https://github.com/odoo/technical-training/tree/12.0-17-creating-views)
-1. [Testing javascript](https://github.com/odoo/technical-training/tree/12.0-18-testing-javascript)
-1. [Modify Business Flows](https://github.com/odoo/technical-training/tree/12.0-19-modify-business-flow)
-1. [Mail Integration](https://github.com/odoo/technical-training/tree/12.0-25-mail-integration)
-1. [Kanban Views and Dashboards](https://github.com/odoo/technical-training/tree/12.0-26-kanban-dashboard)
-1. [Various Widgets usage](https://github.com/odoo/technical-training/tree/12.0-27-widgets)
-1. [Performance issues](https://github.com/odoo/technical-training/tree/12.0-98-perf-issues)
+To deploy the current state of this branch to Odoo.sh, you can click
+<a href="https://www.odoo.sh/app/add/?name=13.0-20-javascript-training&author=ged-odoo&url=https%3A%2F%2Fgithub.com%2Fodoo%2Ftechnical-training%2Farchive%2F13.0-20-javascript-training.zip&free=1&version=13.0&icon=https%3A%2F%2Fapps.odoo.com%2Fapps%2Ficon_image%3Fmodule_id%3D52346">here</a>.
 
-
-## Odoo System Administration
-
-* [Training Material](https://github.com/odoo/technical-training/tree/12.0-99-sysadmin)
-
-
-## Possible solutions
-
-* Some solutions are presented in the repository [Technical training - solutions](https://github.com/odoo/technical-training-solutions). It presents A solution per exercice not THE solution.
 
 
