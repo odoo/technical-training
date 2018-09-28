@@ -23,9 +23,25 @@ var MapModel = AbstractModel.extend({
     get: function () {
         return this.data;
     },
-
     /**
      * @override
+     */
+    load: function (params) {
+        return this._load(params);
+    },
+    /**
+     * @override
+     */
+    reload: function (handle, params) {
+        return this._load(params);
+    },
+
+    //--------------------------------------------------------------------------
+    // Private
+    //--------------------------------------------------------------------------
+
+    /**
+     * @private
      * @param {Object} params
      * @param {string} params.latitudeField
      * @param {string} params.longitudeField
@@ -33,7 +49,7 @@ var MapModel = AbstractModel.extend({
      * @param {Array[]} params.domain
      * @returns {Deferred}
      */
-    load: function (params) {
+    _load: function (params) {
         var self = this;
         return this._rpc({
             model: params.modelName,

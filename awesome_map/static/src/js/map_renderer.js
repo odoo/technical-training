@@ -17,7 +17,9 @@ var MapRenderer = AbstractRenderer.extend({
         this.latitudeField = params.latitudeField;
         this.longitudeField = params.longitudeField;
 
+        this.isInDOM = false;
         this.mapInitialized = false;
+        this.markers = [];
 
         this.qweb = new QWeb(session.debug, {_s: session.origin}, false);
         this.qweb.add_template(utils.json_node_to_xml(params.template));
@@ -29,9 +31,16 @@ var MapRenderer = AbstractRenderer.extend({
      * @override
      */
     on_attach_callback: function () {
+        this.isInDOM = true;
         this._initializeMap();
         this._renderDataPoints();
         this._super.apply(this, arguments);
+    },
+    /**
+     * @override
+     */
+    on_detach_callback: function () {
+        this.isInDOM = false;
     },
 
     //--------------------------------------------------------------------------
@@ -58,16 +67,27 @@ var MapRenderer = AbstractRenderer.extend({
         }).addTo(this.leafletMap);
     },
     /**
+     * @override
+     */
+    _render: function () {
+        if (this.isInDOM) {
+            this._renderDataPoints();
+        }
+        return this._super.apply(this, arguments);
+    },
+    /**
      * Renders the data points on the map.
      *
      * @private
      */
     _renderDataPoints: function () {
         var self = this;
+        _.invoke(this.markers, 'remove');
         _.each(this.state, function (point) {
-            L.marker([point[self.latitudeField], point[self.longitudeField]])
-                .addTo(self.leafletMap)
-                .bindPopup(self.qweb.render('map-popup', {record: point}));
+            var marker = L.marker([point[self.latitudeField], point[self.longitudeField]]);
+            marker.addTo(self.leafletMap)
+                  .bindPopup(self.qweb.render('map-popup', {record: point}));
+            self.markers.push(marker);
         });
     },
 });
