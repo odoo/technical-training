@@ -13,6 +13,7 @@
     'application': True,
     'depends': ['base', 'web'],
     'data': [
+        'assets.xml',
         'security/ir.model.access.csv',
         'views/awesome_tshirt_views.xml',
         'views/templates.xml',
