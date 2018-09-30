@@ -9,9 +9,9 @@
             <field name="numbercall">-1</field>
             <field name="doall" eval="False"/>
             <field name="nextcall">2000-01-01 00:01:00</field>
-            <field name="model" eval="'library.rental'"/>
-            <field name="function" eval="'_cron_check_date'"/>
-            <field name="args" eval="'()'" />
+            <field name="state">code</field>
+            <field name="model_id" ref="model_library_rental"/>
+            <field name="code">model._cron_check_date()</field>
         </record>
 
         <record id="mail_template_book_return" model="mail.template">
