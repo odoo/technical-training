@@ -20,6 +20,5 @@
     ],
     'qweb': [
         'static/src/xml/my_counter.xml',
-        'static/src/xml/my_actions.xml',
     ]
 }
