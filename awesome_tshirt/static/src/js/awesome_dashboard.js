@@ -1,4 +1,4 @@
-odoo.define('awesome_tshirt.dashboard', ['web.ajax'], function (require) {
+odoo.define('awesome_tshirt.dashboard', ['web.ajax'],, function (require) {
 "use strict";
 
 /**
@@ -6,30 +6,18 @@ odoo.define('awesome_tshirt.dashboard', ['web.ajax'], function (require) {
  * helps to manage the t-shirt business by displaying various statistics about
  * the orders and buttons to jump to specific views.
  */
+
+
+var Widget = require('web.Widget');
 var ajax = require('web.ajax');
 
-var Statistics = Widget.extend({
-    template: 'dashboard',
-    init: function () {
-        this.data = this._rpc({
+var Dashboard = Widget.extend({
+     template: 'dashboard',
+    init: function (parent) {
+        this._super(parent);
+        var data = this._rpc({
             route: '/awesome_tshirt/statistics/'
         });
-        var def = this.data.appendTo(this.$el);
-
-        return $.when(def, this._super.apply(this, arguments));
-    }
-});
-
-
-var Dashboard = AbstractAction.extend({
-    /**
-     * @override
-     */
-    start: function () {
-        var statistics = new Statistics(this);
-        var statisticsDef = statistics.appendTo(this.$el);
-        var superDef = this._super.apply(this, arguments);
-        return $.when(statisticsDef, superDef);
     },
 });
 
