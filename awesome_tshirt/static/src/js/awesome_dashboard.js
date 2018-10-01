@@ -7,7 +7,6 @@ odoo.define('awesome_tshirt.dashboard', ['web.ajax'], function (require) {
  * the orders and buttons to jump to specific views.
  */
 var ajax = require('web.ajax');
-var core = require('web.core');
 
 var Statistics = Widget.extend({
     template: 'dashboard',
@@ -33,8 +32,6 @@ var Dashboard = AbstractAction.extend({
         return $.when(statisticsDef, superDef);
     },
 });
-
-core.action_registry.add('awesome_tshirt.dashboard', Dashboard);
 
 return Dashboard;
 });
