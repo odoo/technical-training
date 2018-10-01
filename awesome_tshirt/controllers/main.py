@@ -82,3 +82,4 @@ class OrderRoute(http.Controller):
         if random.random() > 0.5:
             return "Bafien is watching you"
         return "Bafien is totally sane. Also, please work harder."
+
