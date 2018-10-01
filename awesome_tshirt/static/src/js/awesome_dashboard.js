@@ -1,4 +1,4 @@
-odoo.define('awesome_tshirt.dashboard', ['web.ajax'], function (require) {
+odoo.define('awesome_tshirt.dashboard', ['web.core'], function (require) {
 "use strict";
 
 /**
@@ -6,7 +6,6 @@ odoo.define('awesome_tshirt.dashboard', ['web.ajax'], function (require) {
  * helps to manage the t-shirt business by displaying various statistics about
  * the orders and buttons to jump to specific views.
  */
-var ajax = require('web.ajax');
 var core = require('web.core');
 
 var Statistics = Widget.extend({
