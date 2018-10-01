@@ -12,6 +12,7 @@ _logger = logging.getLogger(__name__)
 class TShirtOrder(models.Model):
     _name = 'awesome_tshirt.order'
     _description = 'Awesome T-shirt Orders'
+    _rec_name = 'customer_id'
 
     @api.model
     def _expand_states(self, states, domain, order):
