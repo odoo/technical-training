@@ -1,4 +1,4 @@
-odoo.define('awesome_tshirt.dashboard', function (require) {
+odoo.define('awesome_tshirt.dashboard', ['web.ajax'],, function (require) {
 "use strict";
 
 /**
@@ -7,26 +7,19 @@ odoo.define('awesome_tshirt.dashboard', function (require) {
  * the orders and buttons to jump to specific views.
  */
 
-var Buttons = require('awesome_tshirt.Buttons');
 
+var Widget = require('web.Widget');
+var ajax = require('web.ajax');
 
-var AbstractAction = require('web.AbstractAction');
-var core = require('web.core');
-
-var Dashboard = AbstractAction.extend({
-    /**
-     * @override
-     */
-    start: function () {
-        var Buttons = new Buttons(this);
-        var buttonsDef = Buttons.appendTo(this.$el);
-        var superDef = this._super.apply(this, arguments);
-        return $.when(buttonsDef, superDef);
+var Dashboard = Widget.extend({
+     template: 'dashboard',
+    init: function (parent) {
+        this._super(parent);
+        var data = this._rpc({
+            route: '/awesome_tshirt/statistics/',
+        });
     },
 });
 
-core.action_registry.add('awesome_tshirt.dashboard', Dashboard);
-
 return Dashboard;
-
 });

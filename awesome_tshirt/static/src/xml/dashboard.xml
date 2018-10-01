@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+<div t-name="Dashboard">
+
+    <p>data goes here:</p>
+    <div>
+        <t t-esc="widget.data"/>
+    </div>
+</div>
+
+</templates>
+
