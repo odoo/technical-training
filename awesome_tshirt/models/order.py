@@ -64,3 +64,4 @@ class TShirtOrder(models.Model):
             return False
         _logger.info('Label printed')
         return True
+
