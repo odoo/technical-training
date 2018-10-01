@@ -16,7 +16,7 @@ var Dashboard = Widget.extend({
     init: function (parent) {
         this._super(parent);
         var data = this._rpc({
-            route: '/awesome_tshirt/statistics/'
+            route: '/awesome_tshirt/statistics/',
         });
     },
 });
