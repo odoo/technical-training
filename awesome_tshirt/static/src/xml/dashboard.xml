@@ -14,6 +14,9 @@
         <div>Average quantity: <t t-esc="widget.stats.average_quantity"/></div>
         <div>Average time: <t t-esc="widget.stats.average_time"/></div>
     </div>
+    <div class="o_chart" style="width:40%">
+		<canvas id="chart-area"></canvas>
+	</div>
 </div>
 
 </templates>

@@ -6,11 +6,11 @@ odoo.define('awesome_tshirt.MyCounter', function (require) {
         data: {
             datasets: [{
                 data: [
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
+                    10,
+                    20,
+                    30,
+                    40,
+                    50,
                 ],
                 backgroundColor: [
                     window.chartColors.red,
