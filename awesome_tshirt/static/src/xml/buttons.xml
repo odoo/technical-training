@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+<div t-name="Buttons">
+    <button class="btn all_customers"/>
+    <button class="btn recent_orders"/>
+    <button class="btn canceled_orders"/>
+</div>
+
+</templates>

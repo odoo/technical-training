@@ -5,7 +5,6 @@ odoo.define('awesome_tshirt.MyCounter', function (require) {
  * This file defines the MyCounter widget, displaying a counter with two buttons
  * allowing to increment and decrement it.
  */
-var AbstractAction = require('web.AbstractAction');
 
 var Widget = require('web.Widget');
 
@@ -34,8 +33,8 @@ var Buttons = Widget.extend({
      * @private
      */
     _onAllCustomers: function () {
-        //
-        this.do_action('base.action_partner_customer_form');
+        // TODO
+        this.renderElement();
     },
     /**
      * When clicking button, display a list of recent orders.
