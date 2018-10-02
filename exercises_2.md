@@ -240,7 +240,7 @@ Description:
 Of course, Bafien Ckinpaers is not happy with a static message. He wants to be
 able to customize it.  For this task, let us assume that there is the proper
 infrastructure in place to allow him to edit some record on the database, and
-that the message is available as a controller, /bafienistalkingtoyou.
+that the message is available as a controller, /awesome_tshirt/bafienistalkingtoyou.
 
 - load the data in the home menu widget (which hook should be used?) and
   display it instead of the static message as before
