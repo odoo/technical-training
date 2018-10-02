@@ -81,13 +81,14 @@ var OrderFormController = FormController.extend({
             method: 'print_label',
             args: [res_id],
         }).then(function (printed) {
-            self.printing = false;
             if (printed) {
                 self.do_notify(_t('Success'), _t('The label has been printed'));
             } else {
                 self.do_warn(_t('Failure'), _t('The label cannot be printed'), {sticky: true});
             }
             self.reload();
+        }).always(function () {
+            self.printing = false;
         });
     },
 });
