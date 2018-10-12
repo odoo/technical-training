@@ -16,7 +16,7 @@ We consciously decided to give a training that will have "less content" with a b
 * At the end of a module, debriefing session will be given based on the questions and solutions that came from the process of solving the problems. The learnees will have to verbalize what they have learned with interaction with the rest of the group and feedback from the teacher.
 * In addition to the modules, the learnees will be required to provide 2 questions in the morning about Odoo based on the previous day for discussion in the morning as a way of putting everyone back in the right state ready to attack the next modules.
 
-#### [Introduction presentation](https://docs.google.com/a/odoo.com/presentation/d/1O2hd-jNtZN93-hhi_KFKgRVw90Yfdow6Su7YHF6oc_s/edit?usp=sharing)
+#### [Introduction presentation](https://docs.google.com/presentation/d/1F5nLFsfNbFGcnjvDVmuhereyzZzf4NJoqDT3dIYhSMg/edit?usp=sharing)
 
 ## Base Requirements
 
