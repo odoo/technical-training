@@ -2,7 +2,7 @@
 from odoo import fields, models
 
 class Partner(models.Model):
-    _name = "openacademy.course"
+    _name = "openacademy.partner"
     name = fields.Char(string="Partner Name")
 
     # Add a new column to the res.partner model, by default partners are not
