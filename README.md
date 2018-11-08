@@ -952,7 +952,7 @@ server {
       if ($request_method = POST) { proxy_pass http://odoo; }
    }
 
-   location = /longpolling/poll { proxy_redirect off; proxy_pass http://odoo_longpoll;}
+   location = /longpolling { proxy_redirect off; proxy_pass http://odoo_longpoll;}
    location / { proxy_redirect off; proxy_pass http://odoo; }
 }
 [...]
@@ -1012,7 +1012,7 @@ server {
         proxy_pass http://odoo;
       }
    }
-  location = /longpolling/poll {
+  location = /longpolling {
      proxy_redirect off;
      proxy_pass http://odoo_longpoll;
    }
