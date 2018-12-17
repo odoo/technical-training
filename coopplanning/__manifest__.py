@@ -1,31 +1,34 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Cooperative Management",
+    'name':        "Cooperative Management",
 
-    'summary': """
-        Cooperative management""",
+    'summary':
+                   """
+                   Cooperative management
+                   """,
 
     'description': """
         Manage a cooperative group 
     """,
 
-    'author': "Odoo",
-    'website': "http://www.odoo.com",
+    'author':      "Odoo",
+    'website':     "http://www.odoo.com",
 
     # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/10.0/odoo/addons/base/module/module_data.xml
+    # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    'category': 'Training',
-    'version': '0.1',
+    'category':    'Cooperative Planning',
+    'version':     '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends':     ['base'],
 
     # always loaded
-    'data': [
+    'data':        [
+        "security/ir.model.access.csv",
         "data/coop_data.xml",
         "data/task_template.xml",
     ],
     # only loaded in demonstration mode
-    'demo': [],
+    'demo':        [],
 }
