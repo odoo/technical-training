@@ -1,3 +1,4 @@
 # -*- coding: utf-8 -*-
-from . import course
+from . import daynumber
 from . import partner
+from . import task

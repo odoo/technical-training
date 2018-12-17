@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+            id="menu_root"
+            name="Library"
+            web_icon="library,static/description/icon.png"
+    />
+
+    <menuitem
+            id="book_menu"
+            name="Books"
+            parent="library.menu_root"
+            sequence="10"
+    />
+
+    <menuitem
+            id="book_menu_action"
+            name="Books"
+            parent="library.book_menu"
+            sequence="10"
+            action="library.book_action"
+    />
+
+    <menuitem
+            id="copy_menu_action"
+            name="Copies"
+            parent="library.book_menu"
+            sequence="20"
+            action="library.copy_action"
+    />
+
+    <menuitem
+            id="author_menu_action"
+            name="Authors"
+            parent="library.book_menu"
+            sequence="30"
+            action="author_action"
+    />
+
+    <menuitem
+            id="partner_menu"
+            name="Partners"
+            parent="library.menu_root"
+            sequence="20"
+    />
+
+    <menuitem
+            id="partner_menu_action"
+            name="Partners"
+            parent="library.partner_menu"
+            sequence="10"
+            action="library.partner_action"
+    />
+
+    <menuitem
+            id="rental_menu"
+            name="Rentals"
+            parent="library.menu_root"
+            sequence="30"
+    />
+
+    <menuitem
+            id="rental_menu_action"
+            name="Rentals"
+            parent="library.rental_menu"
+            sequence="10"
+            action="library.rental_action"
+    />
+
+    <menuitem
+            id="payment_menu_action"
+            name="Payments"
+            parent="library.rental_menu"
+            sequence="20"
+            action="payment_action"
+    />
+
+    <menuitem
+            id="settings_menu"
+            name="Settings"
+            parent="library.menu_root"
+            sequence="100"
+    />
+
+    <menuitem
+            id="publisher_menu_action"
+            name="Publishers"
+            parent="library.settings_menu"
+            sequence="10"
+            action="library.partner_action"
+    />
+
+    <menuitem
+            id="price_menu_action"
+            name="Prices"
+            parent="library.book_menu"
+            sequence="20"
+            action="price_action"
+    />
+</odoo>

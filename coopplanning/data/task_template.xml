@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="coopplanning_task_template_d30" model="coopplanning.task.template">
+        <field name="name">Pos : Morning 1</field>
+        <field name="day_nb_id" ref="day_3"/>
+        <field name="task_type_id" ref="type_pos"/>
+        <field name="start_time">8.0</field>
+        <field name="worker_nb">2</field>
+        <field eval="True" name="active"/>
+    </record>
+    <record id="coopplanning_task_template_d31" model="coopplanning.task.template">
+        <field name="name">Pos : Morning 2</field>
+        <field name="day_nb_id" ref="day_3"/>
+        <field name="task_type_id" ref="type_pos"/>
+        <field name="start_time">10.0</field>
+        <field name="worker_nb">3</field>
+        <field eval="True" name="active"/>
+    </record>
+    <record id="coopplanning_task_template_d311" model="coopplanning.task.template">
+        <field name="name">Pos : Morning</field>
+        <field name="day_nb_id" ref="day_3"/>
+        <field name="task_type_id" ref="type_pos"/>
+        <field name="start_time">8.0</field>
+        <field name="worker_nb">3</field>
+        <field eval="False" name="active"/>
+    </record>
+
+    <record id="coopplanning_task_template_d32" model="coopplanning.task.template">
+        <field name="name">Cleaning End of Day</field>
+        <field name="day_nb_id" ref="day_3"/>
+        <field name="task_type_id" ref="type_clean"/>
+        <field name="start_time">18.0</field>
+        <field name="worker_nb">2</field>
+        <field eval="True" name="active"/>
+    </record>
+    <record id="coopplanning_task_template_d33" model="coopplanning.task.template">
+        <field name="name">Unload Truck</field>
+        <field name="day_nb_id" ref="day_3"/>
+        <field name="task_type_id" ref="type_unload"/>
+        <field name="start_time">7.0</field>
+        <field name="worker_nb">1</field>
+        <field eval="True" name="active"/>
+    </record>
+
+    <record id="coopplanning_task_template_d10" model="coopplanning.task.template">
+        <field name="name">Pos : Morning 1</field>
+        <field name="day_nb_id" ref="day_1"/>
+        <field name="task_type_id" ref="type_pos"/>
+        <field name="start_time">8.0</field>
+        <field name="worker_nb">2</field>
+        <field eval="False" name="active"/>
+    </record>
+    <record id="coopplanning_task_template_d11" model="coopplanning.task.template">
+        <field name="name">Pos : Morning 2</field>
+        <field name="day_nb_id" ref="day_1"/>
+        <field name="task_type_id" ref="type_pos"/>
+        <field name="start_time">10.0</field>
+        <field name="worker_nb">3</field>
+        <field eval="False" name="active"/>
+    </record>
+    <record id="coopplanning_task_template_d111" model="coopplanning.task.template">
+        <field name="name">Pos : Morning</field>
+        <field name="day_nb_id" ref="day_1"/>
+        <field name="task_type_id" ref="type_pos"/>
+        <field name="start_time">8.0</field>
+        <field name="worker_nb">3</field>
+        <field eval="True" name="active"/>
+    </record>
+
+    <record id="coopplanning_task_template_d12" model="coopplanning.task.template">
+        <field name="name">Cleaning End of Day</field>
+        <field name="day_nb_id" ref="day_1"/>
+        <field name="task_type_id" ref="type_clean"/>
+        <field name="start_time">18.0</field>
+        <field name="worker_nb">2</field>
+        <field eval="False" name="active"/>
+    </record>
+    <record id="coopplanning_task_template_d13" model="coopplanning.task.template">
+        <field name="name">Unload Truck</field>
+        <field name="day_nb_id" ref="day_1"/>
+        <field name="task_type_id" ref="type_unload"/>
+        <field name="start_time">7.0</field>
+        <field name="worker_nb">1</field>
+        <field eval="True" name="active"/>
+    </record>
+
+    <record id="coopplanning_task_template_d20" model="coopplanning.task.template">
+        <field name="name">Pos : Morning 1</field>
+        <field name="day_nb_id" ref="day_2"/>
+        <field name="task_type_id" ref="type_pos"/>
+        <field name="start_time">8.0</field>
+        <field name="worker_nb">2</field>
+        <field eval="True" name="active"/>
+    </record>
+    <record id="coopplanning_task_template_d21" model="coopplanning.task.template">
+        <field name="name">Pos : Morning 2</field>
+        <field name="day_nb_id" ref="day_2"/>
+        <field name="task_type_id" ref="type_pos"/>
+        <field name="start_time">10.0</field>
+        <field name="worker_nb">3</field>
+        <field eval="True" name="active"/>
+    </record>
+    <record id="coopplanning_task_template_d211" model="coopplanning.task.template">
+        <field name="name">Pos : Morning</field>
+        <field name="day_nb_id" ref="day_2"/>
+        <field name="task_type_id" ref="type_pos"/>
+        <field name="start_time">8.0</field>
+        <field name="worker_nb">3</field>
+        <field eval="False" name="active"/>
+    </record>
+
+    <record id="coopplanning_task_template_d22" model="coopplanning.task.template">
+        <field name="name">Cleaning End of Day</field>
+        <field name="day_nb_id" ref="day_2"/>
+        <field name="task_type_id" ref="type_clean"/>
+        <field name="start_time">18.0</field>
+        <field name="worker_nb">2</field>
+        <field eval="True" name="active"/>
+    </record>
+    <record id="coopplanning_task_template_d23" model="coopplanning.task.template">
+        <field name="name">Unload Truck</field>
+        <field name="day_nb_id" ref="day_2"/>
+        <field name="task_type_id" ref="type_unload"/>
+        <field name="start_time">7.0</field>
+        <field name="worker_nb">1</field>
+        <field eval="True" name="active"/>
+    </record>
+</odoo>

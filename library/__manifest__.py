@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 {
-    'name':        "OpenAcademy",
+    'name':        "Library Management",
 
     'summary':
                    """
-                   Openacademy""",
+                   Library management
+                   """,
 
     'description': """
-        Manage course, classes, teachers, students, ...
+        Manage a Library: customers, books, etc.... 
     """,
 
     'author':      "Odoo",
@@ -16,22 +17,25 @@
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    'category':    'OpenAcademy',
-    'version':     '0.8',
+    'category':    'Library',
+    'version':     '0.7',
 
     # any module necessary for this one to work correctly
-    'depends':     ['base', 'mail'],
+    'depends':     ['base', 'product'],
 
     # always loaded
     'data':        [
-        "security/security.xml",
         "security/ir.model.access.csv",
-        "views/course_views.xml",
-        "views/session_views.xml",
+        "views/book_views.xml",
         "views/partner_views.xml",
+        "views/rental_views.xml",
+        "views/author_views.xml",
+        "views/payment_views.xml",
+        "views/price_views.xml",
         "views/menu_views.xml",
-        "wizard/add_attendee_views.xml",
-        "data/openacademy_data.xml",
+        "wizard/select_books_views.xml",
+        "data/cron.xml",
+        "data/library_data.xml",
     ],
     # only loaded in demonstration mode
     'demo':        [],
