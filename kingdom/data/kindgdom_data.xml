@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="res.users" id="base.user_root">
+        <field name="name">King Joffrey</field>
+    </record>
+
+    <record model="res.users" id="army_advisor">
+        <field name="name">Army Advisor</field>
+        <field name="login">army@kindgdom.com</field>
+        <field name="password">army@kindgdom.com</field>
+    </record>
+    <record model="res.users" id="army_advisor">
+        <field name="name">Army Advisor</field>
+        <field name="login">army@kindgdom.com</field>
+        <field name="password">army@kindgdom.com</field>
+    </record>
+    <record model="res.users" id="economy_advisor">
+        <field name="name">Economy Advisor</field>
+        <field name="login">gold@kindgdom.com</field>
+        <field name="password">gold@kindgdom.com</field>
+    </record>
+    <record model="res.users" id="citizen_1">
+        <field name="name">Citizen alice</field>
+        <field name="login">alice@kindgdom.com</field>
+        <field name="password">alice@kindgdom.com</field>
+    </record>
+    <record model="res.users" id="citizen_2">
+        <field name="name">Citizen Bob</field>
+        <field name="login">bob@kindgdom.com</field>
+        <field name="password">bob@kindgdom.com</field>
+    </record>
+    <record model="res.users" id="citizen_3">
+        <field name="name">Citizen Gendry</field>
+        <field name="login">gendry@kindgdom.com</field>
+        <field name="password">gendry@kindgdom.com</field>
+    </record>
+
+    <record model="res.company" id="base.main_company">
+        <field name="name">Kingdom</field>
+        <field name="king" ref="base.user_root"/>
+        <field name="true_heir_throne" ref="citizen_3"/>
+    </record>
+</odoo>
