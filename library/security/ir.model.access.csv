@@ -1,0 +1,5 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+rental_manager,Rental Manager,model_library_rental,,1,1,1,1
+publisher_manager,Publisher Manager,model_library_publisher,,1,1,1,1
+partner_manager,Partner Manager,model_library_partner,,1,1,1,1
+book_manager,Book Manager,model_library_book,,1,1,1,1
