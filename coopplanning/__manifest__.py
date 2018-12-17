@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 {
-    'name':        "Library Management",
+    'name':        "Cooperative Management",
 
     'summary':
                    """
-                   Library management
+                   Cooperative management
                    """,
 
     'description': """
-        Manage a Library: customers, books, etc.... 
+        Manage a cooperative group 
     """,
 
     'author':      "Odoo",
@@ -17,7 +17,7 @@
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    'category':    'Library',
+    'category':    'Cooperative Planning',
     'version':     '0.4',
 
     # any module necessary for this one to work correctly
@@ -26,11 +26,11 @@
     # always loaded
     'data':        [
         "security/ir.model.access.csv",
-        "views/book_views.xml",
-        "views/partner_views.xml",
-        "views/rental_views.xml",
+        "views/task_views.xml",
+        "views/daynumber_views.xml",
         "views/menu_views.xml",
-        "data/library_data.xml",
+        "data/coop_data.xml",
+        "data/task_template.xml",
     ],
     # only loaded in demonstration mode
     'demo':        [],
