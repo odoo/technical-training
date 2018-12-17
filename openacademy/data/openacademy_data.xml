@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="teacher1" model="res.partner.category">
+        <field name="name">Chain Level 1</field>
+    </record>
+
+    <record id="teacher2" model="res.partner.category">
+        <field name="name">Chain Level 2</field>
+    </record>
+
+    <record id="teacher3" model="res.partner.category">
+        <field name="name">Chain Level 3</field>
+    </record>
+
+    <record id="partner_daenerys" model="res.partner">
+        <field name="name">Daenerys Targaryan</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="customer" eval="False"/>
+        <field name="instructor" eval="True"/>
+        <field name="category_id" eval="[(4,ref('teacher3'),0)]"/>
+    </record>
+    <record id="user_daenerys" model="res.users">
+        <field name="name">Daenerys Targaryan</field>
+        <field name="login">daenerys@odoo.com</field>
+        <field name="password">odoo</field>
+        <field name="partner_id" ref="partner_daenerys"/>
+        <field name="email">daenerys@odoo.com</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="company_ids" eval="[(4, ref('base.main_company'))]"/>
+        <field name="signature"><![CDATA[<span>-- <br/>
+	Daenerys Targaryan</span>]]></field>
+    </record>
+
+    <record id="partner_tyrion" model="res.partner">
+        <field name="name">Tyrion Lannister</field>
+        <field name="email">tyrion@openacademy.org</field>
+        <field name="instructor" eval="True"/>
+    </record>
+
+    <record id="partner_ned" model="res.partner">
+        <field name="name">Ned Stark</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="customer" eval="False"/>
+        <field name="instructor" eval="True"/>
+        <field name="category_id" eval="[(4,ref('teacher1'),0)]"/>
+    </record>
+    <record id="user_ned" model="res.users">
+        <field name="name">Ned Stark</field>
+        <field name="login">ned@odoo.com</field>
+        <field name="password">odoo</field>
+        <field name="partner_id" ref="partner_ned"/>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="company_ids" eval="[(4, ref('base.main_company'))]"/>
+        <field name="signature"><![CDATA[<span>-- <br/>
+	Ned Stark</span>]]></field>
+    </record>
+
+    <record id="partner_arya" model="res.partner">
+        <field name="name">Arya Stark</field>
+    </record>
+
+    <record id="course_dragon_technical" model="openacademy.course">
+        <field name="name">Dragon Technical Training</field>
+        <field name="description">You will learn how to train your dragon theroycally</field>
+        <field name="responsible_id" ref="user_daenerys"/>
+        <field name="level">1</field>
+    </record>
+
+    <record id="course_dragon_functionnal" model="openacademy.course">
+        <field name="name">Dragon Functionnal Training</field>
+        <field name="description">You will learn how to train your dragon practically</field>
+        <field name="responsible_id" ref="user_ned"/>
+        <field name="level">3</field>
+    </record>
+
+    <record id="session_dragon_technical" model="openacademy.session">
+        <field name="name">Dragon Technical - Session 1</field>
+        <field name="duration">5</field>
+        <field name="seats">10</field>
+        <field name="instructor_id" ref="user_daenerys"/>
+        <field name="course_id" ref="course_dragon_technical"/>
+    </record>
+
+    <record id="session_dragon_functionnal" model="openacademy.session">
+        <field name="name">Dragon Functionnal - Session 1</field>
+        <field name="duration">7.5</field>
+        <field name="seats">7</field>
+        <field name="instructor_id" ref="user_ned"/>
+        <field name="course_id" ref="course_dragon_functionnal"/>
+    </record>
+</odoo>

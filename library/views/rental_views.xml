@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="rental_view_tree" model="ir.ui.view">
+        <field name="name">library.rental.tree</field>
+        <field name="model">library.rental</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="copy_id"/>
+                <field name="customer_id"/>
+                <field name="rental_date"/>
+                <field name="return_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="rental_view_form" model="ir.ui.view">
+        <field name="name">library.rental.form</field>
+        <field name="model">library.rental</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_return" states="rented" string="Return" type="object"/>
+                    <button name="action_lost" states="rented" string="Lost" type="object"/>
+                    <button name="action_confirm" states="draft" string="Confirm" type="object"/>
+                    <field name="state" widget="statusbar" nolabel="1"
+                           statusbar_visible="draft,rented,returned,lost"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="customer_id"/>
+                        <field name="copy_id"/>
+                        <field name="rental_date"/>
+                        <field name="return_date"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="rental_action" model="ir.actions.act_window">
+        <field name="name">Rentals</field>
+        <field name="res_model">library.rental</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','in',['draft', 'rented'])]</field>
+    </record>
+</odoo>

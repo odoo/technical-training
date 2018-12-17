@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="partner_view_form" model="ir.ui.view">
+        <field name="name">library.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title oe_left">
+                        <h1>
+                            <field name="name" placeholder="Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="amount_owed"/>
+                        <field name="email"/>
+                        <label for="street" string="Address"/>
+                        <div class="o_address_format">
+                            <field name="street" placeholder="Street..." class="o_address_street"/>
+                            <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                            <field name="city" placeholder="City" class="o_address_city"/>
+                            <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                            <field name="country_id" placeholder="Country" class="o_address_country"/>
+                        </div>
+                    </group>
+                    <field name="qty_lost_book" invisible="1"/>
+                    <notebook>
+                        <page string="Current rentals" name="current_rentals">
+                            <field name="current_rental_ids" readonly="1">
+                                <tree>
+                                    <field name="book_id"/>
+                                    <field name="rental_date"/>
+                                    <field name="return_date"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Old rentals" name="old_rentals">
+                            <field name="old_rental_ids" readonly="1">
+                                <tree>
+                                    <field name="book_id"/>
+                                    <field name="rental_date"/>
+                                    <field name="return_date"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Lost rentals" name="lost_rentals"
+                              attrs="{'invisible': [('qty_lost_book','=',0)]}">
+                            <field name="lost_rental_ids" readonly="1">
+                                <tree>
+                                    <field name="book_id"/>
+                                    <field name="rental_date"/>
+                                    <field name="return_date"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="partner_view_tree" model="ir.ui.view">
+        <field name="name">library.partner.tree</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="amount_owed"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="partner_action" model="ir.actions.act_window">
+        <field name="name">Contacts</field>
+        <field name="res_model">res.partner</field>
+        <field name="domain">[('customer','=',True)]</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="partner_action_view_tree" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="sequence" eval="10"/>
+        <field name="view_id" ref="library.partner_view_tree"/>
+        <field name="act_window_id" ref="library.partner_action"/>
+    </record>
+
+    <record id="partner_action_view_form" model="ir.actions.act_window.view">
+        <field name="view_mode">form</field>
+        <field name="sequence" eval="20"/>
+        <field name="view_id" ref="library.partner_view_form"/>
+        <field name="act_window_id" ref="library.partner_action"/>
+    </record>
+</odoo>
