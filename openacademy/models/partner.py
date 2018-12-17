@@ -1,13 +1,14 @@
-# -*- coding: utf-8 -*-
-from odoo import models, fields, api
+# -*- coding: utf-8 -*-, api
+from odoo import api, fields, models
+
 
 class Partner(models.Model):
     _inherit = 'res.partner'
-    # Add a new column to the res.partner model, by default partners are not
-    # instructors
-    instructor = fields.Boolean("Instructor", default=False)
+
+    instructor = fields.Boolean(default=False)
     session_ids = fields.Many2many('openacademy.session', string="Attended Sessions", readonly=True)
-    level = fields.Integer(compute="_get_level", string="Teacher", store=True)
+
+    level = fields.Integer(compute="_get_level", string="Level", store=True)
 
     @api.depends('category_id', 'category_id.name')
     def _get_level(self):

@@ -1,26 +1,29 @@
 # -*- coding: utf-8 -*-
 from datetime import timedelta
-from odoo import models, fields, api
-from odoo.exceptions import ValidationError
+
+from odoo import api, exceptions, fields, models
 
 
 class Course(models.Model):
     _name = 'openacademy.course'
+    _description = 'Course'
 
     name = fields.Char(name='Title', required=True)
     description = fields.Text()
-    responsible_id = fields.Many2one('res.users', ondelete='set null', string="Responsible", index=True)
+
+    responsible_id = fields.Many2one('res.users', ondelete='set null', string="Responsible")
     session_ids = fields.One2many('openacademy.session', 'course_id', string="Sessions")
+
     level = fields.Selection([(1, 'Easy'), (2, 'Medium'), (3, 'Hard')], string="Difficulty Level")
-    session_count = fields.Integer("Session Count", compute="_compute_session_count")
-    attendee_count = fields.Integer("Attendee Count", compute="_compute_attendee_count")
+    session_count = fields.Integer(compute="_compute_session_count")
+    attendee_count = fields.Integer(compute="_compute_attendee_count")
 
     _sql_constraints = [
-       ('name_description_check', 'CHECK(name != description)',
-        "The title of the course should not be the description"),
+        ('name_description_check', 'CHECK(name != description)',
+         "The title of the course should not be the description"),
 
-       ('name_unique', 'UNIQUE(name)',
-        "The course title must be unique"),
+        ('name_unique', 'UNIQUE(name)',
+         "The course title must be unique"),
     ]
 
     @api.multi
@@ -42,12 +45,12 @@ class Course(models.Model):
         self.ensure_one()
         attendee_ids = self.session_ids.mapped('attendee_ids')
         return {
-            'name': 'Attendees of %s' % (self.name),
-            'type': 'ir.actions.act_window',
+            'name':      'Attendees of %s' % (self.name),
+            'type':      'ir.actions.act_window',
             'res_model': 'res.partner',
             'view_mode': 'tree,form',
             'view_type': 'form',
-            'domain': [('id', 'in', attendee_ids.ids)],
+            'domain':    [('id', 'in', attendee_ids.ids)],
         }
 
     @api.depends('session_ids')
@@ -60,41 +63,40 @@ class Course(models.Model):
         for course in self:
             course.attendee_count = len(course.mapped('session_ids.attendee_ids'))
 
+
 class Session(models.Model):
     _name = 'openacademy.session'
     _inherit = ['mail.thread']
     _order = 'name'
+    _description = 'Session'
 
     name = fields.Char(required=True)
-    start_date = fields.Date(default=lambda self : fields.Date.today())
-    #end_date = fields.Date(default=lambda self : fields.Date.today())
-    end_date = fields.Date(string='End date', store=True, compute='_get_end_date', inverse='_set_end_date')
+    description = fields.Html()
     active = fields.Boolean(default=True)
-    duration = fields.Float(digits=(6, 2), help="Duration in days", default=1)
-    seats = fields.Integer(string="Number of seats")
-    instructor_id = fields.Many2one('res.partner', string="Instructor") #No ondelete = set null
-    course_id = fields.Many2one('openacademy.course', ondelete='cascade', string="Course", required=True)
-    attendee_ids = fields.Many2many('res.partner', string="Attendees", domain=[('company_type', '=', 'person')])
-    taken_seats = fields.Float(string="Taken seats", compute='_taken_seats')
+    state = fields.Selection([('draft', "Draft"), ('confirmed', "Confirmed"), ('done', "Done")], default='draft')
     level = fields.Selection(related='course_id.level', readonly=True)
     responsible_id = fields.Many2one(related='course_id.responsible_id', readonly=True, store=True)
 
+    start_date = fields.Date(default=fields.Date.context_today)
+    end_date = fields.Date(string='End date', store=True, compute='_get_end_date', inverse='_set_end_date')
+    duration = fields.Float(digits=(6, 2), help="Duration in days", default=1)
+
+    instructor_id = fields.Many2one('res.partner', string="Instructor")
+    course_id = fields.Many2one('openacademy.course', ondelete='cascade', string="Course", required=True)
+    attendee_ids = fields.Many2many('res.partner', string="Attendees", domain="[('is_company', '=', False)]")
+    attendees_count = fields.Integer(compute='_get_attendees_count', store=True)
+    seats = fields.Integer()
+    taken_seats = fields.Float(compute='_compute_taken_seats', store=True)
     percentage_per_day = fields.Integer("%", default=100)
-    attendees_count = fields.Integer(string="Attendees count", compute='_get_attendees_count', store=True)
-    state = fields.Selection([
-                    ('draft', "Draft"),
-                    ('confirmed', "Confirmed"),
-                    ('done', "Done"),
-                    ], default='draft')
 
     def _warning(self, title, message):
         return {'warning': {
-            'title': title,
+            'title':   title,
             'message': message,
         }}
 
     @api.depends('seats', 'attendee_ids')
-    def _taken_seats(self):
+    def _compute_taken_seats(self):
         for session in self:
             if not session.seats:
                 session.taken_seats = 0.0
@@ -109,7 +111,7 @@ class Session(models.Model):
     @api.onchange('seats', 'attendee_ids')
     def _verify_valid_seats(self):
         if self.seats < 0:
-            return self._warning("Incorrect 'seats' value",  "The number of available seats may not be negative")
+            return self._warning("Incorrect 'seats' value", "The number of available seats may not be negative")
         if self.seats < len(self.attendee_ids):
             return self._warning("Too many attendees", "Increase seats or remove excess attendees")
 
@@ -117,7 +119,7 @@ class Session(models.Model):
     def _check_instructor_not_in_attendees(self):
         for session in self:
             if session.instructor_id and session.instructor_id in session.attendee_ids:
-                raise ValidationError("A session's instructor can't be an attendee")
+                raise exceptions.ValidationError("A session's instructor can't be an attendee")
 
     @api.depends('start_date', 'duration')
     def _get_end_date(self):
@@ -129,7 +131,7 @@ class Session(models.Model):
                 # so subtract one second to get on Friday instead
                 start = fields.Datetime.from_string(session.start_date)
                 duration = timedelta(days=session.duration, seconds=-1)
-                session.end_date = start + duration
+                session.end_date = str(start + duration)
 
     def _set_end_date(self):
         for session in self:
@@ -179,29 +181,3 @@ class Session(models.Model):
         if vals.get('instructor_id'):
             res.message_subscribe([vals['instructor_id']])
         return res
-
-
-
-class Wizard(models.TransientModel):
-    _name = 'openacademy.wizard'
-
-    @api.model
-    def default_get(self, fields):
-
-        res = super(Wizard, self).default_get(fields)
-        res.update({'attendee_ids': [(6, 0, self._context.get('active_ids', []))] })
-        return res
-
-    session_ids = fields.Many2many('openacademy.session', string="Sessions", required=True)
-    attendee_ids = fields.Many2many('res.partner', string="Attendees", )
-
-    @api.model
-    def create(self, vals):
-        res = super(Wizard, self).create(vals)
-        return res
-
-    @api.multi
-    def subscribe(self):
-        for session in self.session_ids:
-            session.attendee_ids |= self.attendee_ids
-        return {}
