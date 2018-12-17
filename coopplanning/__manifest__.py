@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 {
-    'name':        "OpenAcademy",
+    'name':        "Cooperative Management",
 
     'summary':
                    """
-                   Openacademy""",
+                   Cooperative management
+                   """,
 
     'description': """
-        Manage course, classes, teachers, students, ...
+        Manage a cooperative group 
     """,
 
     'author':      "Odoo",
@@ -16,21 +17,20 @@
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    'category':    'OpenAcademy',
-    'version':     '0.7',
+    'category':    'Cooperative Planning',
+    'version':     '0.4',
 
     # any module necessary for this one to work correctly
-    'depends':     ['base', 'mail'],
+    'depends':     ['base'],
 
     # always loaded
     'data':        [
         "security/ir.model.access.csv",
-        "views/course_views.xml",
-        "views/session_views.xml",
-        "views/partner_views.xml",
+        "views/task_views.xml",
+        "views/daynumber_views.xml",
         "views/menu_views.xml",
-        "wizard/add_attendee_views.xml",
-        "data/openacademy_data.xml",
+        "data/coop_data.xml",
+        "data/task_template.xml",
     ],
     # only loaded in demonstration mode
     'demo':        [],
