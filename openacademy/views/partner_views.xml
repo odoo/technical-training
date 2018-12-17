@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="partner_view_tree" model="ir.ui.view">
+        <field name="name">openacademy.partner.tree</field>
+        <field name="model">res.partner</field>
+        <field eval="8" name="priority"/>
+        <field name="arch" type="xml">
+            <tree string="Contacts">
+                <field name="display_name" string="Name"/>
+                <field name="function" invisible="1"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="user_id" invisible="1"/>
+                <field name="is_company" invisible="1"/>
+                <field name="country_id" invisible="1"/>
+                <field name="parent_id" invisible="1"/>
+                <field name="active" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="partner_view_form" model="ir.ui.view">
+        <field name="name">openacadmey.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <form string="Contact">
+                <field name="is_company" invisible="1"/>
+                <field name="type" invisible="1"/>
+                <field name="image" widget='image' class="oe_avatar" options='{"preview_image": "image_medium"}'/>
+                <div class="oe_title">
+                    <field name="company_type" options="{'horizontal': true}" class="oe_edit_only" widget="radio"/>
+                    <h1>
+                        <field name="name" default_focus="1" placeholder="Name"
+                               attrs="{'required' : [('type', '=', 'contact')]}"/>
+                    </h1>
+                    <field name="parent_id"
+                           placeholder="Company"
+                           domain="[('is_company', '=', True)]" context="{'default_is_company': True}"
+                           attrs="{'invisible': [('is_company','=', True)]}"/>
+                </div>
+                <group>
+                    <field name="function" placeholder="e.g. Sales Director"/>
+                    <field name="user_ids" invisible="1"/>
+                    <field name="email" widget="email" required="context.get('force_email', False)"
+                           attrs="{'required': [('user_ids','!=', [])]}"/>
+                    <field name="phone" widget="phone"/>
+                    <field name="mobile" widget="phone"/>
+                    <field name="instructor"/>
+                    <field name="session_ids"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="partner_view_search" model="ir.ui.view">
+        <field name="name">openacademy.partner.search</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <search string="Search Partner">
+                <field name="display_name"
+                       filter_domain="['|','|',('display_name','ilike',self),('ref','=',self),('email','ilike',self)]"/>
+                <separator/>
+                <filter string="Persons" name="type_person" domain="[('is_company','=',0)]"/>
+                <filter string="Companies" name="type_company" domain="[('is_company','=',1)]"/>
+                <separator/>
+                <filter string="Instructor" name="instructor" domain="[('instructor','=',1)]"/>
+                <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="partner_action" model="ir.actions.act_window">
+        <field name="name">Contacts</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="partner_action_view_tree" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="sequence" eval="10"/>
+        <field name="view_id" ref="openacademy.partner_view_tree"/>
+        <field name="act_window_id" ref="openacademy.partner_action"/>
+    </record>
+
+    <record id="partner_action_view_form" model="ir.actions.act_window.view">
+        <field name="view_mode">form</field>
+        <field name="sequence" eval="20"/>
+        <field name="view_id" ref="openacademy.partner_view_form"/>
+        <field name="act_window_id" ref="openacademy.partner_action"/>
+    </record>
+</odoo>
