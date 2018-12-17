@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="price_view_tree_id" model="ir.ui.view">
+            <field name="name">library.price.tree.view</field>
+            <field name="model">library.price</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="duration" attrs="{'invisible': [('type', '=', 'one')]}"/>
+                    <field name="price" />
+                    <field name="type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_price">
+            <field name="name">Rentals</field>
+            <field name="res_model">library.price</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <!-- actions -->
+        <menuitem name="Prices" id="menu_price" parent="menu_book_top"
+                  action="action_price"/>
+
+    </data>
+</odoo>

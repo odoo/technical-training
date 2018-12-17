@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="book_view_form_id" model="ir.ui.view">
+            <field name="name">book.form.view</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="book_state" widget="statusbar" nolabel="1" statusbar_visible="available,rented,lost" clickable="True"/>
+                    </header>
+                    <sheet>
+                        <field name="image" widget='image' class="oe_left oe_avatar" />
+                        <div class="oe_title oe_left">
+                            <h1>
+                                <field name="name" placeholder="Name" />
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="author_ids" context="{'default_author': True}" widget="many2many_tags"/>
+                            <field name="edition_date"/>
+                            <field name="isbn"/>
+                            <field name="publisher_id"/>
+                            <field name="acquisition_year"/>
+                            <field name="acquisition_price"/>
+                        </group>
+                        <notebook>
+                            <page string="Rentals" name="rentals" >
+                                <field name="rental_ids" readonly="1">
+                                    <tree>
+                                        <field name="customer_id"/>
+                                        <field name="rental_date"/>
+                                        <field name="return_date"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="book_view_tree_id" model="ir.ui.view">
+            <field name="name">book.tree.view</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="edition_date"/>
+                    <field name="author_ids" widget="many2many_tags"/>
+                    <field name="publisher_id"/>
+                    <field name="acquisition_year"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_book">
+            <field name="name">Books</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('book','=',True)]</field>
+            <field name="context">{'default_book': True}</field>
+            <field name="view_ids" eval="[
+                (5, 0, 0),
+                (0, 0, {
+                    'view_mode': 'tree',
+                    'view_id': ref('library.book_view_tree_id'),
+                    }),
+                (0, 0, {
+                    'view_mode': 'form',
+                    'view_id': ref('library.book_view_form_id'),
+                    }),
+                ]"/>
+        </record>
+
+        <record model="ir.ui.view" id="book_search_view">
+            <field name="name">book search view</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="book"/>
+                    <field name="book_state"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_lost_books">
+            <field name="name">Lost Books</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('book','=',True)]</field>
+            <field name="context">{'default_book': True, 'search_default_book_state': 'lost'}</field>
+            <field name="search_view_id" ref="book_search_view"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_available_books">
+            <field name="name">Available Books</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('book','=',True)]</field>
+            <field name="context">{'default_book': True, 'search_default_book_state': 'available'}</field>
+            <field name="search_view_id" ref="book_search_view"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_rented_books">
+            <field name="name">Rented Books</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('book','=',True)]</field>
+            <field name="context">{'default_book': True, 'search_default_book_state': 'rented'}</field>
+            <field name="search_view_id" ref="book_search_view"/>
+        </record>
+
+        <!-- actions -->
+        <menuitem name="Books" id="menu_book" parent="menu_book_top"
+                  action="action_book"/>
+
+    </data>
+</odoo>

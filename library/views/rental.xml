@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="rental_view_form_id" model="ir.ui.view">
+            <field name="name">rental.form.view</field>
+            <field name="model">library.rental</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_return" states="rented" string="Return" type="object"/>
+                        <button name="action_lost" states="rented" string="Lost" type="object" />
+                        <button name="action_confirm" states="draft" string="Confirm" type="object"/>
+                        <field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,rented,returned,lost" clickable="True"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="customer_id" context="{'default_customer': True}"/>
+                            <field name="book_id" context="{'default_book': True}"/>
+                            <field name="rental_date"/>
+                            <field name="return_date"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="rental_view_tree_id" model="ir.ui.view">
+            <field name="name">rental.tree.view</field>
+            <field name="model">library.rental</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="book_id"/>
+                    <field name="customer_id"/>
+                    <field name="rental_date"/>
+                    <field name="return_date"/>
+                    <field name="state"/>
+                 </tree>
+            </field>
+        </record>
+
+        <record id="rental_view_kanban_id" model="ir.ui.view">
+            <field name="name">rental.kanban.view</field>
+            <field name="model">library.rental</field>
+            <field name="arch" type="xml">
+                <kanban create="false" default_group_by="state">
+                  <field name="customer_id"/>
+                  <field name="book_id"/>
+                  <field name="state"/>
+                  <templates>
+                    <t t-name="kanban-box">
+                      <div class="oe_module_vignette oe_kanban_global_click">
+                        <div><field name="customer_id"/></div>
+                        <div><field name="book_id"/></div>
+                      </div>
+                    </t>
+                  </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_rental">
+            <field name="name">Rentals</field>
+            <field name="res_model">library.rental</field>
+            <field name="view_mode">tree,kanban,form</field>
+        </record>
+
+        <!-- actions -->
+        <menuitem name="Rentals" id="menu_rental" parent="menu_rental_top"
+                  action="action_rental"/>
+
+    </data>
+</odoo>

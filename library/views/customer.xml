@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="customer_view_form_id" model="ir.ui.view">
+            <field name="name">customer.form.view</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <form>
+                  <sheet>
+                      <div class="oe_title oe_left">
+                          <h1>
+                              <field name="name" placeholder="Name" />
+                          </h1>
+                      </div>
+                      <group>
+                          <field name="amount_owed"/>
+                          <field name="email"/>
+                          <label for="street" string="Address"/>
+                          <div class="o_address_format">
+                              <field name="street" placeholder="Street..." class="o_address_street" />
+                              <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                              <field name="city" placeholder="City" class="o_address_city" />
+                              <field name="zip" placeholder="ZIP" class="o_address_zip" />
+                              <field name="country_id" placeholder="Country" class="o_address_country" />
+                          </div>
+                      </group>
+                      <field name="qty_lost_book" invisible="1"/>
+                      <notebook>
+                          <page string="Current rentals" name="current_rentals" >
+                              <field name="current_rental_ids" readonly="1">
+                                  <tree >
+                                      <field name="book_id"/>
+                                      <field name="rental_date"/>
+                                      <field name="return_date"/>
+                                  </tree>
+                              </field>
+                          </page>
+                          <page string="Old rentals" name="old_rentals" >
+                              <field name="old_rental_ids" readonly="1">
+                                  <tree>
+                                      <field name="book_id"/>
+                                      <field name="rental_date"/>
+                                      <field name="return_date"/>
+                                  </tree>
+                              </field>
+                          </page>
+                          <page string="Lost rentals" name="lost_rentals" attrs="{'invisible': [('qty_lost_book','=',0)]}">
+                              <field name="lost_rental_ids" readonly="1">
+                                  <tree>
+                                      <field name="book_id"/>
+                                      <field name="rental_date"/>
+                                      <field name="return_date"/>
+                                  </tree>
+                              </field>
+                          </page>
+                      </notebook>
+                  </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="customer_view_tree_id" model="ir.ui.view">
+            <field name="name">customer.tree.view</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="amount_owed"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="action_customer">
+            <field name="name">Customers</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('customer','=',True)]</field>
+            <field name="context">{'default_customer': True}</field>
+            <field name="view_ids" eval="[
+                (5, 0, 0),
+                (0, 0, {
+                    'view_mode': 'tree',
+                    'view_id': ref('library.customer_view_tree_id'),
+                    }),
+                (0, 0, {
+                    'view_mode': 'form',
+                    'view_id': ref('library.customer_view_form_id'),
+                    }),
+                ]"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_bad_customer">
+            <field name="name">Bad Customers</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('customer', '=', True), ('amount_owed', '&gt;', 10)]</field>
+            <field name="context">{'default_customer': True}</field>
+            <field name="view_ids" eval="[
+                (5, 0, 0),
+                (0, 0, {
+                    'view_mode': 'tree',
+                    'view_id': ref('library.customer_view_tree_id'),
+                    }),
+                (0, 0, {
+                    'view_mode': 'form',
+                    'view_id': ref('library.customer_view_form_id'),
+                    }),
+                ]"/>
+        </record>
+
+        <!-- actions -->
+        <menuitem name="Customers" id="menu_customer" parent="menu_customer_top"
+                  action="action_customer"/>
+
+    </data>
+</odoo>
