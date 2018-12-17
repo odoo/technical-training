@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <record id="type_unload" model="coopplanning.task.type">
         <field name="name">Unload Truck</field>
         <field name="area">Loading Area</field>
@@ -40,5 +39,4 @@
         <field name="name">Friday</field>
         <field name="number">4</field>
     </record>
-
 </odoo>

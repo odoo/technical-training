@@ -1,30 +1,32 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "OpenAcademy",
+    'name':        "OpenAcademy",
 
-    'summary': """
-        Openacademy""",
+    'summary':
+                   """
+                   Openacademy""",
 
     'description': """
         Manage course, classes, teachers, students, ...
     """,
 
-    'author': "Odoo",
-    'website': "http://www.odoo.com",
+    'author':      "Odoo",
+    'website':     "http://www.odoo.com",
 
     # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/10.0/odoo/addons/base/module/module_data.xml
+    # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    'category': 'Training',
-    'version': '0.1',
+    'category':    'OpenAcademy',
+    'version':     '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends':     ['base'],
 
     # always loaded
-    'data': [
+    'data':        [
+        "security/ir.model.access.csv",
         "data/openacademy_data.xml",
     ],
     # only loaded in demonstration mode
-    'demo': [],
+    'demo':        [],
 }
