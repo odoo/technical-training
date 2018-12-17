@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem
+                id="kingdom_menu"
+                name="Kindgom"
+        />
+        <menuitem
+                id="menu_kindom"
+                name="Kindgom"
+                parent="kingdom.kingdom_menu"
+                action="kingdom_action"
+        />
+        <menuitem
+                id="menu_army"
+                name="Army"
+                parent="kingdom.kingdom_menu"
+                action="army_action"
+        />
+        <menuitem
+                id="menu_economy"
+                name="Cities"
+                parent="kingdom.kingdom_menu"
+                action="economy_action"
+        />
+        <menuitem
+                id="menu_citizen"
+                name="Citizen"
+                parent="kingdom.kingdom_menu"
+                action="citizen_action"
+        />
+    </data>
+</odoo>

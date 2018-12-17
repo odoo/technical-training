@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
-
-from odoo import models, fields
+from odoo import fields, models
 
 
 class Army(models.Model):
-    """ Adds fields for general information about the kindgon """
-
     _name = 'kingdom.army'
     _description = "Armies"
 

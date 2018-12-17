@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-
-from . import kingdom_army
-from . import kingdom_economy
-from . import res_company
-from . import res_users
+from . import army
+from . import economy
+from . import company
+from . import user
