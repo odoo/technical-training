@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="add_attendees_view_wizard" model="ir.ui.view">
+        <field name="name">openacademy.add_attendees.form</field>
+        <field name="model">add_attendee.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Add Attendees">
+                <group>
+                    <field name="session_id"/>
+                    <field name="attendee_ids"/>
+                </group>
+                <footer>
+                    <button name="subscribe" type="object"
+                            string="Subscribe" class="oe_highlight"/>
+                    or
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="add_attendees_action"
+                name="Add Attendees"
+                src_model="res.partner"
+                res_model="add_attendee.wizard"
+                view_mode="form"
+                target="new"
+                key2="client_action_multi"/>
+</odoo>

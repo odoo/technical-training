@@ -1,40 +1,44 @@
 <odoo>
     <data>
-        <record id="group_user" model="res.groups">
-            <field name="name">User</field>
-            <field name="category_id" ref="base.module_category_academy"/>
+        <record model="ir.module.category" id="module_category_open_academy">
+            <field name="name">Open Academy</field>
         </record>
 
-        <record id="group_manager" model="res.groups">
-            <field name="name">Manager</field>
-            <field name="category_id" ref="base.module_category_academy"/>
-            <field name="implied_ids" eval="[(6,0,[ref('group_user')])]" />
+        <record id="group_apprentices" model="res.groups">
+            <field name="name">Apprentices</field>
+            <field name="category_id" ref="openacademy.module_category_open_academy"/>
+            <field name="implied_ids" eval="[(6,0,[ref('base.group_user')])]"/>
         </record>
 
-        <record id="group_admin" model="res.groups">
-            <field name="name">Admin</field>
-            <field name="category_id" ref="base.module_category_academy"/>
-            <field name="implied_ids" eval="[(6,0,[ref('group_manager')])]" />
+        <record id="group_maesters" model="res.groups">
+            <field name="name">Maesters</field>
+            <field name="category_id" ref="openacademy.module_category_open_academy"/>
+            <field name="implied_ids" eval="[(6,0,[ref('group_apprentices')])]"/>
         </record>
 
-         <record id="only_responsible_can_modify" model="ir.rule">
+        <record id="group_archmaesters" model="res.groups">
+            <field name="name">Archmmaesters</field>
+            <field name="category_id" ref="openacademy.module_category_open_academy"/>
+            <field name="implied_ids" eval="[(6,0,[ref('group_maesters')])]"/>
+        </record>
+
+        <record id="only_responsible_can_modify" model="ir.rule">
             <field name="name">Only Responsible can modify Course</field>
             <field name="model_id" ref="model_openacademy_course"/>
-            <field name="groups" eval="[(4, ref('openacademy.group_manager'))]"/>
+            <field name="groups" eval="[(4, ref('openacademy.group_maesters'))]"/>
             <field name="perm_read" eval="0"/>
             <field name="perm_write" eval="1"/>
-            <field name="perm_create" eval="0"/>
+            <field name="perm_create" eval="1"/>
             <field name="perm_unlink" eval="1"/>
             <field name="domain_force">
-                ['|', ('responsible_id','=',False),
-                      ('responsible_id','=',user.id)]
+                [('responsible_id','=',user.id)]
             </field>
         </record>
 
         <record id="admin_rule" model="ir.rule">
-            <field name="name">Admin Can do everything</field>
+            <field name="name">Archmaesters Can do everything</field>
             <field name="model_id" ref="model_openacademy_course"/>
-            <field name="groups" eval="[(4, ref('openacademy.group_admin'))]"/>
+            <field name="groups" eval="[(4, ref('openacademy.group_archmaesters'))]"/>
             <field name="perm_read" eval="1"/>
             <field name="perm_write" eval="1"/>
             <field name="perm_create" eval="1"/>
