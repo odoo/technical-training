@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+            id="menu_root"
+            name="Cooperative Planning"
+            web_icon="coopplanning,static/description/icon.png"
+    />
+
+    <menuitem
+            id="task_template_menu"
+            name="Tasks"
+            parent="coopplanning.menu_root"
+            sequence="10"
+    />
+
+    <menuitem
+            id="task_template_menu_action"
+            name="Tasks Templates"
+            parent="coopplanning.task_template_menu"
+            sequence="10"
+            action="task_template_action"
+    />
+
+    <menuitem
+            id="task_menu"
+            name="Planning"
+            parent="coopplanning.menu_root"
+            sequence="20"
+    />
+
+    <menuitem
+            id="task_menu_action"
+            name="Tasks"
+            parent="coopplanning.task_menu"
+            sequence="10"
+            action="task_action"
+    />
+
+    <menuitem
+            id="configuration_menu"
+            name="Configuration"
+            parent="coopplanning.menu_root"
+            sequence="99"
+    />
+
+    <menuitem
+            id="task_type_menu_action"
+            name="Task Type"
+            parent="coopplanning.configuration_menu"
+            sequence="10"
+            action="task_type_action"
+    />
+
+    <menuitem
+            id="daynumber_menu_action"
+            name="Day Number"
+            parent="coopplanning.configuration_menu"
+            sequence="20"
+            action="daynumber_action"
+    />
+</odoo>
