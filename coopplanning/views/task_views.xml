@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="task_view_tree" model="ir.ui.view">
+        <field name="name">view.task.tree</field>
+        <field name="model">coopplanning.task</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="task_type_id"/>
+                <field name="name"/>
+                <field name="worker_id"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="task_view_form" model="ir.ui.view">
+        <field name="name">view.task.form</field>
+        <field name="model">coopplanning.task</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="task_template_id" readonly="1"
+                                   attrs="{ 'invisible' : [('task_template_id', '=', False)]}"/>
+                            <field name="task_type_id" options="{'no_create': True}"
+                                   attrs="{ 'readonly' : [('task_template_id', '!=', False)], 'required' : [('task_template_id', '=', False)]}"/>
+                            <field name="worker_id"/>
+                        </group>
+                        <group>
+                            <field name="start_time"/>
+                            <field name="end_time"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="task_template_view_tree" model="ir.ui.view">
+        <field name="name">view.task.template.tree</field>
+        <field name="model">coopplanning.task.template</field>
+        <field name="arch" type="xml">
+            <tree default_order="day_nb_id, start_time">
+                <field name="task_type_id"/>
+                <field name="name"/>
+                <field name="day_nb_id"/>
+                <field name="start_time" widget="float_time"/>
+                <field name="end_time" widget="float_time"/>
+                <field name="duration" widget="float_time"/>
+                <field name="worker_nb"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="task_template_view_form" model="ir.ui.view">
+        <field name="name">view.task.template.form</field>
+        <field name="model">coopplanning.task.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button type="object" name="generate_task" string="Generate Task for Today"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="task_type_id" options="{'no_create': True}" required="True"/>
+                            <field name="day_nb_id" options="{'no_create': True, 'no_open' : True}"
+                                   required="True"/>
+                            <field name="worker_nb"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="start_time" widget="float_time"/>
+                            <field name="end_time" widget="float_time"/>
+                            <field name="duration" widget="float_time"/>
+                            <field name="floating"/>
+                        </group>
+                    </group>
+                    <group attrs="{'invisible' : [('floating', '=', True)]}">
+                        <separator string="Pre defined Worker" colspan="2"/>
+                        <field name="worker_ids" options="{'no_create': True}" nolabel="1" colspan="2">
+                            <tree>
+                                <field name="name"/>
+                                <field name="lang"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="task_template_view_search" model="ir.ui.view">
+        <field name="name">view.task.template.search</field>
+        <field name="model">coopplanning.task.template</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="day_nb"/>
+                <field name="task_area"/>
+                <field name="worker_ids"/>
+                <field name="task_type_id"/>
+                <field name="day_nb_id"/>
+                <filter name="inactive" string="Inactive" domain="[('active', '=', False)]"/>
+                <filter name="all" string="All" domain="['|', ('active', '=', False), ('active', '=', True)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="task_action" model="ir.actions.act_window">
+        <field name="name">Tasks</field>
+        <field name="res_model">coopplanning.task</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="task_type_action" model="ir.actions.act_window">
+        <field name="name">Task Types</field>
+        <field name="res_model">coopplanning.task.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="task_template_action" model="ir.actions.act_window">
+        <field name="name">Task Templates</field>
+        <field name="res_model">coopplanning.task.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

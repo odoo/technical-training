@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="type_unload" model="coopplanning.task.type">
+        <field name="name">Unload Truck</field>
+        <field name="area">Loading Area</field>
+    </record>
+
+    <record id="type_pos" model="coopplanning.task.type">
+        <field name="name">Point of sale</field>
+        <field name="area">POS</field>
+    </record>
+
+    <record id="type_clean" model="coopplanning.task.type">
+        <field name="name">Cleaning</field>
+        <field name="area">Shop</field>
+    </record>
+
+    <record id="day_0" model="coopplanning.daynumber">
+        <field name="name">Monday</field>
+        <field name="number">0</field>
+    </record>
+
+    <record id="day_1" model="coopplanning.daynumber">
+        <field name="name">Tuesday</field>
+        <field name="number">1</field>
+    </record>
+
+    <record id="day_2" model="coopplanning.daynumber">
+        <field name="name">Wednesday</field>
+        <field name="number">2</field>
+    </record>
+
+    <record id="day_3" model="coopplanning.daynumber">
+        <field name="name">Thursday</field>
+        <field name="number">3</field>
+    </record>
+
+    <record id="day_4" model="coopplanning.daynumber">
+        <field name="name">Friday</field>
+        <field name="number">4</field>
+    </record>
+</odoo>
