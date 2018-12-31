@@ -8,7 +8,7 @@
                    """,
 
     'description': """
-        Manage a Library: customers, books, etc.... 
+        Manage a Library: customers, books, etc....
     """,
 
     'author':      "Odoo",
@@ -34,6 +34,7 @@
         "views/price_views.xml",
         "views/menu_views.xml",
         "data/cron.xml",
+        "data/mail.xml",
         "data/library_data.xml",
     ],
     # only loaded in demonstration mode
