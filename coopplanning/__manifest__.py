@@ -8,7 +8,7 @@
                    """,
 
     'description': """
-        Manage a cooperative group 
+        Manage a cooperative group
     """,
 
     'author':      "Odoo",
@@ -27,7 +27,6 @@
     'data':        [
         "security/ir.model.access.csv",
         "data/coop_data.xml",
-        "data/task_template.xml",
     ],
     # only loaded in demonstration mode
     'demo':        [],
