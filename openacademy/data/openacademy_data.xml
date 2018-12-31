@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="partner_daenerys" model="openacademy.partner">
+        <field name="name">Daenerys Targaryan</field>
+        <field name="instructor" eval="True"/>
+    </record>
+
+    <record id="partner_tyrion" model="openacademy.partner">
+        <field name="name">Tyrion Lannister</field>
+        <field name="instructor" eval="True"/>
+    </record>
+
+    <record id="partner_arya" model="openacademy.partner">
+        <field name="name">Arya Stark</field>
+    </record>
+
+    <record id="course_dragon" model="openacademy.course">
+        <field name="name">Dragon 101</field>
+        <field name="description">You will learn how to train your dragon</field>
+        <field name="responsible_id" ref="partner_daenerys"/>
+        <field name="level">1</field>
+    </record>
+
+    <record id="session_dragon1" model="openacademy.session">
+        <field name="name">Dragon 101 - Session 1</field>
+        <field name="duration">5</field>
+        <field name="instructor_id" ref="partner_tyrion"/>
+        <field name="course_id" ref="course_dragon"/>
+        <field name="state">confirmed</field>
+    </record>
+</odoo>
