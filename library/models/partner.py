@@ -8,9 +8,9 @@ class Partner(models.Model):
     is_author = fields.Boolean(string="Is an Author", default=False)
     is_publisher = fields.Boolean(string="Is a Publisher", default=False)
 
-    current_rental_ids = fields.One2many('library.rental', 'customer_id', string='Rentals', domain=[('state', '=', 'rented')])
-    old_rental_ids = fields.One2many('library.rental', 'customer_id', string='Rentals', domain=[('state', '=', 'returned')])
-    lost_rental_ids = fields.One2many('library.rental', 'customer_id', string='Rentals', domain=[('state', '=', 'lost')])
+    current_rental_ids = fields.One2many('library.rental', 'customer_id', string='Current Rentals', domain=[('state', '=', 'rented')])
+    old_rental_ids = fields.One2many('library.rental', 'customer_id', string='Old Rentals', domain=[('state', '=', 'returned')])
+    lost_rental_ids = fields.One2many('library.rental', 'customer_id', string='Lost Rentals', domain=[('state', '=', 'lost')])
 
     book_ids = fields.Many2many("product.product", string="Books", domain=[('is_book', '=', True)])
     copy_ids = fields.Many2many("library.copy", string="Book Copies")
