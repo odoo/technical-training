@@ -1,0 +1,5 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+day_manager,Day Manager,model_coopplanning_daynumber,,1,1,1,1
+task_template_manager,Task Template Manager,model_coopplanning_task_template,,1,1,1,1
+partner_manager,Partner Manager,model_coopplanning_partner,,1,1,1,1
+task_type_manager,task Type Manager,model_coopplanning_task_type,,1,1,1,1
