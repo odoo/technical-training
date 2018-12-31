@@ -66,8 +66,8 @@
         <field name="level">1</field>
     </record>
 
-    <record id="course_dragon_functionnal" model="openacademy.course">
-        <field name="name">Dragon Functionnal Training</field>
+    <record id="course_dragon_functional" model="openacademy.course">
+        <field name="name">Dragon Functional Training</field>
         <field name="description">You will learn how to train your dragon practically</field>
         <field name="responsible_id" ref="user_ned"/>
         <field name="level">3</field>
@@ -81,8 +81,8 @@
         <field name="course_id" ref="course_dragon_technical"/>
     </record>
 
-    <record id="session_dragon_functionnal" model="openacademy.session">
-        <field name="name">Dragon Functionnal - Session 1</field>
+    <record id="session_dragon_functional" model="openacademy.session">
+        <field name="name">Dragon Functional - Session 1</field>
         <field name="duration">7.5</field>
         <field name="seats">7</field>
         <field name="instructor_id" ref="user_ned"/>
