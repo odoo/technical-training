@@ -20,7 +20,7 @@ class BookCopy(models.Model):
     _rec_name = 'reference'
 
     book_id = fields.Many2one('product.product', string="Book", domain=[('is_book', "=", True)], required=True, ondelete="cascade", delegate=True)
-    reference = fields.Char(required=True)
+    reference = fields.Char(required=True, string="Ref")
 
     rental_ids = fields.One2many('library.rental', 'copy_id', string='Rentals')
     book_state = fields.Selection([('available', 'Available'), ('rented', 'Rented'), ('lost', 'Lost')], default="available")
