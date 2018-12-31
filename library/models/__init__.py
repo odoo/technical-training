@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from . import customers
-from . import books
+from . import customer
+from . import book
 from . import publisher
-from . import rentals
-from . import prices
+from . import rental
+from . import price

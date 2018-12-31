@@ -7,7 +7,7 @@ class Books(models.Model):
 
     author_ids = fields.Many2many("res.partner", string="Authors", domain=[('author', '=', True)])
     edition_date = fields.Date()
-    isbn = fields.Char(string='ISBN')
+    isbn = fields.Char(string='ISBN', unique=True)
     publisher_id = fields.Many2one('res.partner', string='Publisher', domain=[('publisher', '=', True)])
     copy_ids = fields.One2many('library.copy', 'book_id', string="Book Copies")
     book = fields.Boolean(string='Is a Book', default=False)
@@ -18,7 +18,7 @@ class BookCopy(models.Model):
     _description = 'Book Copy'
 
     book_id = fields.Many2one('product.product', string="Book", domain=[('book', "=", True)], required=True, ondelete="cascade", delegate=True)
-    reference = fields.Char(required=True)
+    reference = fields.Char(required=True, string="Ref")
     rental_ids = fields.One2many('library.rental', 'copy_id', string='Rentals')
     book_state = fields.Selection([('available', 'Available'), ('rented', 'Rented'), ('lost', 'Lost')], default="available")
     readers_count = fields.Integer(compute="_compute_readers_count")
