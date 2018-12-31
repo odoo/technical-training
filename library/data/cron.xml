@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.cron" id="cron_check_late_rental">
+        <field name="name">Check late rental</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="model_id" ref="library.model_library_rental"/>
+        <field name="code">model._cron_check_date()</field>
+    </record>
+</odoo>

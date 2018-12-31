@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
-
-from odoo import models, fields
+from odoo import fields, models
 
 
 class City(models.Model):
-    """ Adds fields for general information about the kindgon """
-
     _name = 'kingdom.city'
     _description = "Stats for each major city"
 

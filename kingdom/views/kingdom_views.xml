@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="kingdom_action" model="ir.actions.act_window">
+        <field name="name">Kingdom</field>
+        <field name="res_model">res.company</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
