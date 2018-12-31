@@ -5,10 +5,7 @@
         <field name="interval_number">1</field>
         <field name="interval_type">days</field>
         <field name="numbercall">-1</field>
-        <field name="doall" eval="False"/>
-        <field name="nextcall">2000-01-01 00:01:00</field>
         <field name="model_id" ref="library.model_library_rental"/>
-        <field name="function" eval="'_cron_check_date'"/>
-        <field name="args" eval="'()'"/>
+        <field name="code">model._cron_check_date()</field>
     </record>
 </odoo>
