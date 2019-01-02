@@ -32,7 +32,6 @@
         "views/menu_views.xml",
         "wizard/add_attendee_views.xml",
         "report/session.xml",
-        "report/board.xml",
         "data/openacademy_data.xml",
     ],
     # only loaded in demonstration mode
