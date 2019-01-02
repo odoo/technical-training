@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mail_template_book_return" model="mail.template">
+        <field name="name">Late book return</field>
+        <field name="email_from"></field>
+        <field name="subject">Late book return</field>
+        <field name="model_id" ref="library.model_library_rental"/>
+        <field name="partner_to">${object.customer_id.id or False }</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html"><![CDATA[
+          <div >
+              ${object.customer_id.name},<br/>
+              <p>You were supposed to bring back the book ${object.book_id.name} on the ${object.return_date}.</p>
+          </div>
+                ]]>
+        </field>
+    </record>
+</odoo>

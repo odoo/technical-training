@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-
         <record id="author_view_form_id" model="ir.ui.view">
             <field name="name">author.form.view</field>
             <field name="model">res.partner</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
-                        <field name="image" widget='image' class="oe_left oe_avatar" />
+                        <field name="image" widget='image' class="oe_left oe_avatar"/>
                         <div class="oe_title oe_left">
                             <h1>
-                                <field name="name" placeholder="Name" />
+                                <field name="name" placeholder="Name"/>
                             </h1>
                         </div>
                         <group>
                             <field name="birthdate"/>
-                            <field name="nationality_id" />
+                            <field name="nationality_id"/>
                         </group>
                         <notebook>
-                            <page string="Books" name="books" >
+                            <page string="Books" name="books">
                                 <field name="book_ids">
                                     <tree>
                                         <field name="name"/>
@@ -42,7 +41,7 @@
                     <field name="name"/>
                     <field name="birthdate"/>
                     <field name="nationality_id"/>
-                 </tree>
+                </tree>
             </field>
         </record>
 
