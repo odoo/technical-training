@@ -7,7 +7,10 @@ It is therefore a hands-on, practical approach to the development of Odoo module
 
 ## Organisation
 
-We consciously decided to give a training that will have "less content" with a better learning experience which is to lead the learnees to autonomy in their work with Odoo and acquire long term skills. "*True learning is based on discovery guided by mentoring rather than the transmission of knowledge*" (John Dewey). The problem-based approach we chose requires the learnees to first start with a problem without pregiven theory to create a better craddle for new skills to be learned. The teacher will be there to coach and guide the learnee through that process without forcing it. Emphasis will be put on interaction with other learnee as they solve the problems.
+We consciously decided to give a training that will have "less content" with a better learning experience which is to lead the learnees to autonomy in their work with Odoo and acquire long term skills.
+>*True learning is based on discovery guided by mentoring rather than the transmission of knowledge* (John Dewey).
+
+The **problem-based** approach we chose requires the learnees to first start with a problem without pregiven theory to create a better craddle for new skills to be learned. The teacher will be there to coach and guide the learnee through that process without forcing it. Emphasis will be put on interaction with other learnee as they solve the problems.
 
 ### Practical details
 
@@ -23,7 +26,8 @@ We consciously decided to give a training that will have "less content" with a b
 This training uses [Git](https://git-scm.com/) for its repository, and Github as its platform.
 
 The language [Python](https://www.python.org/) is a requirement for almost all modules.
-[Javascript](https://www.javascript.com/) is also required for some of the modules.
+
+The [Javascript](https://www.javascript.com/) language is also required for some of the modules.
 
 
 ## Modules
