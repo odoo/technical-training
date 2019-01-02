@@ -1,56 +1,48 @@
 # Odoo 12.0 - Technical Training
 =======
-# Play with the ORM
+# Reports
 
 ## Goal
 
-* Be able to find and use the ORM methods
-* Be able to find the signature of a ORM method
-* Be able to use the odoo shell
+Create awesome reports!
 
 
 ## Requirements
 
 - [Models, Fields and Relations](https://github.com/odoo/technical-training/tree/12.0-01-models)
 - [Computed Fields, Onchange and Constraints](https://github.com/odoo/technical-training/tree/12.0-02-fields)
+- [Basic Views](https://github.com/odoo/technical-training/tree/12.0-03-views)
 
 
-## Problem 1: Retrieve Model Information
+## Problem 1: Citadel (OpenAcademy)
 
-During your development, you want to use the country code on the model
-`res.country`, but you don't know whether this field already exists. The goal of
-this exercise is to find information about the fields of model `res.country`.
-
-###  Hint
-
-* Use the Odoo shell subcommand: `odoo shell`.
-* Instantiate the model from the environment object: `env['res.country']`.
-* Retrieve field information with method `fields_get`.
-
-
-## Problem 2: Openacademy
-
-Session instructors are given by contact records, specifically from the model
-`res.partner`. Add a button on sessions to create an invoice for the instructor
-of the session. There should be only one invoice per instructor; if the invoice
-already exists, add a line to the existing invoice.
-
+As much as the aerchmaester love the new system, they still love paper and would like to be able to send some invitation to the students with all the valuable information. Apparently their ravens can handle pdf as long as the postal address is on the top right. It would be nice to have a small invitational and personalized text as well as all the information about the session they are about to follow.
 
 ### Extra
 
-Once the invoice line has been created, mark the session as paid (see field
-`is_paid`.) The button should not be visible when the session is paid.
+The younger archmaesters are thinking of adding a barcode scanner at the entrance of the classrooms, add a barcode for the attendee on the invitation.
 
 
-## Problem 3: Planing Management
+## Problem 02: Cooperative Planning
 
-Change the way a task type is shown in relation fields, i.e., its label or
-"display name". The label should combine the task type name and its description.
-Make sure that a task type can be found by searching on parts of its name or
-description.
+Create a report with
+- one page showing all the tasks you have to do,
+- another page with the same information but ordered by partner.
+
+
+## Problem 03: Library
+
+Create a web page for users to rent a book directly from the website. You can
+rent a given book only if nobody has rented this book before you.
 
 
 ## References
 
-* [The ORM API](https://www.odoo.com/documentation/11.0/reference/orm.html)
-* [The Code of the ORM](https://github.com/odoo/odoo/blob/11.0/odoo/models.py)
+* [Qweb](https://www.odoo.com/documentation/11.0/reference/qweb.html)
+* [Reports with Qweb](https://www.odoo.com/documentation/11.0/reference/reports.html)
+
+### Code Sample
+
+* [Report action](https://github.com/odoo/odoo/blob/10.0/addons/sale/report/sale_report.xml#L4)
+* [External layout](https://github.com/odoo/odoo/blob/10.0/addons/report/views/layout_templates.xml#L95)
+* [Qweb template](https://github.com/odoo/odoo/blob/10.0/addons/sale/report/sale_report_templates.xml#L3)
