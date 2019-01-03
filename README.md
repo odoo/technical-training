@@ -32,9 +32,7 @@ Create a report with
 
 ## Problem 03: Library
 
-Create a web page for users to rent a book directly from the website. You can
-rent a given book only if nobody has rented this book before you.
-
+Now that you're experimented, imagine what reports would be useful for a Library and let your imagination free o/.
 
 ## References
 
