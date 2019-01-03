@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="library_book_form_view" model="ir.ui.view">
+            <field name="name">Book form view</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="image" widget='image' class="oe_left oe_avatar"/>
+                        <div class="oe_title oe_left">
+                            <h1>
+                                <field name="name" placeholder="Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="name"/>
+                            <field name="author_ids" context="{'default_author': True}" widget="many2many_tags"/>
+                            <field name="publisher_id"/>
+                            <field name="edition_date"/>
+                            <field name="isbn"/>
+                        </group>
+                        <notebook>
+                            <page string="Book Copies" name="copies">
+                                <field name="copy_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="library_copy_form_view" model="ir.ui.view">
+            <field name="name">Book Copy form view</field>
+            <field name="model">library.copy</field>
+            <field name="mode">primary</field>
+            <field name="inherit_id" ref="library_book_form_view"/>
+            <field name="arch" type="xml">
+                <sheet position="before">
+                    <header>
+                        <field name="book_state" widget="statusbar" nolabel="1"
+                               statusbar_visible="available,rented,lost"/>
+                    </header>
+                    <div class="oe_button_box" name="buttons">
+                            <button type="object" class="oe_stat_button"
+                                    icon="fa-users"
+                                    name="open_readers">
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="readers_count"/>
+                                    </span>
+                                    <span class="o_stat_text">
+                                        Readers
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+                </sheet>
+                <field name="name" position="replace">
+                    <field name="reference"/>
+                </field>
+                <page name="copies" position="replace">
+                    <page string="Rentals" name="rentals">
+                        <field name="rental_ids" readonly="1">
+                            <tree>
+                                <field name="customer_id"/>
+                                <field name="rental_date"/>
+                                <field name="return_date"/>
+                            </tree>
+                        </field>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+        <record id="library_book_tree_view_id" model="ir.ui.view">
+            <field name="name">book.tree.view</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="edition_date"/>
+                    <field name="author_ids"/>
+                    <field name="publisher_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="library_copy_tree_view_id" model="ir.ui.view">
+            <field name="name">copy.tree.view</field>
+            <field name="model">library.copy</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="reference"/>
+                    <field name="book_state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_book">
+            <field name="name">Books</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('book', '=', True)]</field>
+            <field name="context">{'default_book': True}</field>
+            <field name="view_ids" eval="[
+                (5, 0, 0),
+                (0, 0, {
+                    'view_mode': 'tree',
+                    'view_id': ref('library.library_book_tree_view_id'),
+                    }),
+                (0, 0, {
+                    'view_mode': 'form',
+                    'view_id': ref('library.library_book_form_view'),
+                    }),
+                ]"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_copies">
+            <field name="name">Book Copies</field>
+            <field name="res_model">library.copy</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_ids" eval="[
+                (5, 0, 0),
+                (0, 0, {
+                    'view_mode': 'tree',
+                    'view_id': ref('library.library_copy_tree_view_id'),
+                    }),
+                (0, 0, {
+                    'view_mode': 'form',
+                    'view_id': ref('library.library_copy_form_view'),
+                    }),
+                ]"/>
+        </record>
+
+        <!-- actions -->
+        <act_window id="launch_add_books_wizard"
+                    name="Add books"
+                    src_model="library.copy"
+                    res_model="library.wizard"
+                    view_mode="form"
+                    target="new"
+                    key2="client_action_multi"/>
+
+        <record model="ir.ui.view" id="wizard_form_view">
+            <field name="name">wizard.form</field>
+            <field name="model">library.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Add Books">
+                    <group>
+                        <field name="copy_ids" invisible="1"/>
+                        <field name="customer_id"/>
+                        <field name="return_date" required="True"/>
+                    </group>
+                    <footer>
+                        <button name="next_step" type="object"
+                                string="Continue" class="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <menuitem name="Books" id="menu_book" parent="menu_book_top"
+                  action="action_book"/>
+        <menuitem name="Book Copies" id="menu_copies" parent="menu_book_top"
+                  action="action_copies"/>
+    </data>
+</odoo>
