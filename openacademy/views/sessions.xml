@@ -133,7 +133,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="openacademy.session_view_kaban">
+    <!-- <record model="ir.ui.view" id="openacademy.session_view_kaban">
         <field name="name">openacademy.session_view_kaban</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
@@ -156,7 +156,6 @@
                                 </ul>
                             </div>
                             <div t-attf-class="oe_kanban_content">
-                                <!-- title -->
                                 Session name:
                                 <field name="name"/>
                                 <br/>
@@ -180,7 +179,7 @@
                 </templates>
             </kanban>
         </field>
-    </record>
+    </record>-->
 
 
 

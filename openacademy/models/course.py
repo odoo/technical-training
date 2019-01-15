@@ -122,9 +122,8 @@ class Session(models.Model):
             else:
                 # Add duration to start_date, but: Monday + 5 days = Saturday, so
                 # subtract one second to get on Friday instead
-                start = fields.Datetime.from_string(session.start_date)
                 duration = timedelta(days=session.duration, seconds=-1)
-                session.end_date = start + duration
+                session.end_date = session.start_date + duration
 
     def _set_end_date(self):
         for session in self:
