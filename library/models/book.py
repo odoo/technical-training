@@ -21,6 +21,10 @@ class BookCopy(models.Model):
 
     book_id = fields.Many2one('product.product', string="Book", domain=[('is_book', "=", True)], required=True, ondelete="cascade", delegate=True)
     reference = fields.Char(required=True, string="Ref")
+    # "Override" active field to avoid to modify the one from Books model
+    # (because of delegate), so, when a rental is marked as lost, only the copy
+    # become inactive, not the book itself.
+    active = fields.Boolean(default=True)
 
     rental_ids = fields.One2many('library.rental', 'copy_id', string='Rentals')
     book_state = fields.Selection([('available', 'Available'), ('rented', 'Rented'), ('lost', 'Lost')], default="available")
