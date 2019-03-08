@@ -9,7 +9,7 @@ class AddAttendees(models.TransientModel):
 
     @api.model
     def default_get(self, fields):
-        res = super(Wizard, self).default_get(fields)
+        res = super(AddAttendees, self).default_get(fields)
         res.update({'attendee_ids': [(6, 0, self._context.get('active_ids', []))]})
         return res
 
@@ -18,7 +18,7 @@ class AddAttendees(models.TransientModel):
 
     @api.model
     def create(self, vals):
-        res = super(Wizard, self).create(vals)
+        res = super(AddAttendees, self).create(vals)
         return res
 
     @api.multi
