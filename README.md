@@ -41,6 +41,7 @@ Now that you're experimented, imagine what reports would be useful for a Library
 
 ### Code Sample
 
-* [Report action](https://github.com/odoo/odoo/blob/10.0/addons/sale/report/sale_report.xml#L4)
-* [External layout](https://github.com/odoo/odoo/blob/10.0/addons/report/views/layout_templates.xml#L95)
-* [Qweb template](https://github.com/odoo/odoo/blob/10.0/addons/sale/report/sale_report_templates.xml#L3)
+* [Report action](https://github.com/odoo/odoo/blob/d7ca0357f39f0c33ced2ed61374f863b1c37d207/addons/sale/report/sale_report.xml#L4)
+* [External layout](https://github.com/odoo/odoo/blob/d7ca0357f39f0c33ced2ed61374f863b1c37d207/addons/web/views/report_templates.xml#L341)
+* [Qweb template](https://github.com/odoo/odoo/blob/d7ca0357f39f0c33ced2ed61374f863b1c37d207/addons/sale/report/sale_report_templates.xml#L3)
+* [Custom rendered values](https://github.com/odoo/odoo/blob/d7ca0357f39f0c33ced2ed61374f863b1c37d207/odoo/addons/base/models/ir_actions_report.py#L734)
