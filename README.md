@@ -38,8 +38,8 @@ for a `res.partner` via a 2 level wizard:
 
 ### Reference
 
-* [Wizard](https://www.odoo.com/documentation/11.0/howtos/backend.html#wizards)
-* [Launching wizard](https://www.odoo.com/documentation/11.0/howtos/backend.html#launching-wizards)
+* [Wizard](https://www.odoo.com/documentation/12.0/howtos/backend.html#wizards)
+* [Launching wizard](https://www.odoo.com/documentation/12.0/howtos/backend.html#launching-wizards)
 
 ### Code Sample
 
