@@ -119,14 +119,14 @@ be great to show the data in that format.
 
 ### Reference
 
-* [Activate Debug Mode](https://www.odoo.com/documentation/11.0/howtos/web.html#a-simple-module)
-* [Data Files](http://www.odoo.com/documentation/11.0/reference/data.html)
-* [Menu Items](http://www.odoo.com/documentation/11.0/reference/data.html#menuitem)
-* [Action](http://www.odoo.com/documentation/11.0/reference/actions.html)
-* [Views](http://www.odoo.com/documentation/11.0/reference/views.html)
-* [Fields](http://www.odoo.com/documentation/11.0/reference/orm.html#basic-fields)
-* [Online Tutorial](http://www.odoo.com/documentation/11.0/howtos/backend.html#basic-views)
-* [Domains](https://www.odoo.com/documentation/11.0/reference/orm.html#domains)
+* [Activate Debug Mode](https://www.odoo.com/documentation/12.0/howtos/web.html#a-simple-module)
+* [Data Files](http://www.odoo.com/documentation/12.0/reference/data.html)
+* [Menu Items](http://www.odoo.com/documentation/12.0/reference/data.html#menuitem)
+* [Action](http://www.odoo.com/documentation/12.0/reference/actions.html)
+* [Views](http://www.odoo.com/documentation/12.0/reference/views.html)
+* [Fields](http://www.odoo.com/documentation/12.0/reference/orm.html#basic-fields)
+* [Online Tutorial](http://www.odoo.com/documentation/12.0/howtos/backend.html#basic-views)
+* [Domains](https://www.odoo.com/documentation/12.0/reference/orm.html#domains)
 
 ### Code Samples
 
