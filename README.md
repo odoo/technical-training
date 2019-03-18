@@ -37,8 +37,8 @@ some restrictions on different levels.
 
 ### Reference
 
-* [Security in Odoo](https://www.odoo.com/documentation/11.0/reference/security.html)
-* [View attribute `group`](https://www.odoo.com/documentation/11.0/reference/views.html)
+* [Security in Odoo](https://www.odoo.com/documentation/12.0/reference/security.html)
+* [View attribute `group`](https://www.odoo.com/documentation/12.0/reference/views.html)
 
 ### Code Sample
 
