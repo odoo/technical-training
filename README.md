@@ -36,7 +36,8 @@ Library, which is the largest in Westeros.
 
 - **Hint**: To have access to the models in the UI, you can add a menu from the
   models table in the UI in debug mode (go to Settings/Technical/Models, pick
-  your model and click on Create a Menu).
+ your model and click on Create a Menu). If no access rights are defined for
+ those new models, to access it, become the superuser (in the debug menu).
 - **Technical Hint**: Do not forget to import the `api`, `models` and `fields`
   and your different files
 
