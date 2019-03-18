@@ -21,14 +21,11 @@ The purpose of this module is to learn this inheritance mechanism.
 
 ## Problem 1: Instructors (OpenAcademy)
 
-In the previous training module ([Model Inheritance](../04-model-inheritance)),
-we have added fields on the contacts (model `res.partner`). The boolean field
-`instructor` distinguishes between instructors and other contacts, and a read-
-only field shows the sessions attended by a given contact. Make these fields
-appear on the form and search views of this model with view inheritance.
-
-- **Hint**: the form view to inherit from has the id `base.view_partner_form`.
-
+In the openacademy module, we have added fields on the contacts (model `res.partner`).
+The boolean field `instructor` distinguishes between instructors and other contacts,
+and a read-only field shows the sessions attended by a given contact.
+For now we've created a new view. The more efficient way would be to have only "one"
+view per type of view for the res.partner model.
 
 ## Problem 2: Library Management
 
@@ -41,8 +38,8 @@ book model.
 
 ### Reference
 
-* [View Inheritance](http://www.odoo.com/documentation/11.0/reference/views.html#inheritance)
-* [Online Tutorial](http://www.odoo.com/documentation/11.0/howtos/backend.html#view-inheritance)
+* [View Inheritance](http://www.odoo.com/documentation/12.0/reference/views.html#inheritance)
+* [Online Tutorial](http://www.odoo.com/documentation/12.0/howtos/backend.html#view-inheritance)
 
 ### Code Sample
 
