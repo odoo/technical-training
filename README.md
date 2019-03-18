@@ -45,22 +45,22 @@ to be informative and avoids adding workload to the librarians.
 
 ## Resources
 
-* [Computed Fields](https://www.odoo.com/documentation/11.0/reference/orm.html#computed-fields)
-    * [ORM documentation](https://www.odoo.com/documentation/11.0/reference/orm.html#field-computed)
-    * [Depends trigger](https://www.odoo.com/documentation/11.0/reference/orm.html#odoo.api.depends)
+* [Computed Fields](https://www.odoo.com/documentation/12.0/reference/orm.html#computed-fields)
+    * [ORM documentation](https://www.odoo.com/documentation/12.0/reference/orm.html#field-computed)
+    * [Depends trigger](https://www.odoo.com/documentation/12.0/reference/orm.html#odoo.api.depends)
     * [Code sample: use the same method for multiple fields](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/point_of_sale/models/pos_order.py#L719)
     * [Code sample: inverse method modifying a distant record](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/delivery/models/delivery_carrier.py#L53)
-* [Related Fields](https://www.odoo.com/documentation/11.0/reference/orm.html#related-fields)
+* [Related Fields](https://www.odoo.com/documentation/12.0/reference/orm.html#related-fields)
 
-* [Onchange](https://www.odoo.com/documentation/11.0/reference/orm.html#onchange-updating-ui-on-the-fly)
-    * [The decorator api.onchange](https://www.odoo.com/documentation/11.0/reference/orm.html#odoo.api.onchange)
+* [Onchange](https://www.odoo.com/documentation/12.0/reference/orm.html#onchange-updating-ui-on-the-fly)
+    * [The decorator api.onchange](https://www.odoo.com/documentation/12.0/reference/orm.html#odoo.api.onchange)
     * [Code sample: fill contact information](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/hr_recruitment/models/hr_recruitment.py#L228)
 
-* [Constraints](https://www.odoo.com/documentation/11.0/howtos/backend.html#model-constraints)
-    * [Python constraints](https://www.odoo.com/documentation/11.0/reference/orm.html#odoo.api.constrains)
+* [Constraints](https://www.odoo.com/documentation/12.0/howtos/backend.html#model-constraints)
+    * [Python constraints](https://www.odoo.com/documentation/12.0/reference/orm.html#odoo.api.constrains)
         * [Code sample: date verification](https://github.com/odoo/odoo/blob/2021f44c0e053e23d769f1dc2be67b6e3ebed82b/addons/event/models/event.py#L217)
-    * [Sql constraints](https://www.odoo.com/documentation/11.0/reference/orm.html#odoo.models.Model._sql_constraints)
+    * [Sql constraints](https://www.odoo.com/documentation/12.0/reference/orm.html#odoo.models.Model._sql_constraints)
         * [Code sample: debit/credit rules](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/account/models/account_move.py#L399)
 
-* [Default values](http://www.odoo.com/documentation/11.0/reference/orm.html#odoo.fields.Field)
+* [Default values](http://www.odoo.com/documentation/12.0/reference/orm.html#odoo.fields.Field)
     * [Code sample: lunch defaults](https://github.com/odoo/odoo/blob/76c443eda331b75bf5dfa7ec22b8eb22e1084343/addons/lunch/models/lunch.py#L29)
