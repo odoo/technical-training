@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="classes_tree_view" model="ir.ui.view">
+            <field name="name">openacademy.class.tree</field>
+            <field name="model">openacademy.class</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="difficulty"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="course_form_view" model="ir.ui.view">
+            <field name="name">openacademy.class.form</field>
+            <field name="model">openacademy.class</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="responsible_id"/>
+                            <field name="difficulty"/>
+                        </group>
+                        <notebook>
+                            <page string="Sessions" name="sessions">
+                                <field name="sessions_ids"/>
+                                 
+                              
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="classes_action" model="ir.actions.act_window">
+            <field name="name">Classes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">openacademy.class</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+</odoo>

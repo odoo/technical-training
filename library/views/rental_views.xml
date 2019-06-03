@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="rental_tree_view" model="ir.ui.view">
+            <field name="name">library.rental.tree</field>
+            <field name="model">library.rental</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="book_name"/>
+                    <field name="customer_name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="rental_form_view" model="ir.ui.view">
+            <field name="name">library.rental.form</field>
+            <field name="model">library.rental</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="customer_id"/>
+                            <field name="bookcopy_id"/>
+                            <field name="book_name"/>
+                            <field name="customer_name"/>
+                            <field name="rental_date"/>
+                            <field name="return_date"/>
+                            <field name="address"/>
+                            <field name="mail"/>
+                            <field name="publisher_id"/>
+                            <field name="date_published"/>
+                            <field name="isbn"/>
+                        </group>
+                        <notebook>
+                            <page string="Authors" name="authors">
+                                <field name="author_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="rental_action" model="ir.actions.act_window">
+            <field name="name">Rentals</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">library.rental</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+</odoo>

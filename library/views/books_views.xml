@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="books_tree_view" model="ir.ui.view">
+            <field name="name">library.books.tree</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="isbn"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- <record id="books_form_view" model="ir.ui.view">
+            <field name="name">library.books.form</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="publisher_id"/>
+                            <field name="date_published"/>
+                            <field name="isbn"/>
+                        </group>
+                        <notebook>
+                            <page string="Copies" name="copies">
+                                <field name="copy_ids"/>
+                            </page>
+                            <page string="Authors" name="authors">
+                                <field name="author_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record> -->
+
+        <record id="books_form_view" model="ir.ui.view">
+            <field name="name">library.books.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <field name="barcode" position ="after">
+                    <field name="is_book"/>
+                    <field name="isbn"/>
+                </field>    
+            </field>
+        </record>        
+
+        <record id="books_action" model="ir.actions.act_window">
+            <field name="name">Books</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+</odoo>

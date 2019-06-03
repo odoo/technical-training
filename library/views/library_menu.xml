@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <data>
+        <!--Open Academy App Menu-->
+        <menuitem name="Library"
+                id="menu_library"
+                web_icon="library,static/description/icon.png"
+                sequence="40"/>
+
+        <menuitem id="menu_books" name="Books" parent="menu_library" sequence="2" action="books_action"/>
+        <menuitem id="menu_customers" name="Customers" parent="menu_library" sequence="3" action="customers_action"/>
+        <menuitem id="menu_publisher" name="Publisher" parent="menu_library" sequence="5" action="publisher_action"/>
+        <menuitem id="menu_rental" name="Rentals" parent="menu_library" sequence="5" action="rental_action"/>
+        <menuitem id="menu_bookcopy" name="Book copies" parent="menu_library" sequence="5" action="bookcopy_action"/>
+
+
+        </data>
+</odoo>

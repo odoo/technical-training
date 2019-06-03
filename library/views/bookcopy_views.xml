@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="bookcopy_tree_view" model="ir.ui.view">
+            <field name="name">library.book_copy.tree</field>
+            <field name="model">library.book_copy</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="reference"/>
+                </tree>
+            </field>
+        </record>
+ 
+        <record id="bookcopy_form_view" model="ir.ui.view">
+            <field name="name">library.book_copy.form</field>
+            <field name="model">library.book_copy</field>
+            <field name="inherit_id" ref="library.books_form_view"/>
+            <field name="arch" type="xml">
+                <field name="isbn" position="after">
+                    <field name="reference"/>
+                </field>
+                <!-- <xpath expr="//field[@name='isbn']" position="after">
+                    <field name="reference"/>
+                 </xpath> -->
+                <!-- <page name="copies" position="replace">
+                    <page string="Rentals" name="rentals">
+                        <field name="rent_ids"/>
+                    </page>
+                </page> -->
+            </field>
+        </record>  
+
+        <record id="bookcopy_action" model="ir.actions.act_window">
+            <field name="name">Book copies</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">library.book_copy</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <data>
+        <!--Open Academy App Menu-->
+        <menuitem name="Academy"
+                id="menu_academy"
+                web_icon="openacademy,static/description/icon.png"
+                sequence="40"/>
+
+        <menuitem id="menu_classes" name="Classes" parent="menu_academy" sequence="2" action="classes_action"/>
+        <menuitem id="menu_sessions" name="Sessions" parent="menu_academy" sequence="3" action="sessions_action"/>
+        <menuitem id="menu_partner" name="Partner" parent="menu_academy" sequence="5" action="partner_action"/>
+
+        </data>
+</odoo>

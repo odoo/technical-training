@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="customers_tree_view" model="ir.ui.view">
+            <field name="name">library.partner.tree</field>
+            <field name="model">library.partner</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="customers_form_view" model="ir.ui.view">
+            <field name="name">library.partner.form</field>
+            <field name="model">library.partner</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="address"/>
+                            <field name="mail"/>
+                        </group>
+                        <notebook>
+                            <page string="Rentals" name="rentals">
+                                <field name="rented_books_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="customers_action" model="ir.actions.act_window">
+            <field name="name">Customers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">library.partner</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+</odoo>

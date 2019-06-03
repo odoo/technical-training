@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">openacadmey.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="lang" position="after" >
+                <field name="lang" invisible="1"/>
+                <field name="instructor"/>
+                <field name="max_student"/>
+            </field>
+            <page name="sales_purchases" position="after">
+                <page string="Session attended" name="attended_sessions">
+                    <field name="session_ids"/>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="partner_action" model="ir.actions.act_window">
+        <field name="name">Partner</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
