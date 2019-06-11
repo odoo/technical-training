@@ -149,8 +149,7 @@ class Session(models.Model):
     @api.multi
     def write(self, vals):
         res = super(Session, self).write(vals)
-        for rec in self:
-            rec._auto_transition()
+        self._auto_transition()
         if vals.get('instructor_id'):
             self.message_subscribe([vals['instructor_id']])
         return res
