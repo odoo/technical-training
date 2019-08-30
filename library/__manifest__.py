@@ -30,4 +30,5 @@
     ],
     # only loaded in demonstration mode
     'demo':        [],
+    'license': 'AGPL-3',
 }
