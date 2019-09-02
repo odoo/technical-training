@@ -77,7 +77,7 @@
         <field name="name">Dragon Technical - Session 1</field>
         <field name="duration">5</field>
         <field name="seats">10</field>
-        <field name="instructor_id" ref="user_daenerys"/>
+        <field name="instructor_id" ref="partner_daenerys"/>
         <field name="course_id" ref="course_dragon_technical"/>
     </record>
 
@@ -85,7 +85,7 @@
         <field name="name">Dragon Functionnal - Session 1</field>
         <field name="duration">7.5</field>
         <field name="seats">7</field>
-        <field name="instructor_id" ref="user_ned"/>
+        <field name="instructor_id" ref="partner_ned"/>
         <field name="course_id" ref="course_dragon_functionnal"/>
     </record>
 </odoo>
