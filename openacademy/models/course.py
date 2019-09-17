@@ -12,7 +12,7 @@ class Course(models.Model):
     responsible_id = fields.Many2one('openacademy.partner', string="Responsible")
     session_ids = fields.One2many('openacademy.session', 'course_id', string="Sessions")
 
-    level = fields.Selection([(1, 'Easy'), (2, 'Medium'), (3, 'Hard')], string="Difficulty Level")
+    level = fields.Selection([('1', 'Easy'), ('2', 'Medium'), ('3', 'Hard')], string="Difficulty Level")
 
 
 class Session(models.Model):
