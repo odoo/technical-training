@@ -22,7 +22,6 @@ class SelectBooksToRent(models.TransientModel):
         res = super(SelectBooksToRent, self).create(vals)
         return res
 
-    @api.multi
     def next_step(self):
         for copy in self.copy_ids:
             copy.rental_ids |= self.env['library.rental'].create({'copy_id': copy.id, 'customer_id': self.customer_id.id, 'return_date': self.return_date})

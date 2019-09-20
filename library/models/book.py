@@ -26,7 +26,6 @@ class BookCopy(models.Model):
     book_state = fields.Selection([('available', 'Available'), ('rented', 'Rented'), ('lost', 'Lost')], default="available")
     readers_count = fields.Integer(compute="_compute_readers_count")
 
-    @api.multi
     def open_readers(self):
         self.ensure_one()
         reader_ids = self.rental_ids.mapped('customer_id')
