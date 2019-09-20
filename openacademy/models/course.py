@@ -14,7 +14,7 @@ class Course(models.Model):
     responsible_id = fields.Many2one('res.users', ondelete='set null', string="Responsible")
     session_ids = fields.One2many('openacademy.session', 'course_id', string="Sessions")
 
-    level = fields.Selection([(1, 'Easy'), (2, 'Medium'), (3, 'Hard')], string="Difficulty Level")
+    level = fields.Selection([('1', 'Easy'), ('2', 'Medium'), ('3', 'Hard')], string="Difficulty Level")
     session_count = fields.Integer(compute="_compute_session_count")
     attendee_count = fields.Integer(compute="_compute_attendee_count")
 
@@ -26,7 +26,6 @@ class Course(models.Model):
          "The course title must be unique"),
     ]
 
-    @api.multi
     def copy(self, default=None):
         default = dict(default or {})
 
@@ -40,7 +39,6 @@ class Course(models.Model):
         default['name'] = new_name
         return super(Course, self).copy(default)
 
-    @api.multi
     def open_attendees(self):
         self.ensure_one()
         attendee_ids = self.session_ids.mapped('attendee_ids')
@@ -142,19 +140,16 @@ class Session(models.Model):
                 end_date = fields.Datetime.from_string(session.end_date)
                 session.duration = (end_date - start_date).days + 1
 
-    @api.multi
     def action_draft(self):
         for rec in self:
             rec.state = 'draft'
             rec.message_post(body="Session %s of the course %s reset to draft" % (rec.name, rec.course_id.name))
 
-    @api.multi
     def action_confirm(self):
         for rec in self:
             rec.state = 'confirmed'
             rec.message_post(body="Session %s of the course %s confirmed" % (rec.name, rec.course_id.name))
 
-    @api.multi
     def action_done(self):
         for rec in self:
             rec.state = 'done'
@@ -165,7 +160,6 @@ class Session(models.Model):
             if rec.taken_seats >= 50.0 and rec.state == 'draft':
                 rec.action_confirm()
 
-    @api.multi
     def write(self, vals):
         res = super(Session, self).write(vals)
         for rec in self:

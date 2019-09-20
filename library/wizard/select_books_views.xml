@@ -22,10 +22,12 @@
 
     <act_window id="select_books_action"
                 name="Add books"
-                src_model="library.copy"
                 res_model="select_books.wizard"
+                binding_model="library.copy"
+                binding_views="list"
                 view_mode="form"
                 target="new"
-                key2="client_action_multi"/>
+                />
+
 </odoo>
 
