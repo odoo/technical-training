@@ -15,7 +15,6 @@
     <record id="partner_daenerys" model="res.partner">
         <field name="name">Daenerys Targaryan</field>
         <field name="company_id" ref="base.main_company"/>
-        <field name="customer" eval="False"/>
         <field name="instructor" eval="True"/>
         <field name="category_id" eval="[(4,ref('teacher3'),0)]"/>
     </record>
@@ -40,7 +39,6 @@
     <record id="partner_ned" model="res.partner">
         <field name="name">Ned Stark</field>
         <field name="company_id" ref="base.main_company"/>
-        <field name="customer" eval="False"/>
         <field name="instructor" eval="True"/>
         <field name="category_id" eval="[(4,ref('teacher1'),0)]"/>
     </record>

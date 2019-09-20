@@ -76,8 +76,6 @@
         <field name="name">Customers</field>
         <field name="res_model">res.partner</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('customer','=',True)]</field>
-        <field name="context">{'default_customer': True}</field>
         <field name="view_ids" eval="[
             (5, 0, 0),
             (0, 0, {

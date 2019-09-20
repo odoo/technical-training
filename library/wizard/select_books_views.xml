@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="select_books_view_wizard" model="ir.ui.view">
+        <field name="name">openacademy.select_books.form</field>
+        <field name="model">select_books.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Add Books">
+                <group>
+                    <field name="copy_ids" invisible="1"/>
+                    <field name="customer_id"/>
+                    <field name="return_date" required="True"/>
+                </group>
+                <footer>
+                    <button name="next_step" type="object"
+                            string="Continue" class="oe_highlight"/>
+                    or
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="select_books_action"
+                name="Add books"
+                res_model="select_books.wizard"
+                binding_model="library.copy"
+                binding_views="list"
+                view_mode="form"
+                target="new"
+                />
+
+</odoo>
+

@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="author_view_form_id" model="ir.ui.view">
-        <field name="name">author.form.view</field>
+    <record id="author_view_tree" model="ir.ui.view">
+        <field name="name">library.author.tree</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="birthdate"/>
+                <field name="nationality_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="author_view_form" model="ir.ui.view">
+        <field name="name">library.author.form</field>
         <field name="model">res.partner</field>
         <field name="arch" type="xml">
             <form>
@@ -32,39 +44,24 @@
         </field>
     </record>
 
-    <record id="author_view_tree_id" model="ir.ui.view">
-        <field name="name">author.tree.view</field>
-        <field name="model">res.partner</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="name"/>
-                <field name="birthdate"/>
-                <field name="nationality_id"/>
-            </tree>
-        </field>
-    </record>
-
-    <record model="ir.actions.act_window" id="action_author">
+    <record id="author_action" model="ir.actions.act_window">
         <field name="name">Authors</field>
         <field name="res_model">res.partner</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('author','=',True)]</field>
-        <field name="context">{'default_author': True}</field>
-        <field name="view_ids" eval="[
-            (5, 0, 0),
-            (0, 0, {
-                'view_mode': 'tree',
-                'view_id': ref('library.author_view_tree_id'),
-                }),
-            (0, 0, {
-                'view_mode': 'form',
-                'view_id': ref('library.author_view_form_id'),
-                }),
-            ]"/>
+        <field name="domain">[('is_author','=',True)]</field>
     </record>
 
-    <!-- actions -->
-    <menuitem name="Authors" id="menu_author" parent="menu_book_top"
-              action="action_author"/>
+    <record id="author_action_view_tree" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="sequence" eval="10"/>
+        <field name="view_id" ref="library.author_view_tree"/>
+        <field name="act_window_id" ref="library.author_action"/>
+    </record>
 
+    <record id="author_action_view_form" model="ir.actions.act_window.view">
+        <field name="view_mode">form</field>
+        <field name="sequence" eval="20"/>
+        <field name="view_id" ref="library.author_view_form"/>
+        <field name="act_window_id" ref="library.author_action"/>
+    </record>
 </odoo>
