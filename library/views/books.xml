@@ -7,7 +7,7 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet>
-                        <field name="image" widget='image' class="oe_left oe_avatar"/>
+                        <field name="image_1920" widget='image' class="oe_left oe_avatar"/>
                         <div class="oe_title oe_left">
                             <h1>
                                 <field name="name" placeholder="Name"/>
@@ -136,11 +136,11 @@
         <!-- actions -->
         <act_window id="launch_add_books_wizard"
                     name="Add books"
-                    src_model="library.copy"
+                    binding_model="library.copy"
                     res_model="library.wizard"
                     view_mode="form"
                     target="new"
-                    key2="client_action_multi"/>
+                    binding_views="list"/>
 
         <record model="ir.ui.view" id="wizard_form_view">
             <field name="name">wizard.form</field>

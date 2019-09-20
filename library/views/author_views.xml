@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="author_view_tree" model="ir.ui.view">
+        <field name="name">library.author.tree</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="birthdate"/>
+                <field name="nationality_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="author_view_form" model="ir.ui.view">
+        <field name="name">library.author.form</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="image_1920" widget='image' class="oe_left oe_avatar"/>
+                    <div class="oe_title oe_left">
+                        <h1>
+                            <field name="name" placeholder="Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="birthdate"/>
+                        <field name="nationality_id"/>
+                    </group>
+                    <notebook>
+                        <page string="Books" name="books">
+                            <field name="book_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="edition_date"/>
+                                    <field name="isbn"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="author_action" model="ir.actions.act_window">
+        <field name="name">Authors</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_author','=',True)]</field>
+    </record>
+
+    <record id="author_action_view_tree" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="sequence" eval="10"/>
+        <field name="view_id" ref="library.author_view_tree"/>
+        <field name="act_window_id" ref="library.author_action"/>
+    </record>
+
+    <record id="author_action_view_form" model="ir.actions.act_window.view">
+        <field name="view_mode">form</field>
+        <field name="sequence" eval="20"/>
+        <field name="view_id" ref="library.author_view_form"/>
+        <field name="act_window_id" ref="library.author_action"/>
+    </record>
+</odoo>

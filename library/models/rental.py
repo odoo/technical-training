@@ -13,15 +13,23 @@ class Rentals(models.Model):
     rental_date = fields.Date(default=fields.Date.context_today, required=True)
     return_date = fields.Date(required=True)
     state = fields.Selection([('draft', 'Draft'), ('rented', 'Rented'), ('returned', 'Returned'), ('lost', 'Lost')], default="draft")
+    customer_address = fields.Text(compute='_compute_customer_address')
+    customer_email = fields.Char(related='customer_id.email')
 
-    @api.multi
+    book_authors = fields.Many2many(related='copy_id.author_ids')
+    book_edition_date = fields.Date(related='copy_id.edition_date')
+    book_publisher = fields.Many2one(related='copy_id.publisher_id')
+
+    @api.depends('customer_id')
+    def _compute_customer_address(self):
+        self.customer_address = self.customer_id.address_get()
+
     def action_confirm(self):
         for rec in self:
             rec.state = 'rented'
             rec.copy_id.book_state = 'rented'
             rec.add_fee('time')
 
-    @api.multi
     def add_fee(self, type):
         for rec in self:
             if type == 'time':
@@ -36,17 +44,15 @@ class Rentals(models.Model):
 
             self.env['library.payment'].create({
                 'customer_id': rec.customer_id.id,
-                'date':        rec.rental_date,
-                'amount':      - amount,
+                'date': rec.rental_date,
+                'amount': - amount,
             })
 
-    @api.multi
     def action_return(self):
         for rec in self:
             rec.state = 'returned'
             rec.copy_id.book_state = 'available'
 
-    @api.multi
     def action_lost(self):
         for rec in self:
             rec.state = 'lost'

@@ -23,7 +23,6 @@ class BookCopy(models.Model):
     book_state = fields.Selection([('available', 'Available'), ('rented', 'Rented'), ('lost', 'Lost')], default="available")
     readers_count = fields.Integer(compute="_compute_readers_count")
 
-    @api.multi
     def open_readers(self):
         self.ensure_one()
         reader_ids = self.rental_ids.mapped('customer_id')
@@ -63,7 +62,6 @@ class Wizard(models.TransientModel):
         res = super(Wizard, self).create(vals)
         return res
 
-    @api.multi
     def next_step(self):
         for copy in self.copy_ids:
             copy.rental_ids |= self.env['library.rental'].create({'copy_id': copy.id, 'customer_id': self.customer_id.id, 'return_date': self.return_date})
