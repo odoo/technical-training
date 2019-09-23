@@ -53,21 +53,20 @@ class TaskTemplate(models.Model):
         for rec in self:
             rec.duration = rec.end_time - rec.start_time
 
-    @api.multi
     def generate_task(self):
         self.ensure_one()
         task = self.env['coopplanning.task']
         today = datetime.today()
         h_begin, m_begin = floatime_to_hour_minute(self.start_time)
         h_end, m_end = floatime_to_hour_minute(self.end_time)
-        for i in xrange(0, self.worker_nb):
+        for i in range(0, self.worker_nb):
             task.create({
                 'name':             "%s (%s) - (%s) [%s]" % (self.name, float_to_time(self.start_time), float_to_time(self.end_time), i),
                 'task_template_id': self.id,
                 'task_type_id':     self.task_type_id.id,
                 'worker_id':        self.worker_ids[i].id if len(self.worker_ids) > i else False,
-                'start_time':       fields.Datetime.context_timestamp(self, today).replace(hour=h_begin, minute=m_begin, second=0).astimezone(UTC),
-                'end_time':         fields.Datetime.context_timestamp(self, today).replace(hour=h_end, minute=m_end, second=0).astimezone(UTC),
+                'start_time':       fields.Datetime.to_string(fields.Datetime.context_timestamp(self, today).replace(hour=h_begin, minute=m_begin, second=0).astimezone(UTC)),
+                'end_time':         fields.Datetime.to_string(fields.Datetime.context_timestamp(self, today).replace(hour=h_end, minute=m_end, second=0).astimezone(UTC)),
             })
 
     # Solution : Empty the field worker_ids when floating is selected to be sure no worker will be pre assigned to the task
