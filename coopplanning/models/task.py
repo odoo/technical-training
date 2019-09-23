@@ -73,7 +73,7 @@ class TaskTemplate(models.Model):
     @api.onchange('floating')
     def _onchange_floating(self):
         if self.floating:
-            self.worker_ids = self.env['res.partner']
+            self.worker_ids = self.env['coopplanning.partner']
 
 
 class Task(models.Model):
