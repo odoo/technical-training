@@ -14,13 +14,17 @@ const core = require('web.core');
 const fieldUtils = require('web.field_utils');
 
 const _t = core._t;
+const qweb = core.qweb;
 
 const Dashboard = AbstractAction.extend({
-    template: 'AwesomeDashboard',
+    hasControlPanel: true,
     events: {
         'click .o_new_orders_btn': '_onOpenNewOrders',
         'click .o_customers_btn': '_onOpenCustomers',
         'click .o_cancelled_orders_btn': '_onOpenCancelledOrders',
+    },
+    custom_events: {
+        open_orders: '_onOpenOrders',
     },
 
     /**
@@ -39,9 +43,11 @@ const Dashboard = AbstractAction.extend({
      */
     start: function () {
         return Promise.all([
-            this._renderChart(),
+            this._render(),
             this._super.apply(this, arguments)
-        ]);
+        ]).then(() => {
+            this.$('.o_cp_buttons').append(qweb.render('AwesomeDashboard.Buttons'));
+        });
     },
     /**
      * Called when the dashboard will be restored (e.g. by coming back using the
@@ -55,6 +61,8 @@ const Dashboard = AbstractAction.extend({
     /**
      * Called each time the dashboard is inserted into the DOM. Reloads and
      * re-renders the dashboard every 30s.
+     *
+     * @override
      */
     on_attach_callback: function () {
         this._reloadInterval = setInterval(this._reload.bind(this), 30000);
@@ -62,6 +70,8 @@ const Dashboard = AbstractAction.extend({
     /**
      * Called each time the dashboard is detached from the DOM. Stops reloading
      * the dashboard every 30s if it is no longer into the DOM.
+     *
+     * @override
      */
     on_detach_callback: function () {
         clearInterval(this._reloadInterval);
@@ -89,17 +99,29 @@ const Dashboard = AbstractAction.extend({
      * @private
      * @param {Object} params
      * @param {Array[]} [params.domain=[]] additional domain
-     * @param {string} params.name name of the action
      * @returns {Promise} resolved when the action is executed
      */
     _openLastWeekOrders: function (params) {
         const aWeekAgo = moment().subtract(7, 'd').locale('en').format('YYYY-MM-DD HH:mm:ss');
+        params.domain = [['create_date', '>=', aWeekAgo]].concat(params.domain || []);
+        return this._openOrders(params);
+    },
+    /**
+     * Opens the list of orders matching a given domain.
+     *
+     * @private
+     * @param {Object} params
+     * @param {Array[]} [params.domain=[]]
+     * @param {string} params.name name of the action
+     * @returns {Promise} resolved when the action is executed
+     */
+    _openOrders: function (params) {
         return this.do_action({
             name: params.name,
             res_model: 'awesome_tshirt.order',
             type: 'ir.actions.act_window',
             views: [[false, 'list'], [false, 'form']],
-            domain: [['create_date', '>=', aWeekAgo]].concat(params.domain || []),
+            domain: params.domain,
         });
     },
     /**
@@ -109,19 +131,17 @@ const Dashboard = AbstractAction.extend({
      * @returns {Promise} resolved when the dashboard has been re-rendered
      */
     _reload: function () {
-        return this._loadStatistics().then(() => {
-            this.renderElement();
-            return this._renderChart();
-        });
+        return this._loadStatistics().then(() => this._render());
     },
     /**
-     * Renders a PieChart widget.
+     * Renders the dashboard.
      *
      * @private
+     * @return {Promise}
      */
-    _renderChart: function () {
+    _render: function () {
+        this.$('.o_content').html(qweb.render('AwesomeDashboard', { widget: this }));
         const chart = new ChartWidget(this, this.stats.orders_by_size);
-        this.$('.o_fancy_chart').empty();
         return chart.appendTo(this.$('.o_fancy_chart'));
     },
 
@@ -151,6 +171,19 @@ const Dashboard = AbstractAction.extend({
         this._openLastWeekOrders({
             name: _t('New Orders'),
             domain: [['state', '=', 'new']],
+        });
+    },
+    /**
+     * Opens the orders of t-shirt of the given size.
+     *
+     * @private
+     * @param {OdooEvent} ev
+     * @param {string} ev.data.size
+     */
+    _onOpenOrders: function (ev) {
+        this._openOrders({
+            name: _.str.sprintf(_t("Orders of size %s"), ev.data.size.toUpperCase()),
+            domain: [['size', '=', ev.data.size]],
         });
     },
 });

@@ -10,6 +10,7 @@ const Widget = require('web.Widget');
 
 const ChartWidget = Widget.extend({
     tagName: 'canvas',
+    jsLibs: ['/awesome_tshirt/static/lib/chart.js/Chart.js'],
 
     /**
      * @override
@@ -59,7 +60,27 @@ const ChartWidget = Widget.extend({
                     borderWidth: 1
                 }]
             },
+            options: {
+                onClick: this._onChartClicked.bind(this),
+            },
         });
+    },
+
+    //--------------------------------------------------------------------------
+    // Handlers
+    //--------------------------------------------------------------------------
+
+    /**
+     * @private
+     * @param {MouseEvent} ev
+     * @param {Object[]} chartElements
+     */
+    _onChartClicked: function (ev, chartElements) {
+        if (chartElements && chartElements.length) {
+            this.trigger_up('open_orders', {
+                size: this.sizes[chartElements[0]._index],
+            });
+        }
     },
 });
 
