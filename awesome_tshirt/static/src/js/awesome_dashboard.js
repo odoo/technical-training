@@ -29,14 +29,8 @@ const Dashboard = AbstractAction.extend({
      * @override
      */
     willStart: function () {
-        const statsProm = this._rpc({
-            route: '/awesome_tshirt/statistics',
-        }).then((stats) => {
-            stats.average_time = fieldUtils.format.float_time(stats.average_time);
-            this.stats = stats;
-        });
         return Promise.all([
-            statsProm,
+            this._loadStatistics(),
             this._super.apply(this, arguments)
         ]);
     },
@@ -49,11 +43,46 @@ const Dashboard = AbstractAction.extend({
             this._super.apply(this, arguments)
         ]);
     },
+    /**
+     * Called when the dashboard will be restored (e.g. by coming back using the
+     * breadcrumb).
+     *
+     * @override
+     */
+    do_show: function () {
+        return this._reload();
+    },
+    /**
+     * Called each time the dashboard is inserted into the DOM. Reloads and
+     * re-renders the dashboard every 30s.
+     */
+    on_attach_callback: function () {
+        this._reloadInterval = setInterval(this._reload.bind(this), 30000);
+    },
+    /**
+     * Called each time the dashboard is detached from the DOM. Stops reloading
+     * the dashboard every 30s if it is no longer into the DOM.
+     */
+    on_detach_callback: function () {
+        clearInterval(this._reloadInterval);
+    },
 
     //--------------------------------------------------------------------------
     // Private
     //--------------------------------------------------------------------------
 
+    /**
+     * @private
+     * @returns {Promise} resolved when the statistics have been fetched
+     */
+    _loadStatistics: function () {
+        return this._rpc({
+            route: '/awesome_tshirt/statistics',
+        }).then((stats) => {
+            stats.average_time = fieldUtils.format.float_time(stats.average_time);
+            this.stats = stats;
+        });
+    },
     /**
      * Opens the list of orders created in the last 7 days.
      *
@@ -71,6 +100,18 @@ const Dashboard = AbstractAction.extend({
             type: 'ir.actions.act_window',
             views: [[false, 'list'], [false, 'form']],
             domain: [['create_date', '>=', aWeekAgo]].concat(params.domain || []),
+        });
+    },
+    /**
+     * Reloads and re-renders the dashboard.
+     *
+     * @private
+     * @returns {Promise} resolved when the dashboard has been re-rendered
+     */
+    _reload: function () {
+        return this._loadStatistics().then(() => {
+            this.renderElement();
+            return this._renderChart();
         });
     },
     /**
