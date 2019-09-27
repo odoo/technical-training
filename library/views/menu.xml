@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <odoo>
+        <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
+        <menuitem id="library_menu_root" name="Library Management"/>
+
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="library_menu_categ" name="Library" parent="library_menu_root" />
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="library_book_menu_act" name="Books" parent="library_menu_categ" action="library_book_action" sequence=""/>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="library_partner_menu_act" name="Partners" parent="library_menu_categ" action="library_partner_action" sequence=""/>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="library_rental_menu_act" name="Rentals" parent="library_menu_categ" action="library_rental_action" sequence=""/>
+
+    </odoo>
+

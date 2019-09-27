@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <odoo>
+
+
+    <!-- library.partner search view -->
+    <record id="library_partner_view_search" model="ir.ui.view">
+        <field name="name">library.partner.view.search</field>
+        <field name="model">library.partner</field>
+        <field name="arch" type="xml">
+            <search string="Partner search">
+                <!-- Add your fields here -->
+                <filter name="customer_filter" string="Customer" domain="[('partner_type', '=', 'customer')]"/>
+                <filter name="author_filter" string="Author" domain="[('partner_type', '=', 'author')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- library.partner form view -->
+    <record id="library_partner_view_form" model="ir.ui.view">
+        <field name="name">library.partner.view.form</field>
+        <field name="model">library.partner</field>
+        <field name="arch" type="xml">
+            <form string="Partners">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="address"/>
+                        <field name="partner_type"/>
+                    </group>
+                    <notebook>
+                        <page string="Rentals" name="library_partner_notebook_view_form" attrs="{'invisible': [('partner_type', '!=', 'customer')]}">
+                            <group>
+                                <field name="rental_ids"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+        
+        <!-- library_partner tree view -->
+        <record id="library_partner_view_tree" model="ir.ui.view">
+            <field name="name">Library partner</field>
+            <field name="model">library.partner</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="partner_type" string="Type"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- library_partner action window -->
+        <record id="library_partner_action" model="ir.actions.act_window">
+            <field name="name">library partner</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">library.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+
+
+    </odoo>

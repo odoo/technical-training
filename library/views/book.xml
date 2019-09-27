@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <odoo>
+
+    <!-- library.book search view -->
+    <record id="library_book_view_search" model="ir.ui.view">
+        <field name="name">library.book.view.search</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <search string="Book search">
+                <!-- Add your fields here -->
+                <field name="name" string="Title"/>
+                <field name="author_ids"/>
+                <field name="author_ids" string="email author" filter_domain="[('author_ids.email', 'ilike', self)]"/>
+                <field name="isbn"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- library.book form view -->
+    <record id="library_book_view_form" model="ir.ui.view">
+        <field name="name">Book edition</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form string="Books">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="name"/>
+                    </group>
+                        <notebook>
+                            <page string="Infos supp">
+                                <group>
+                                    <field string='Date edition' name="edition_date"/>
+                                    <field string='ISBN' name="isbn"/>
+                                </group>
+                            </page>
+                            <page string="Authors / Publisher">
+                                <group>
+                                    <field name="author_ids"  widget="many2many_tags" options="{'no_create': True}"/>
+                                    <field name="publisher_id"/>
+                                </group>
+                            </page>
+                            <page string="Rentals">
+                                <group>
+                                    <field name="rental_ids"/>
+                                </group>
+                            </page>
+                        </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- library.book tree view -->
+    <record id="library_book_view_tree" model="ir.ui.view">
+        <field name="name">Books' view tree</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="isbn"/>
+                <field name="author_ids" widget="many2many_tags" options="{'no_create': True}" />
+            </tree>
+        </field>
+    </record>
+
+        <!-- library.book action window -->
+        <record id="library_book_action" model="ir.actions.act_window">
+            <field name="name">Books</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">library.book</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+    </odoo>

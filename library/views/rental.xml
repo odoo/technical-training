@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <odoo>     
+
+    <!-- library.rental form view -->
+    <record id="library_rental_view_form" model="ir.ui.view">
+        <field name="name">library.rental.view.form</field>
+        <field name="model">library.rental</field>
+        <field name="arch" type="xml">
+            <form string="Rentals">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                    <field name="customer_id"/>
+                    <field name="customer_address"/>
+                    <field name="customer_email"/>
+                    <field name="book_id"/>
+                    <field name="rental_date"/>
+                    <field name="return_date"/>  
+                    <field name="book_authors" widget="many2many_tags"/>                     
+                    <field name="book_edition_date"/>
+                    <field name="book_publisher"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>   
+
+        <!-- library.rental tree view -->
+        <record id="library_rental_view_tree" model="ir.ui.view">
+            <field name="name">library.rental.view.tree</field>
+            <field name="model">library.rental</field>
+            <field name="arch" type="xml">
+                <tree decoration-danger="return_date and return_date&lt;=current_date">
+                    <!-- Add your fields here -->
+                    <field name="id"/>
+                    <field name="customer_id"/>
+                    <field name="book_id"/>
+                    <field name="rental_date"/>
+                    <field name="return_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- library.rental action window -->
+        <record id="library_rental_action" model="ir.actions.act_window">
+            <field name="name">Rental</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">library.rental</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+
+    </odoo>
