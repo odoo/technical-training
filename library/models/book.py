@@ -8,7 +8,7 @@ class Books(models.Model):
 
     name = fields.Char(string='Title')
 
-    author_ids = fields.Many2many("library.partner", string="Authors")
+    author_ids = fields.Many2many("library.partner", string="Authors", domain=[('partner_type', '=', 'author')])
     edition_date = fields.Date()
     isbn = fields.Char(string='ISBN')
     publisher_id = fields.Many2one('library.publisher', string='Publisher')

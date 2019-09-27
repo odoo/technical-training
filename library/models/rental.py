@@ -6,7 +6,7 @@ class Rentals(models.Model):
     _name = 'library.rental'
     _description = 'Book rental'
 
-    customer_id = fields.Many2one('library.partner', string='Customer')
+    customer_id = fields.Many2one('library.partner', string='Customer', domain=[('partner_type', '=', 'customer')])
     book_id = fields.Many2one('library.book', string='Book')
 
     rental_date = fields.Date()

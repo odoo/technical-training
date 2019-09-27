@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name':        "Library Management",
+    'name':        "Library Management training",
 
     'summary':
                    """
@@ -25,8 +25,12 @@
 
     # always loaded
     'data':        [
-        "security/ir.model.access.csv",
+        #"security/ir.model.access.csv",
         "data/library_data.xml",
+        "views/rental.xml",
+        "views/book.xml",
+        "views/partner.xml",
+        "views/menu.xml",
     ],
     # only loaded in demonstration mode
     'demo':        [],
