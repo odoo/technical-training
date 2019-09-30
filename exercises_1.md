@@ -93,8 +93,7 @@ This should be a simple div with various buttons:
     action already exists in `xml`)
 - a button `New Orders`, which opens a list view with all orders created in
     the last 7 days
-- a button `Cancelled Order`, which opens a list of all orders cancelled in
-    the last 7 days
+- a button `Cancelled Order`, which opens a list of all orders created in the last 7 days, but already cancelled
 
 #### Resources
 
