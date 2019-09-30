@@ -14,6 +14,7 @@
                     <field name="customer_address"/>
                     <field name="customer_email"/>
                     <field name="book_id"/>
+                    <field name="book_child_id"/>
                     <field name="rental_date"/>
                     <field name="return_date"/>  
                     <field name="book_authors" widget="many2many_tags"/>                     
@@ -34,7 +35,7 @@
                     <!-- Add your fields here -->
                     <field name="id"/>
                     <field name="customer_id"/>
-                    <field name="book_id"/>
+                    <field name="book_child_id"/>
                     <field name="rental_date"/>
                     <field name="return_date"/>
                 </tree>

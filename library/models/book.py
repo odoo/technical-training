@@ -14,3 +14,8 @@ class Books(models.Model):
     publisher_id = fields.Many2one('library.publisher', string='Publisher')
 
     rental_ids = fields.One2many('library.rental', 'book_id', string='Rentals')
+
+    book_child_ids = fields.One2many('library.book_child', 'book_child_id', ondelete='cascade')
+    next_ref_id = fields.Integer(string='Next Reference ID')
+    
+    

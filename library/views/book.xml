@@ -40,6 +40,11 @@
                                     <field name="publisher_id"/>
                                 </group>
                             </page>
+                            <page string="Books">
+                                <group>
+                                    <field name="book_child_ids" context = "{'book_parent_id': id}"/>
+                                </group>
+                            </page>
                             <page string="Rentals">
                                 <group>
                                     <field name="rental_ids"/>

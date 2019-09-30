@@ -29,6 +29,7 @@
         "data/library_data.xml",
         "views/rental.xml",
         "views/book.xml",
+        "views/book_child.xml",
         "views/partner.xml",
         "views/menu.xml",
     ],
