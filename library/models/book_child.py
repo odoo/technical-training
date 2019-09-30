@@ -26,7 +26,7 @@ class Books(models.Model):
 
     book_child_id = fields.Many2one('library.book', string='Book')
     reference = fields.Char(string='Book reference', default=_get_book_reference)
-    rental_ids = fields.One2many('library.rental', 'book_child_id', string='Rentals')
+    rental_ids = fields.One2many('library.rental', 'book_child_id', string='Rentals')    
 
     name = fields.Char(compute='_compute_name')
 
