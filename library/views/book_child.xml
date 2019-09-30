@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <odoo>
+        <!-- library.book_child form view -->
+        <record id="library_book_child_view_form" model="ir.ui.view">
+            <field name="name">library.book_child.view.form</field>
+            <field name="model">library.book_child</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <!-- Add your fields here -->
+                            <field name="reference"/>
+                        </group>
+                        <notebook>
+                            <page string="Rentals">
+                                <group>
+                                    <field name="rental_ids"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- library.book_child tree view -->
+        <record id="library_book_child_view_tree" model="ir.ui.view">
+            <field name="name">library.book_child.view.tree</field>
+            <field name="model">library.book_child</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="reference"/>
+                </tree>
+            </field>
+        </record>
+    </odoo>
