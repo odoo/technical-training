@@ -29,6 +29,9 @@ const QuickOrderNavigation = Widget.extend({
                     target: 'new',
                     type: 'ir.actions.act_window',
                     views: [[false, 'form']],
+                    flags: {
+                        mode: "readonly"
+                    }
                 });
             }
         }
