@@ -382,7 +382,7 @@ $ vi /etc/odoo/odoo11.conf
 ```
 [options]
 addons_path = /opt/odoo11/enterprise,/opt/odoo11/odoo/addons
-proxy_mode = True
+proxy-mode = True
 ```
 
 ```bash
@@ -406,7 +406,7 @@ $ sudo chgrp odoo /var/log/odoo
 ```
 [options]
 addons_path = /opt/odoo11/enterprise,/opt/odoo11/odoo/addons
-proxy_mode = True
+proxy-mode = True
 logfile = /var/log/odoo/odoo.log
 syslog = False
 log_db = False
