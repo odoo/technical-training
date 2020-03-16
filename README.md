@@ -448,6 +448,12 @@ log_min_duration_statement = 0
 log_line_prefix = '%t [%p-%l] %q%u@%d '
 ```
 
+If your system is not in English, you must also change the locale used for PostgreSQL system messages (because pg_badger expects log lines in English only):
+
+```
+lc_messages = 'en_US.UTF-8' 
+```
+
 You can also choose to log only queries running in more than 150ms, you'll get only the slowest ones, but maybe miss some slow ones due to the number of time they're executed.
 
 ```
