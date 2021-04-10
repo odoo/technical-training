@@ -24,6 +24,7 @@ If the issue occurs in a production system, we strongly advise you to **reproduc
     - [Install py-spy](#install-py-spy)
     - [Executing py-spy](#executing-py-spy)
     - [Analyzing a flamegraph](#analyzing-a-flamegraph)
+  - [Profiling the Code](#profiling-the-code)
 - [Investigating PostgreSQL](#investigating-postgresql)
   - [Using PgActivity](#using-pgactivity)
     - [Installing PgActivity](#installing-pgactivity)
@@ -80,7 +81,6 @@ If, in the contrary, you measure the most CPU activity on a Python process, you 
 
 ## Investigating Odoo
 The principle is to check the stack of the Python processes launched by Odoo. It is thus necessary to first identify the PID of these processes. Then we will explain two methods of getting the stack traces: one inspecting it on the fly, another one using [py-spy](https://github.com/benfred/py-spy).
->*Note*: a third method consisting on profiling the code won't be explained as it requires source code modifications, hence guessing already  the potential location of the performance issue.
 
 ### Getting the PIDs of Odoo
 
@@ -115,7 +115,7 @@ At any time you can use to command `kill -3 [worker pid]` to dump the stack trac
 ### Using py-spy
 With [py-spy](https://github.com/benfred/py-spy), you continuously take snapshots of the stack trace of one Python process. So, you have to know the PID of the Odoo worker that will handle the requests triggered by your use case. The only way to know it in advance is to **start Odoo with one worker**.
 
-If your **use case is a cron**, start Odoo with one worker Cron: **--workers=0 --max-cron-threads=1**. It is advised to deactivate all scheduled actions but the one to test. 
+If your **use case is a cron**, start Odoo with one worker Cron: **--workers=0 --max-cron-threads=1**. It is advised to deactivate all scheduled actions but the one to test.
 
 If your **use case is not a cron**, start Odoo with one worker HTTP: **--workers=1 --max-cron-threads=0**.
 
@@ -155,6 +155,18 @@ In a flamegraph, you see the hierachy of calls between methods. The longer the b
 In this example, we explore the creation of account moves. We can see that the vast majority of the time is spent to recompute some computed fields. You have found a starting point for your investigations.
 
 ![](/pics/flamegraph_example_2.png)
+
+### Profiling the Code
+Once you have found out a method to investigate, you can start a code profiling on that method. It's a good idea to use a test system because it requires some small changes to the code. Please refer to [this documentation](https://www.odoo.com/documentation/14.0/howtos/profilecode.html#graph-a-method) to learn how to do it.
+
+You will be able to see a detailled picture of the code execution, comprising valuable informations:
+- total time %: the percentage of the running time spent in this function and all its children;
+- self time %: the percentage of the running time spent in this function alone;
+- total calls: the total number of times this function was called (including recursive calls).
+
+An edge represents the calls between two functions.
+
+![](/pics/code_profiling.png)
 
 ## Investigating PostgreSQL
 Assuming PostgreSQL is correctly configured, the principle here is to investigate all queries involved during the use case. As for Odoo we will explain how to do that on the fly with [PgActivity](https://github.com/dalibo/pg_activity) or by analysing PostgreSQL log files later with [PgBadger](https://github.com/darold/pgbadger).
