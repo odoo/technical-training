@@ -54,7 +54,7 @@ This example shows all the requests done by the WEB browser when loading the App
 
 The load time of various assets is visible in the  columns "Time" and "Waterfall". You can identify which assets load slowly and you must investigate why. You may have customized some Javascripts... In this case you can stop reading this document and dive into the JS code.
 
-When all the assets are subject to an unacceptable load time, check the **Filestore Access Time** in the chapter [When Everything I Slow](#when-everything-is-slow).
+When all the assets are subject to an unacceptable load time, check the **Filestore Access Time** in the chapter [When Everything Is Slow](#when-everything-is-slow).
 
 In this next example, we have clicked on a menu item that opens a tree view on a model.
 
