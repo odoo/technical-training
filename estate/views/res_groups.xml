@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-
+        <!-- <record model="ir.ui.view" id="res_groups_view_inherit">
+        <field name="name">res.groups.view.inherit</field>
+        <field name="model">res.groups</field>
+        <field name="inherit_id" ref="base.group_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet/group/field[@name='users']" position="after">
+            <field name="max_amount" string="Training max price approval"/>
+            </xpath>
+        </field>
+        </record> -->
     </data>
 </odoo>
