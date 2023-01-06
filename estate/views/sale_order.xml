@@ -8,7 +8,6 @@
             <field name="arch" type="xml">
                 <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='tax_id']" position="after">
                     <field name="training_date"/>
-                    <field name="employee_id"/>
                 </xpath>
             
             </field>
