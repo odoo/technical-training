@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <!-- <record model="ir.ui.view" id="res_partner_view_inherit">
-        <field name="name">res.partner.view.inherit</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
-        <field name="arch" type="xml"> -->
-            <!-- Add fields or constraints here as needed -->
-        <!-- </field>
-        </record> --> -->
-    </data>
+  <data>
+    <record model="ir.ui.view" id="res_partner_view_inherit">
+      <field name="name">res.partner.view.inherit</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="/form/sheet/group[2]" position="after">
+          <group>
+            <field name="max_amount" string="Maximum allowed amount"/>
+          </group>
+        </xpath>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale_order_view_inherit">
+      <field name="name">sale.order.view.inherit</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="/form/sheet/footer" position="before">
+          <div class="alert alert-warning" t-if="order.partner_id.max_amount and sum(line.price_total for line in order.order_line) > order.partner_id.max_amount">
+            <i class="fa fa-warning"/>
+            The total amount of this sale order exceeds the maximum allowed for the partner.
+          </div>
+        </xpath>
+      </field>
+    </record>
+  </data>
 </odoo>
+
