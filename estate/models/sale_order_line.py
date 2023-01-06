@@ -20,11 +20,11 @@ def get_manager_group(manager_level):
   if manager_level == 0:
     return "no approval privileges"
   elif manager_level == 1:
-    return "level 1"
+    return "manager level 1 "
   elif manager_level == 2:
-    return "level 2"
+    return "manager level 2"
   else:
-    return "level 3 and above"
+    return "manager level 3 and above"
 
 def can_confirm_sale_order(partner, amount, manager_level):
   required_approval_level = get_approval_level(partner, amount)
