@@ -29,7 +29,7 @@
                     <field name="training_date"/>
                     <field name="employee_id" />
                 </xpath>
-                <button name="request_approval" string="Request Approval" type="object" class="oe_highlight"/>
+                <!-- <button name="request_approval" string="Request Approval" type="object" class="oe_highlight"/> -->
             </field>
         </record>
     </data>
