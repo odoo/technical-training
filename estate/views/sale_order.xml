@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- <odoo>
+    <data>
+
+    # The view inherits from the sale.view_order_form view, which is the standard form view for the sale.order model. It adds two new fields, training_date and employee_id, after the tax_id field in the order_line tree view using an xpath expression. The xpath expression looks for the tax_id field in the view and adds the training_date and employee_id fields after it. The training_date and employee_id fields will be displayed in the form when the view is rendered.
+        
+        <record model="ir.ui.view" id="sale_order_view_inherit">
+            <field name="name">sale.order.view.inherit1</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='tax_id']" position="after">
+                    <field name="training_date"/>
+                    <field name="employee_id" />
+                </xpath>
+
+            #The view also adds a new button to the form with the name request_approval. The button has the label "Request Approval" and the class "oe_highlight". When the button is clicked, it will trigger the request_approval method on the sale.order object.
+            
+             <button name="request_approval" string="Request Approval" type="object" class="oe_highlight"/> 
+            
+
+            </field>
+        </record>
+    </data>
+</odoo> -->
+
+<odoo>
+    <data>
+
+    <!-- The view inherits from the sale.view_order_form view, which is the standard form view for the sale.order model. It adds two new fields, training_date and employee_id, after the tax_id field in the order_line tree view using an xpath expression. -->
+        
+        <record model="ir.ui.view" id="sale_order_view_inherit">
+            <field name="name">sale.order.view.inherit1</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+            <!-- The xpath expression looks for the tax_id field in the view and adds the training_date and employee_id fields after it. The training_date and employee_id fields will be displayed in the form when the view is rendered. -->
+                <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='tax_id']" position="after">
+                    <field name="training_date"/>
+                    <field name="employee_id" />
+                </xpath>
+                <!-- <button name="request_approval" string="Request Approval" type="object" class="oe_highlight"/> -->
+            </field>
+        </record>
+    </data>
+</odoo>
