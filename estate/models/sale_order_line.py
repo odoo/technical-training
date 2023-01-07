@@ -7,6 +7,8 @@ class SaleOrderLine(models.Model):
     is_recurring = fields.Boolean(string='Is Recurring')
 
 
+# That will open the wizard when clicked,
+<button name="%(training_date_wizard_action)d" string="Choose Training Date" type="action" class="oe_highlight"/>
 
 # Add a selection field to specify the recurrence frequency
     recurrence_frequency = fields.Selection([
@@ -44,7 +46,7 @@ class SaleOrderLine(models.Model):
                     new_record.training_date = fields.Date.from_string(new_record.training_date) + timedelta(days=interval)
                     # Save the new record
                     new_record.save()
-                    
+
 
 # This function takes a partner and an amount as inputs, and returns an integer value representing the required approval level for the sale. The value is determined by the amount of the sale, with higher amounts requiring higher approval levels.
 def get_approval_level(partner, amount):

@@ -1,0 +1,20 @@
+<record model="ir.ui.view" id="training_date_wizard_form_view">
+    <field name="name">Training Date Wizard Form</field>
+    <field name="model">training.date.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Training Date Wizard">
+            <group>
+                <field name="training_date"/>
+            </group>
+        </form>
+    </field>
+</record>
+
+<record model="ir.actions.act_window" id="training_date_wizard_action">
+    <field name="name">Training Date Wizard</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">training.date.wizard</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+</record>
