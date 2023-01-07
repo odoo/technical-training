@@ -7,8 +7,8 @@ class SaleOrderLine(models.Model):
     is_recurring = fields.Boolean(string='Is Recurring')
 
 
-# That will open the wizard when clicked,
-<button name="%(training_date_wizard_action)d" string="Choose Training Date" type="action" class="oe_highlight"/>
+# # That will open the wizard when clicked,
+# <button name="%(training_date_wizard_action)d" string="Choose Training Date" type="action" class="oe_highlight"/>
 
 # Add a selection field to specify the recurrence frequency
     recurrence_frequency = fields.Selection([
