@@ -4,7 +4,47 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
     training_date = fields.Char(string="Training Date")
     employee_id = fields.Many2one('hr.employee', string="Employee")
+    is_recurring = fields.Boolean(string='Is Recurring')
 
+
+
+# Add a selection field to specify the recurrence frequency
+    recurrence_frequency = fields.Selection([
+        ('daily', 'Daily'),
+        ('weekly', 'Weekly'),
+        ('monthly', 'Monthly'),
+        ('yearly', 'Yearly'),
+    ], string='Recurrence Frequency')
+
+# Add a integer field to specify the number of recurrences
+    recurrence_count = fields.Integer(string='Recurrence Count')
+
+# Add a method to generate recurring training records
+  
+    def create_recurring_training(self):
+        # Iterate through each record
+        for record in self:
+            # Check if the training is recurring
+            if record.is_recurring:
+                # Calculate the recurrence interval in days based on the frequency
+                if record.recurrence_frequency == 'daily':
+                    interval = 1
+                elif record.recurrence_frequency == 'weekly':
+                    interval = 7
+                elif record.recurrence_frequency == 'monthly':
+                    interval = 30
+                elif record.recurrence_frequency == 'yearly':
+                    interval = 365
+
+                # Generate the recurring training records
+                for i in range(1, record.recurrence_count+1):
+                    # Create a new training record with the same values as the original record
+                    new_record = record.copy()
+                    # Increment the training date by the recurrence interval
+                    new_record.training_date = fields.Date.from_string(new_record.training_date) + timedelta(days=interval)
+                    # Save the new record
+                    new_record.save()
+                    
 
 # This function takes a partner and an amount as inputs, and returns an integer value representing the required approval level for the sale. The value is determined by the amount of the sale, with higher amounts requiring higher approval levels.
 def get_approval_level(partner, amount):
