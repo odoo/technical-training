@@ -37,6 +37,28 @@ def action_confirm(self):
                 })
     return res
 
+def request_approval(self):
+    self.ensure_one()
+    # create an activity for a manager
+    self.activity_schedule(
+        'mail.mail_activity_data_todo',
+        user_id=self.env.ref('my_module.manageruser').id,
+        note=('Approval needed for quotation %s') % self.name,
+    )
+
+
+
+def request_approval(self):
+    self.ensure_one()
+    # get the manager with the least approvals waiting to be assigned
+    manager = self.env['res.users'].search([('groups_id', '=', self.env.ref('my_module.manager_group').id)],
+                                           order='approval_count ASC').id
+    # create an activity for the selected manager
+    self.activity_schedule(
+        'mail.mail_activity_data_todo',
+        userid=manager,
+        note=('Approval needed for quotation %s') % self.name,
+    )
 
  
 
