@@ -8,5 +8,5 @@
     'version': '15.0.0.1',
     'license' : 'LGPL-3',
     'depends': ['base', 'sale_management', 'calendar', 'hr'],
-    'data': ["views/res_groups.xml", "views/res_partner.xml", "views/sale_order.xml", "views/training_date_wizard.xml"]
+    'data': ["views/res_groups.xml", "views/res_partner.xml", "views/sale_order.xml", "views/training_date_wizard_form_view.xml"]
 }
