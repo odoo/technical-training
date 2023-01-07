@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+    <!-- The view inherits from the base.group_form view, which is the standard form view for the res.groups model. The view then adds a new field, max_amount, after the users field in the form using an xpath expression. -->
+        
         <!-- <record model="ir.ui.view" id="res_groups_view_inherit">
-        <field name="name">res.groups.view.inherit</field>
-        <field name="model">res.groups</field>
+        <field name="name">res.groups.view.inherit</field>  <field name="model">res.groups</field>
         <field name="inherit_id" ref="base.group_form"/>
         <field name="arch" type="xml">
+
+        #The xpath expression looks for the users field in the view and adds the max_amount field after it. The max_amount field will be displayed in the form when the view is rendered.    
+            
             <xpath expr="/form/sheet/group/field[@name='users']" position="after">
             <field name="max_amount" string="Training max price approval"/>
             </xpath>
+            
         </field>
         </record> -->
     </data>

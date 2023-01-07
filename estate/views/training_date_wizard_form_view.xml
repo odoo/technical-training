@@ -2,7 +2,9 @@
 <odoo>
     <data>
 
-    <record model="ir.ui.view" id="training_date_wizard_form_view">
+    <!-- The view is for a model called training.date.wizard and has a single field, training_date, in a form element. When the view is rendered, it will display a form with a single training_date field. -->
+
+    <!-- <record model="ir.ui.view" id="training_date_wizard_form_view">
     <field name="name">Training Date Wizard Form</field>
     <field name="model">training.date.wizard</field>
     <field name="arch" type="xml">
@@ -12,14 +14,11 @@
             </group>
         </form>
     </field>
-</record>
-
-    </data>
-</odoo>
+</record> -->
 
 
-
-
+<!-- The action is of type ir.actions.act_window and is used to open the training.date.wizard form as a wizard. It specifies the res_model, view_type, view_mode, and target fields. The res_model field specifies the model the action is for, the view_type and view_mode fields specify that the action will display a form, and the target field specifies that the form will be opened in a new window. -->
+<!-- 
  <record model="ir.actions.act_window" id="training_date_wizard_action">
     <field name="name">Training Date Wizard</field>
     <field name="type">ir.actions.act_window</field>
@@ -27,4 +26,10 @@
     <field name="view_type">form</field>
     <field name="view_mode">form</field>
     <field name="target">new</field>
-</record> 
+</record>  -->
+
+    </data>
+</odoo>
+
+
+
