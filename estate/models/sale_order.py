@@ -3,16 +3,24 @@ from odoo.exceptions import ValidationError
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
-
-     @api.constrains('partner_id', 'order_line')
     def check_max_amount(self):
-      for order in self:
-        if order.partner_id.max_amount > 0:
-          total_amount = sum(line.price_total for line in order.order_line)
-          if total_amount > order.partner_id.max_amount:
-            raise ValidationError(_("The total amount of this sale order exceeds the maximum allowed for the partner."))
+        for order in self:
+            max_amount = order.partner_id.max_amount
+            if max_amount:
+                total_amount = sum(line.price_total for line in order.order_line)
+                if total_amount > max_amount:
+                    raise ValidationError(_("The total amount of this sale order exceeds the maximum allowed for the partner."))
 
 
+def create(self, vals):
+    order = super().create(vals)
+    order.check_max_amount()
+    return order
+
+def write(self, vals):
+    res = super().write(vals)
+    self.check_max_amount()
+    return res
 
 def action_confirm(self):
     res = super(SaleOrder, self).action_confirm()
