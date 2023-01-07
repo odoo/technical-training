@@ -11,6 +11,8 @@ class SaleOrder(models.Model):
                 if total_amount > max_amount:
                     raise ValidationError(_("The total amount of this sale order exceeds the maximum allowed for the partner."))
 
+# 56
+
 
 def create(self, vals):
     order = super().create(vals)
