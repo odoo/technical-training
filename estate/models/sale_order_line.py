@@ -5,8 +5,8 @@ class SaleOrderLine(models.Model):
     training_date = fields.Char(string="Training Date")
     employee_id = fields.Many2one('hr.employee', string="Employee")
 
-    
-# method that allows to have an approval flow with different amounts depending on the partner and different managers levels.     
+
+# This function takes a partner and an amount as inputs, and returns an integer value representing the required approval level for the sale. The value is determined by the amount of the sale, with higher amounts requiring higher approval levels.
 def get_approval_level(partner, amount):
   if amount < 500:
     return 0 # no approval needed
@@ -17,7 +17,7 @@ def get_approval_level(partner, amount):
   else:
     return 3 # level 3 and above can approve
 
-#define different managers levels
+#This function takes a manager level as an input and returns a string representing the group that the manager belongs to, based on their level.
 def get_manager_group(manager_level):
   if manager_level == 0:
     return "no approval privileges"
@@ -28,6 +28,8 @@ def get_manager_group(manager_level):
   else:
     return "manager level 3 and above"
 
+
+#This function takes a partner, an amount, and a manager level as inputs, and uses the get_approval_level() and get_manager_group() functions to determine whether the sale can be confirmed by the manager. If the sale can be confirmed, the function returns True, otherwise it returns False
 def can_confirm_sale_order(partner, amount, manager_level):
   required_approval_level = get_approval_level(partner, amount)
   manager_group = get_manager_group(manager_level)
