@@ -6,6 +6,7 @@ class SaleOrderLine(models.Model):
     employee_id = fields.Many2one('hr.employee', string="Employee")
 
     
+# method that allows to have an approval flow with different amounts depending on the partner and different managers levels.     
 def get_approval_level(partner, amount):
   if amount < 500:
     return 0 # no approval needed
@@ -16,6 +17,7 @@ def get_approval_level(partner, amount):
   else:
     return 3 # level 3 and above can approve
 
+#define different managers levels
 def get_manager_group(manager_level):
   if manager_level == 0:
     return "no approval privileges"
