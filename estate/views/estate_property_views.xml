@@ -27,34 +27,53 @@
                 <sheet>
                     <group>
                         <group>
+                            <h1 class="mb32">
                             <field name="name"/>
-                            <field name="description"/>
+                            </h1>
+                            <div>
+                                <field name="description"/>
+                            </div>
                         </group>
                         <group>
                             <div>TEST ...</div>
                         </group>
                         <notebook>
                             <page string="Base">
-                                <label for="postcode"/>
-                                <field name="postcode"/>
-                                <label for="date_availability"/>
-                                <field name="date_availability"/>
-                                <field name="bedrooms"/>
-                                <field name="living_area"/>
-                                <field name="facades"/>
-                                <field name="garage"/>
-                                <field name="garden"/>
-                                <field name="garden_area"/>
-                                <field name="garden_orientation"/>
+                                <group>
+                                    <label for="postcode"/>
+                                    <field name="postcode"/>
+                                    <label for="date_availability"/>
+                                    <field name="date_availability"/>
+                                    <label for="bedrooms"/>
+                                    <field name="bedrooms"/>
+                                    <label for="living_area"/>
+                                    <field name="living_area"/>
+                                </group>
+                                <group>
+                                    <label for="facades"/>
+                                    <field name="facades"/>
+                                    <label for="garage"/>
+                                    <field name="garage"/>
+                                    <label for="garden"/>
+                                    <field name="garden"/>
+                                    <label for="garden_area"/>
+                                    <field name="garden_area"/>
+                                    <label for="garden_orientation"/>
+                                    <field name="garden_orientation"/>
+                                </group>
                             </page>
                             <page string="Price">
+                                <label for="expected_price"/>
                                 <field name="expected_price"/>
+                                <label for="selling_price"/>
                                 <field name="selling_price"/>
                             </page>
                         </notebook>
                         <group>
+                            <label for="state"/>
                             <field name="state" invisible="0"/>
-                            <field name="active" invisible="1"/>
+                            <label for="active"/>
+                            <field name="active" invisible="0"/>
                         </group>
                     </group>
                 </sheet>
