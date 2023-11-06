@@ -27,12 +27,12 @@
                 <sheet>
                     <group>
                         <group>
+                            <label for="name"/>
                             <h1 class="mb32">
                                 <field name="name" class="mb16"/>
                             </h1>
                         </group>
                         <group>
-                            <label for="description"/>
                             <field name="description"/>
                         </group>
                         <notebook>
