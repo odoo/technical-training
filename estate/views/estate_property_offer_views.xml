@@ -7,7 +7,7 @@
 
         <record id="estate_property_offer_view_tree" model="ir.ui.view">
         <field name="name">estate.property.offer</field>
-        <field name="model">estate.property</field>
+        <field name="model">estate.property.offer</field>
         <field name="arch" type="xml">
             <tree string="Estate Property Offer">
                 <field name="name"/>
