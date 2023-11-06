@@ -4,4 +4,9 @@
         <field name="res_model">estate.property</field>
         <field name="view_mode">tree,form</field>
     </record>
+    <tree string="Tests">
+        <field name="name"/>
+        <field name="description"/>
+        <field name="postcode"/>
+    </tree>
 </odoo>
