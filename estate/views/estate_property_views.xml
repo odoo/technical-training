@@ -56,10 +56,10 @@
                                 </group>
                             </page>
                             <page string="Price">
-                                <label for="expected_price"/>
-                                <field name="expected_price"/>
-                                <label for="selling_price"/>
-                                <field name="selling_price"/>
+                                <group>
+                                    <field name="expected_price"/>
+                                    <field name="selling_price"/>
+                                </group>
                             </page>
                             <page string="Other Info">
                                 <group>
