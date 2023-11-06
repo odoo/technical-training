@@ -5,6 +5,7 @@ class EstatePropertyOffer(models.Model):
     _name = "estate.property.offer"
     _description = "Estate Property Offer"
 
+    name = fields.Char()
     price = fields.Float()
     status = fields.Selection(
         string='Type',
