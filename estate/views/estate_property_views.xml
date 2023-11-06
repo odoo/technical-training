@@ -31,7 +31,6 @@
                             <h1 class="mb32">
                                 <field name="name" class="mb16"/>
                             </h1>
-                            <label for="property_type_id"/>
                             <field name="property_type_id" />
                         </group>
                         <group>
