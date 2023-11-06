@@ -61,8 +61,10 @@
                             </page>
                         </notebook>
                         <group>
-                            <field name="state" invisible="0" class="mt5" />
-                            <field name="active" invisible="0"/>
+                            <div class="mt10">
+                                <field name="state" invisible="0" />
+                                <field name="active" invisible="0"/>
+                            </div>
                         </group>
                     </group>
                 </sheet>
