@@ -61,10 +61,10 @@
                             </page>
                             <page string="Other Info">
                                 <group>
-                                    <label for="seller"/>
-                                    <field name="seller"/>
-                                    <label for="buyer"/>
-                                    <field name="buyer"/>
+                                    <label for="seller_id"/>
+                                    <field name="seller_id"/>
+                                    <label for="buyer_id"/>
+                                    <field name="buyer_id"/>
                                 </group>
                             </page>
                         </notebook>
