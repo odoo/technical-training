@@ -32,6 +32,7 @@
                                 <field name="name" class="mb16"/>
                             </h1>
                             <field name="property_type_id" />
+                            <field name="tag_ids" widget="many2many_tags"/>
                         </group>
                         <group>
                             <field name="description"/>

@@ -2,7 +2,7 @@ from odoo import fields, models
 
 
 class EstatePropertyType(models.Model):
-    _name = "estate.property.type"
-    _description = "Estate Property Type"
+    _name = "estate.property.tag"
+    _description = "Estate Property Tag"
 
     name = fields.Char()
