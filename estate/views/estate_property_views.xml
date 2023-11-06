@@ -9,7 +9,7 @@
         <field name="name">estate.property.tree</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <tree string="Tests">
+            <tree string="Estate Property List">
                 <field name="name"/>
                 <field name="description"/>
                 <field name="postcode"/>
