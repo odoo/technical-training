@@ -69,12 +69,10 @@
                             </page>
                         </notebook>
                         <group>
-                            <div class="mt10">
-                                <label for="state" />
-                                <field name="state" invisible="0" />
-                                <label for="active" />
-                                <field name="active" invisible="0"/>
-                            </div>
+                            <label for="state" />
+                            <field name="state" invisible="0" />
+                            <label for="active" />
+                            <field name="active" invisible="0"/>
                         </group>
                     </group>
                 </sheet>
