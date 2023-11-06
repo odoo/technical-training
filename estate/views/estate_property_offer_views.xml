@@ -1,7 +1,19 @@
 <odoo>
-    <record id="estate_property_type_action" model="ir.actions.act_window">
-        <field name="name">Estate Property Types</field>
-        <field name="res_model">estate.property.type</field>
+    <record id="estate_property_offer_action" model="ir.actions.act_window">
+        <field name="name">Estate Property Offer</field>
+        <field name="res_model">estate.property.offer</field>
         <field name="view_mode">tree,form</field>
+    </record>
+
+        <record id="estate_property_offer_view_tree" model="ir.ui.view">
+        <field name="name">estate.property.offer</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <tree string="Estate Property Offer">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="status"/>
+            </tree>
+        </field>
     </record>
 </odoo>
