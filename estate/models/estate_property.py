@@ -24,6 +24,6 @@ class EstateProperty(models.Model):
         help="")
     active = fields.Boolean()
     state = fields.Selection(
-        string='Type',
+        string='State',
         selection=[('new', 'New'), ('offer_received', 'Offer Received'), ('offer_accepted', 'Offer Accepted'), ('sold', 'Sold'), ('canceled', 'Canceled') ],
         help="")
