@@ -33,3 +33,7 @@ class EstateProperty(models.Model):
     tag_ids = fields.Many2many("estate.property.tag", string="Tags")
     offer_ids = fields.Many2one("estate.property.offer", string="Offer")
     partner_id = fields.Many2one("res.partner", string="Partner")
+    status = fields.Selection(
+        string='Type',
+        selection=[('accepted', 'Accepted'), ('refused', 'Refused')],
+        help="")
