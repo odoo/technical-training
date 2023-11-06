@@ -28,3 +28,5 @@ class EstateProperty(models.Model):
         help="")
     active = fields.Boolean()
     property_type_id = fields.Many2one("estate.property.type")
+    seller_id = fields.Many2one("res.partner", string="Partner")
+    buyer_id = fields.Many2one("res.partner", string="Partner")

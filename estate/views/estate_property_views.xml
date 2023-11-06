@@ -59,6 +59,14 @@
                                 <label for="selling_price"/>
                                 <field name="selling_price"/>
                             </page>
+                            <page string="Other Info">
+                                <group>
+                                    <label for="seller"/>
+                                    <field name="seller"/>
+                                    <label for="buyer"/>
+                                    <field name="buyer"/>
+                                </group>
+                            </page>
                         </notebook>
                         <group>
                             <div class="mt10">
