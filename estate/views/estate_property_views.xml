@@ -28,14 +28,15 @@
                     <group>
                         <group>
                             <h1 class="mb32">
-                            <field name="name"/>
+                                <label for="name"/>
+                                <field name="name"/>
                             </h1>
-                            <div>
-                                <field name="description"/>
-                            </div>
                         </group>
                         <group>
-                            <div>TEST ...</div>
+                            <div>
+                                <label for="description"/>
+                                <field name="description"/>
+                            </div>
                         </group>
                         <notebook>
                             <page string="Base">
