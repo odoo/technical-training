@@ -24,8 +24,7 @@
             </form>
         </field>
     </record>
-
-
+    
     <record id="action_estate_property_offer" model="ir.actions.act_window">
         <field name="name">Property Offers</field>
         <field name="res_model">estate.property.offer</field>

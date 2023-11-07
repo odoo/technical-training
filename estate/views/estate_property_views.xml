@@ -13,7 +13,6 @@
                 <field name="name"/>
                 <field name="description"/>
                 <field name="postcode"/>
-                <field name="state"/>
                 <field name="expected_price"/>
                 <field name="selling_price"/>
             </tree>
