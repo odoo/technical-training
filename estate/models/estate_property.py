@@ -49,3 +49,11 @@ class EstateProperty(models.Model):
         else:
             self.garden_area = 0
             self.garden_orientation = ""
+
+    def set_status_cancel(self):
+        if self.state != "sold":
+            self.state = "canceled"
+
+    def set_status_sold(self):
+        if self.state != "canceled":
+            self.state = "sold"

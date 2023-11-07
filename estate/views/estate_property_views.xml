@@ -23,7 +23,11 @@
         <field name="name">estate.property.tree</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <form string="ESTATE">
+            <form string="Estate">
+                <header>
+                    <button name="set_status_cancel" type="object" string="Cancel"/>
+                    <button name="set_status_sold" type="object" string="Sold"/>
+                </header>
                 <sheet>
                     <group>
                         <group>
@@ -37,6 +41,10 @@
                         </group>
                         <group>
                             <field name="description"/>
+
+                            <field name="expected_price"/>
+                            <field name="selling_price"/>
+
                         </group>
                         <notebook>
                             <page string="Base">
@@ -54,12 +62,6 @@
                                         <field name="garden_area"/>
                                         <field name="garden_orientation"/>
                                     </group>
-                                </group>
-                            </page>
-                            <page string="Price">
-                                <group>
-                                    <field name="expected_price"/>
-                                    <field name="selling_price"/>
                                 </group>
                             </page>
                             <page string="Other Info">
