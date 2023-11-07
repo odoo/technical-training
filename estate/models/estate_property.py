@@ -31,10 +31,16 @@ class EstateProperty(models.Model):
     seller_id = fields.Many2one("res.partner", string="Seller")
     buyer_id = fields.Many2one("res.partner", string="Buyer")
     tag_ids = fields.Many2many("estate.property.tag", string="Tags")
+    # the name of 2nd parameter "property_id" is the var string of variable used in offer model
     offer_ids = fields.One2many("estate.property.offer", "property_id", string="Offers")
     # non stored -> not searchable without search method, search="_search_totalarea"
     # store=True
     totalarea = fields.Float(compute="_compute_totalarea")
+
+    _sql_constraints = [
+        ('check_expected_price', 'CHECK(expected_price >= 0)', 'The Expected Price should be positive.'),
+        ('check_selling_price', 'CHECK(selling_price >= 0)', 'The Selling Price should be positive.')
+    ]
 
     @api.depends("living_area", "garden_area")
     def _compute_totalarea(self):
