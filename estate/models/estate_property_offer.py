@@ -43,6 +43,7 @@ class EstatePropertyOffer(models.Model):
 
     @api.onchange("status")
     def _onchange_status(self):
-        for record in self:
-            self.selling_price = record.price
-            self.seller_id = record.partner_id
+        if self.status:
+            for record in self:
+                self.selling_price = record.price
+                self.seller_id = record.partner_id
