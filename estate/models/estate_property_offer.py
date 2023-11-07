@@ -26,10 +26,3 @@ class EstatePropertyOffer(models.Model):
         for record in self:
             record.date_deadline = fields.Date.today() + relativedelta(months=+(record.validity))
 
-    # OR DO INVERSE IN ONE FUNCTION
-    # def _compute_date_deadline(self):
-    #     for record in self:
-    #         if record.create_date:
-    #             record.date_deadline = record.create_date + relativedelta(months=+(record.validity))
-    #         else:
-    #             record.date_deadline = fields.Date.today() + relativedelta(months=+(record.validity))
