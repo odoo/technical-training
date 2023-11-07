@@ -13,6 +13,7 @@
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="validity"/>
+                <field name="price"/>
                 <field name="date_deadline"/>
                 <field name="property_type_id" invisible="1"/> <!-- make the field invisible, it do not need show to the user  -->
                 <button name="estate_property_offer_accepted_action" string="Accepted" type="object" icon="fa-check"/>
