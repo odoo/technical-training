@@ -34,12 +34,15 @@ class EstatePropertyOffer(models.Model):
                 record.validity = (record.date_deadline - fields.Date.today()).days
 
     def estate_property_offer_accepted_action(self):
-        self.status = "accepted"
+        for record in self:
+            record.status = "accepted"
 
     def estate_property_refused_accept_action(self):
-        self.status = "refused"
+        for record in self:
+            record.status = "refused"
 
     @api.onchange("status")
     def _onchange_status(self):
-        self.selling_price = self.price
-        self.seller_id = self.partner_id
+        for record in self:
+            self.selling_price = record.price
+            self.seller_id = record.partner_id
