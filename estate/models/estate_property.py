@@ -31,7 +31,7 @@ class EstateProperty(models.Model):
     seller_id = fields.Many2one("res.partner", string="Seller")
     buyer_id = fields.Many2one("res.partner", string="Buyer")
     tag_ids = fields.Many2many("estate.property.tag", string="Tags")
-    offer_ids = fields.One2many("estate.property.offer", "partner_id", string="Offers")
+    offer_ids = fields.One2many("estate.property.offer", "property_id", string="Offers")
     # non stored -> not searchable without search method, search="_search_totalarea"
     # store=True
     totalarea = fields.Float(compute="_compute_totalarea")
