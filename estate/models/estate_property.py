@@ -32,6 +32,8 @@ class EstateProperty(models.Model):
     buyer_id = fields.Many2one("res.partner", string="Buyer")
     tag_ids = fields.Many2many("estate.property.tag", string="Tags")
     offer_ids = fields.One2many("estate.property.offer", "partner_id", string="Offers")
+    # non stored -> not searchable without search method, search="_search_totalarea"
+    # store=True
     totalarea = fields.Float(compute="_compute_totalarea")
 
     @api.depends("living_area", "garden_area")
