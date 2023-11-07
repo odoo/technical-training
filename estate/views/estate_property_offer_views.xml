@@ -15,7 +15,7 @@
                 <field name="validity"/>
                 <field name="date_deadline"/>
                 <button name="estate_property_offer_accepted_action" string="Accepted" states="accepted" type="object" icon="fa-check"/>
-                <button name="estate_property_refused_accept_action" string="Refused" states="refused" type="object" icon="fa-level-down"/>
+                <button name="estate_property_offer_refused_action" string="Refused" states="refused" type="object" icon="fa-level-down"/>
             </tree>
         </field>
     </record>
