@@ -16,13 +16,13 @@ class EstatePropertyOffer(models.Model):
     property_id = fields.Many2one("estate.property", string="Property")
     validity = fields.Integer(default=7)
     date_deadline = fields.Date(compute="_compute_date_deadline", inverse="_inverse_date_deadline")
-    
+
     @api.depends("validity")
     def _compute_date_deadline(self):
         for record in self:
             record.date_deadline = record.create_date + relativedelta(months=+(record.validity))
 
-    def _inverse_total(self):
+    def _inverse_date_deadline(self):
         for record in self:
             record.date_deadline = fields.Date.today() + relativedelta(months=+(record.validity))
 
