@@ -40,3 +40,12 @@ class EstateProperty(models.Model):
     def _compute_totalarea(self):
         for record in self:
             record.totalarea = record.living_area + record.garden_area
+
+    @api.onchange("garden")
+    def _onchange_partner_id(self):
+        if self.garden == 1:
+            self.garden_area = 10
+            self.garden_orientation = "North"
+        else:
+            self.garden_area = 0
+            self.garden_orientation = ""
