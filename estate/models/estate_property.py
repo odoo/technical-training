@@ -1,8 +1,7 @@
 from dateutil.relativedelta import relativedelta
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
-from odoo.tools.float_utils import float_compare
-
+from odoo.tools.float_utils import float_compare, float_is_zero
 
 class EstateProperty(models.Model):
     _name = "estate.property"
@@ -69,6 +68,10 @@ class EstateProperty(models.Model):
     @api.constrains('expected_price', 'selling_price')
     def _check_selling_price(self):
         for record in self:
+            # Skip the check if the selling price is zero (no offer validated yet)
+            if float_is_zero(record.selling_price, precision_digits=2):
+                continue
+
             # Calculate 90% of the expected price
             price_limit = record.expected_price * 0.9
 
