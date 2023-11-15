@@ -15,7 +15,8 @@
                 <field name="validity"/>
                 <field name="price"/>
                 <field name="date_deadline"/>
-                <field name="property_type_id" invisible="1"/> <!-- make the field invisible, it do not need show to the user  -->
+                <field name="status"/>
+                <!-- <field name="property_type_id" invisible="1"/> <!- - make the field invisible, it do not need show to the user. leave it as learning stuff.  -->
                 <button name="estate_property_offer_accepted_action" string="Accepted" type="object" icon="fa-check"/>
                 <button name="estate_property_offer_refused_action" string="Refused" type="object" icon="fa-level-down"/>
             </tree>
