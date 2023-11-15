@@ -54,13 +54,13 @@ class EstatePropertyOffer(models.Model):
         if property_id:
             property_obj = self.env['estate.property'].browse(property_id)
 
-            # Check if there is any existing offer with a higher amount
+            # Check if there is any existing offer with a higher price
             existing_offers = self.env['estate.property.offer'].search([
                 ('property_id', '=', property_id),
-                ('amount', '>', vals.get('amount', 0))
+                ('price', '>', vals.get('price', 0))
             ])
             if existing_offers:
-                raise ValidationError("You cannot create an offer with a lower amount than existing offers.")
+                raise ValidationError("You cannot create an offer with a lower price than existing offers.")
 
             # Set the property state to 'Offer Received'
             property_obj.state = 'offer_received'
