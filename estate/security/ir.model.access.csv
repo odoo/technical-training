@@ -1,0 +1,12 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+1,Real Estate Base Access,model_estate_property,base.group_user,1,0,0,0
+2,Real Estate Base Access,model_estate_property_type,base.group_user,1,0,0,0
+3,Real Estate Base Access,model_estate_property_tag,base.group_user,1,0,0,0
+4,Real Estate Base Access,model_estate_property_offer,base.group_user,1,1,1,1
+5,Real Estate Manager Access,model_estate_property,base.group_system,1,1,1,1
+6,Real Estate Manager Access,model_estate_property_type,base.group_system,1,1,1,1
+7,Real Estate Manager Access,model_estate_property_tag,base.group_system,1,1,1,1
+8,Agent Access for Properties,model_estate_property,base.group_system,1,1,1,0
+9,Agent Access for Types and Tags,model_estate_property_type,base.group_system,1,0,0,0
+10,Agent Access for Tags,model_estate_property_tag,base.group_system,1,0,0,0
+11,Prevent Delete for Properties,model_estate_property,,0,0,0,0
