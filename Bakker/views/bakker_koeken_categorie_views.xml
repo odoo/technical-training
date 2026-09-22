@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- list view voor categorieën -->
+        <record id="view_bakker_koeken_categorie_list" model="ir.ui.view">
+            <field name="name">bakker.koeken.categorie.list</field>
+            <field name="model">bakker_koeken_categorie</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="beschrijving"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form view voor categorieën -->
+        <record id="view_bakker_koeken_categorie_form" model="ir.ui.view">
+            <field name="name">bakker.koeken.categorie.form</field>
+            <field name="model">bakker_koeken_categorie</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="beschrijving"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action voor categorieën -->
+        <record id="action_bakker_koeken_categorie" model="ir.actions.act_window">
+            <field name="name">Koeken Categorieën</field>
+            <field name="res_model">bakker_koeken_categorie</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Maak uw eerste koeken categorie aan!
+                </p>
+                <p>
+                    Categorieën helpen bij het organiseren van uw koeken.
+                </p>
+            </field>
+        </record>
+
+        <!-- Menu item voor categorieën -->
+        <menuitem id="menu_bakker_koeken_categorie"
+                  name="Categorieën"
+                  action="action_bakker_koeken_categorie"
+                  sequence="20"/>
+    </data>
+</odoo>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- search -->
+    <record id="view_bakker_koeken_search" model="ir.ui.view">
+        <field name="name">bakker.koeken.search</field>
+        <field name="model">bakker_koeken</field>
+        <field name="arch" type="xml">
+            <search string="Bakker Koeken">
+                <field name="name_koek" />
+                <field name="categorie_koek_id" />
+                <filter string="Chocolade" name="filter_chocolade"
+                    domain="[('categorie_koek_id.name', 'ilike', 'chocolade')]" />
+                <filter string="Fruit" name="filter_fruit"
+                    domain="[('categorie_koek_id.name', 'ilike', 'fruit')]" />
+                <filter string="Noten" name="filter_noten"
+                    domain="[('categorie_koek_id.name', 'ilike', 'noten')]" />
+                <filter string="Speculaas" name="filter_speculaas"
+                    domain="[('categorie_koek_id.name', 'ilike', 'speculaas')]" />
+                <filter string="Pudding" name="filter_pudding"
+                    domain="[('pudding_koek', '=', True)]" />
+                <filter string="Bijna op" name="filter_voorraad_laag"
+                    domain="[('voorraad_koek', '&lt;=', 10)]" />
+                <filter string="vervald" name="filter_vervaldatum"
+                    domain="[('vervaldatum_koek', '&lt;', context_today())]" />
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="bakker_koeken_action" model="ir.actions.act_window">
+        <field name="name">Bakker Koeken</field>
+        <field name="res_model">bakker_koeken</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="view_bakker_koeken_search" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create the first Bakker Koeken
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu items -->
+    <menuitem id="bakker_menu_root" name="Bakker" sequence="10">
+        <menuitem id="bakker_menu_koeken" name="Koeken" action="bakker_koeken_action" />
+    </menuitem>
+
+    <!-- Kanban view -->
+    <record id="view_bakker_koeken_kanban" model="ir.ui.view">
+        <field name="name">bakker.koeken.kanban</field>
+        <field name="model">bakker_koeken</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="categorie_koek_id" class="o_kanban_small_column">
+                <field name="id"/>
+                <field name="name_koek"/>
+                <field name="prijs_koek"/>
+                <field name="voorraad_koek"/>
+                <field name="vervaldatum_koek"/>
+                <field name="categorie_koek_id"/>
+                <field name="pudding_koek"/>
+                <field name="tags_ids"/>
+                <field name="totaal_verkocht"/>
+                <field name="totaal_omzet"/>
+                <field name="verkoop_count"/>
+                
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <!-- Header met naam en prijs -->
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name_koek"/>
+                                    </strong>
+                                    <div class="o_kanban_record_subtitle">
+                                        €<field name="prijs_koek"/>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_manage_button_section">
+                                    <a class="o_kanban_manage_toggle_button" href="#">
+                                        <i class="fa fa-ellipsis-v" role="img" aria-label="Manage" title="Manage"/>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Content -->
+                            <div class="o_kanban_record_body">
+                                <!-- Voorraad status -->
+                                <div class="mb-2">
+                                    <t t-if="record.voorraad_koek.raw_value &gt; 10">
+                                        <span class="badge badge-success">
+                                            📦 <field name="voorraad_koek"/> op voorraad
+                                        </span>
+                                    </t>
+                                    <t t-elif="record.voorraad_koek.raw_value &gt; 0">
+                                        <span class="badge badge-warning">
+                                            ⚠️ <field name="voorraad_koek"/> resterend
+                                        </span>
+                                    </t>
+                                    <t t-else="">
+                                        <span class="badge badge-danger">
+                                            ❌ Uitverkocht
+                                        </span>
+                                    </t>
+                                </div>
+
+                                <!-- Pudding indicator -->
+                                <div t-if="record.pudding_koek.raw_value" class="mb-2">
+                                    <span class="badge badge-info">🍮 Pudding</span>
+                                </div>
+
+                                <!-- Tags -->
+                                <div t-if="record.tags_ids.raw_value.length" class="mb-2">
+                                    <field name="tags_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                </div>
+
+                                <!-- Vervaldatum -->
+                                <div class="mb-2">
+                                    <small class="text-muted">
+                                        Vervalt: <field name="vervaldatum_koek"/>
+                                    </small>
+                                </div>
+
+                                <!-- Verkoop statistieken -->
+                                <div class="row">
+                                    <div class="col-6">
+                                        <small class="text-muted">
+                                            💰 Verkocht: <field name="totaal_verkocht"/>
+                                        </small>
+                                    </div>
+                                    <div class="col-6">
+                                        <small class="text-muted">
+                                            💵 €<field name="totaal_omzet"/>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Footer met acties -->
+                            <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left">
+                                    <div class="o_kanban_inline_block">
+                                        <small class="text-muted">
+                                            📊 <field name="verkoop_count"/> verkopen
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <t t-if="record.voorraad_koek.raw_value &gt; 0">
+                                        <button name="action_snelle_verkoop" type="object" 
+                                                class="btn btn-sm btn-primary">
+                                            ⚡ Verkoop
+                                        </button>
+                                    </t>
+                                </div>
+                            </div>
+
+                            <!-- Management dropdown -->
+                            <div class="o_kanban_manage_button_section o_kanban_manage_view">
+                                <div class="o_kanban_manage_view_section">
+                                    <h5 role="menuitem" class="o_kanban_manage_title">
+                                        <span>Acties</span>
+                                    </h5>
+                                    <div role="menuitem">
+                                        <a name="action_verkoop_koek" type="object">💰 Verkoop Koek</a>
+                                    </div>
+                                    <div role="menuitem">
+                                        <a name="action_voorraad_bijvullen" type="object">📦 Voorraad Bijvullen</a>
+                                    </div>
+                                    <div role="menuitem">
+                                        <a name="action_verse_batch" type="object">🆕 Verse Batch</a>
+                                    </div>
+                                    <div role="menuitem">
+                                        <a name="action_kwaliteitscontrole" type="object">✅ Kwaliteitscontrole</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- List view -->
+    <record id="view_bakker_koeken_list" model="ir.ui.view">
+        <field name="name">bakker.koeken.list</field>
+        <field name="model">bakker_koeken</field>
+        <field name="arch" type="xml">
+            <list string="Bakker Koeken">
+                <field name="name_koek" />
+                <field name="prijs_koek" />
+                <field name="voorraad_koek" />
+                <field name="aankoopdatum_koek" />
+                <field name="vervaldatum_koek" />
+                <field name="categorie_koek_id" />
+                <field name="pudding_koek" />
+                <field name="totaal_inventarisatie" />
+                <field name="tags_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
+                <field name="totaal_verkocht"/>
+                <field name="totaal_omzet"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form view -->
+    <record id="view_bakker_koeken_form" model="ir.ui.view">
+        <field name="name">bakker.koeken.form</field>
+        <field name="model">bakker_koeken</field>
+        <field name="arch" type="xml">
+            <form string="Bakker Koeken">
+                <header>
+                    <!-- Voorraad buttons -->
+                    <button name="action_voorraad_bijvullen" type="object"
+                        string="📦 Voorraad Bijvullen" class="btn-success" />
+                    <button name="action_verse_batch" type="object"
+                        string="🆕 Verse Batch" class="btn-primary" />
+                    <button name="action_uitverkocht" type="object"
+                        string="❌ Uitverkocht" class="btn-danger"
+                        confirm="Weet je zeker dat je dit als uitverkocht wilt markeren?" />
+                    
+                    <!-- Verkoop buttons -->
+                    <button name="action_verkoop_koek" type="object" 
+                        string="💰 Verkoop Koek" class="btn-warning" invisible="voorraad_koek &lt;= 0" />
+                    <button name="action_snelle_verkoop" type="object" 
+                        string="⚡ Snelle Verkoop" class="btn-info" invisible="voorraad_koek &lt;= 0"/>
+                    
+                    <!-- Andere buttons -->
+                    <button name="action_mark_populair" type="object"
+                        string="⭐ Mark Populair" class="btn-secondary" />
+                    <button name="action_kwaliteitscontrole" type="object"
+                        string="✅ Kwaliteitscontrole" class="btn-light" />
+                    <button name="action_view_low_stock" type="object" 
+                        string="📊 Lage Voorraad" class="btn-warning"/>
+                    <button name="action_verkoop_rapport" type="object" 
+                        string="📈 Verkoop Rapport" class="btn-info"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object" name="action_view_verkopen" 
+                                class="oe_stat_button" icon="fa-money">
+                            <field name="verkoop_count" widget="statinfo" string="Verkopen"/>
+                        </button>
+                    </div>
+                    
+                    <group>
+                        <field name="name_koek" />
+                        <field name="prijs_koek" />
+                        <field name="voorraad_koek" />
+                        <field name="aankoopdatum_koek" />
+                        <field name="vervaldatum_koek" />
+                        <field name="categorie_koek_id" />
+                        <field name="pudding_koek" />
+                        <field name="totaal_inventarisatie" />
+                        <field name="tags_ids" widget="many2many_tags"
+                            options="{'color_field': 'color'}" />
+                    </group>
+                    
+                    <!-- Nieuwe verkoop statistieken -->
+                    <group string="Verkoop Statistieken" col="4">
+                        <field name="totaal_verkocht"/>
+                        <field name="totaal_omzet"/>
+                        <field name="verkoop_count"/>
+                    </group>
+                    
+                    <!-- Verkoop historie -->
+                    <notebook>
+                        <page string="Verkoop Historie" name="verkoop_historie">
+                            <field name="verkoop_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="verkoop_datum"/>
+                                    <field name="partner_id"/>
+                                    <field name="klant_email"/>
+                                    <field name="aantal"/>
+                                    <field name="totaal_bedrag"/>
+                                    <field name="status"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

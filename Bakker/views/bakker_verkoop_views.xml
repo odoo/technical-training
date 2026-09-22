@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Verkoop List View -->
+        <record id="view_bakker_verkoop_list" model="ir.ui.view">
+            <field name="name">bakker.verkoop.list</field>
+            <field name="model">bakker_verkoop</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="verkoop_datum"/>
+                    <field name="koek_id"/>
+                    <field name="partner_id"/>
+                    <field name="klant_email"/>
+                    <field name="klant_telefoon"/>
+                    <field name="aantal"/>
+                    <field name="totaal_bedrag"/>
+                    <field name="betaal_methode"/>
+                    <field name="status" decoration-success="status == 'betaald'" decoration-info="status == 'bevestigd'" decoration-muted="status == 'geannuleerd'"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Verkoop Form View -->
+        <record id="view_bakker_verkoop_form" model="ir.ui.view">
+            <field name="name">bakker.verkoop.form</field>
+            <field name="model">bakker_verkoop</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_bevestig_verkoop" type="object" string="Bevestig Verkoop" 
+                                class="btn-primary" invisible="status != 'concept'"/>
+                        <button name="action_markeer_betaald" type="object" string="Markeer Betaald" 
+                                class="btn-success" invisible="status != 'bevestigd'"/>
+                        <button name="action_configure_print" type="object" string="🎨 Configureer Print" 
+                                class="btn-warning" invisible="status == 'concept'"/>
+                        <button name="action_print_with_layout" type="object" string="📄 Print Factuur" 
+                                class="btn-info" invisible="status == 'concept'"/>
+                        <button name="action_annuleer" type="object" string="Annuleer" 
+                                class="btn-danger" invisible="status == 'betaald'"
+                                confirm="Weet je zeker dat je deze verkoop wilt annuleren?"/>
+                        <field name="status" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="koek_id"/>
+                                <field name="aantal"/>
+                                <field name="prijs_per_stuk"/>
+                                <field name="korting_percentage"/>
+                            </group>
+                            <group>
+                                <field name="partner_id"/>
+                                <field name="klant_email"/>
+                                <field name="klant_telefoon"/>
+                                <field name="verkoop_datum"/>
+                                <field name="betaal_methode"/>
+                            </group>
+                        </group>
+                        <group string="Totalen" col="4">
+                            <field name="subtotaal"/>
+                            <field name="korting_bedrag"/>
+                            <field name="totaal_bedrag"/>
+                        </group>
+                        <group>
+                            <field name="opmerkingen"/>
+                        </group>
+                    </sheet>
+                    <!-- Voeg chatter toe voor email communicatie -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Verkoop Wizard Form View -->
+        <record id="view_bakker_verkoop_wizard_form" model="ir.ui.view">
+            <field name="name">bakker.verkoop.wizard.form</field>
+            <field name="model">bakker.verkoop.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Koek Verkopen">
+                    <group>
+                        <group>
+                            <field name="koek_id" readonly="1"/>
+                            <field name="beschikbare_voorraad" readonly="1"/>
+                            <field name="aantal"/>
+                            <field name="prijs_per_stuk"/>
+                            <field name="korting_percentage"/>
+                            <field name="finale_prijs" readonly="1"/>
+                            <field name="totaal_bedrag" readonly="1"/>
+                        </group>
+                        <group>
+                            <label for="partner_id"/>
+                            <div class="o_row">
+                                <field name="partner_id" placeholder="Selecteer klant..." context="{'res_partner_search_mode': 'customer'}"/>
+                                <button name="action_create_new_customer" type="object" string="➕" title="Nieuwe klant aanmaken" class="btn btn-link"/>
+                            </div>
+                            <field name="klant_email"/>
+                            <field name="klant_telefoon"/>
+                            <field name="klant_adres"/>
+                            <field name="klant_stad"/>
+                            <field name="betaal_methode"/>
+                            <field name="direct_betaald"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_verkoop" type="object" string="💰 Verkoop!" class="btn-primary"/>
+                        <button string="Annuleer" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Factuur Wizard View -->
+        <record id="view_bakker_factuur_wizard_form" model="ir.ui.view">
+            <field name="name">bakker.factuur.wizard.form</field>
+            <field name="model">bakker.factuur.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Factuur Preview">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>📄 Factuur Preview</h1>
+                            <p>Bekijk de factuur voordat je download of print</p>
+                        </div>
+                        
+                        <group>
+                            <field name="verkoop_id" readonly="1"/>
+                            <field name="pdf_filename" readonly="1"/>
+                        </group>
+                        
+                        <!-- PDF Preview -->
+                        <div style="margin: 20px 0;">
+                            <div class="o_form_label">Factuur Preview:</div>
+                            <field name="pdf_data" widget="pdf_viewer" 
+                                   options="{'height': 600}" 
+                                   invisible="not pdf_data"/>
+                        </div>
+                        
+                        <field name="show_preview" invisible="1"/>
+                        <field name="pdf_data" invisible="1"/>
+                    </sheet>
+                    
+                    <footer>
+                        <button name="action_preview_factuur" type="object" 
+                                string="🔍 Genereer Preview" class="btn-primary"
+                                invisible="pdf_data"/>
+                        <button name="action_download_factuur" type="object" 
+                                string="💾 Download PDF" class="btn-success"
+                                invisible="not pdf_data"/>
+                        <button name="action_print_factuur" type="object" 
+                                string="🖨️ Print PDF" class="btn-info"
+                                invisible="not pdf_data"/>
+                        <button string="Sluiten" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Verkoop Action -->
+        <record id="action_bakker_verkoop" model="ir.actions.act_window">
+            <field name="name">Verkopen</field>
+            <field name="res_model">bakker_verkoop</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Menu Item -->
+        <menuitem id="menu_bakker_verkoop" 
+                  name="Verkopen" 
+                  parent="bakker_menu_root" 
+                  action="action_bakker_verkoop" 
+                  sequence="20"/>
+    </data>
+</odoo>

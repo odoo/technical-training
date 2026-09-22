@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Tags voor koeken -->
+        <record id="tag_glutenvrij" model="bakker_koeken_tags">
+            <field name="name">Glutenvrij</field>
+            <field name="color">1</field>
+        </record>
+
+        <record id="tag_suikervrij" model="bakker_koeken_tags">
+            <field name="name">Suikervrij</field>
+            <field name="color">2</field>
+        </record>
+
+        <record id="tag_vegan" model="bakker_koeken_tags">
+            <field name="name">Vegan</field>
+            <field name="color">3</field>
+        </record>
+
+        <record id="tag_biologisch" model="bakker_koeken_tags">
+            <field name="name">Biologisch</field>
+            <field name="color">4</field>
+        </record>
+
+        <record id="tag_lactosevrij" model="bakker_koeken_tags">
+            <field name="name">Lactosevrij</field>
+            <field name="color">5</field>
+        </record>
+
+        <record id="tag_vers_gebakken" model="bakker_koeken_tags">
+            <field name="name">Vers</field>
+            <field name="color">6</field>
+        </record>
+
+        <record id="tag_huisgemaakt" model="bakker_koeken_tags">
+            <field name="name">Huisgemaakt</field>
+            <field name="color">7</field>
+        </record>
+
+        <record id="tag_premium" model="bakker_koeken_tags">
+            <field name="name">Premium</field>
+            <field name="color">8</field>
+        </record>
+
+        <record id="tag_seizoen" model="bakker_koeken_tags">
+            <field name="name">Seizoen</field>
+            <field name="color">9</field>
+        </record>
+
+        <record id="tag_populair" model="bakker_koeken_tags">
+            <field name="name">Populair</field>
+            <field name="color">10</field>
+        </record>
+
+        <record id="tag_krokant" model="bakker_koeken_tags">
+            <field name="name">Krokant</field>
+            <field name="color">11</field>
+        </record>
+
+        <record id="tag_zacht" model="bakker_koeken_tags">
+            <field name="name">Zacht</field>
+            <field name="color">0</field>
+        </record>
+        <record id="tag_vers" model="bakker_koeken_tags">
+            <field name="name">Vers</field>
+            <field name="color">6</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Chocolade koeken -->
+        <record id="koek_brownie" model="bakker_koeken">
+            <field name="name_koek">Chocolade Brownie</field>
+            <field name="prijs_koek">2.50</field>
+            <field name="voorraad_koek">25</field>
+            <field name="aankoopdatum_koek">2025-09-26</field>
+            <field name="categorie_koek_id" ref="categorie_chocolade"/>
+            <field name="pudding_koek">True</field>
+        </record>
+
+        <record id="koek_chocolate_chip" model="bakker_koeken">
+            <field name="name_koek">Chocolate Chip Cookie</field>
+            <field name="prijs_koek">1.75</field>
+            <field name="voorraad_koek">40</field>
+            <field name="aankoopdatum_koek">2025-09-28</field>
+            <field name="categorie_koek_id" ref="categorie_chocolade"/>
+            <field name="pudding_koek">False</field>
+        </record>
+
+        <!-- Fruit koeken -->
+        <record id="koek_appeltaart" model="bakker_koeken">
+            <field name="name_koek">Mini Appeltaart</field>
+            <field name="prijs_koek">3.25</field>
+            <field name="voorraad_koek">15</field>
+            <field name="aankoopdatum_koek">2025-09-24</field>
+            <field name="categorie_koek_id" ref="categorie_fruit"/>
+            <field name="pudding_koek">False</field>
+        </record>
+
+        <!-- Noten koeken -->
+        <record id="koek_walnoot" model="bakker_koeken">
+            <field name="name_koek">Walnotenkoek</field>
+            <field name="prijs_koek">2.95</field>
+            <field name="voorraad_koek">20</field>
+            <field name="aankoopdatum_koek">2025-09-30</field>
+            <field name="categorie_koek_id" ref="categorie_noten"/>
+            <field name="pudding_koek">False</field>
+        </record>
+
+        <!-- Speculaas koeken -->
+        <record id="koek_speculaas" model="bakker_koeken">
+            <field name="name_koek">Traditionele Speculaas</field>
+            <field name="prijs_koek">1.50</field>
+            <field name="voorraad_koek">50</field>
+            <field name="aankoopdatum_koek">2025-10-01</field>
+            <field name="categorie_koek_id" ref="categorie_speculaas"/>
+            <field name="pudding_koek">False</field>
+        </record>
+    </data>
+</odoo>

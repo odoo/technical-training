@@ -1,0 +1,6 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+bakker_koeken,access_bakker_koeken,model_bakker_koeken,base.group_user,1,1,1,1
+bakker_koeken_tags,access_bakker_koeken_tags,model_bakker_koeken_tags,base.group_user,1,1,1,1
+bakker_koeken_categorie,access_bakker_koeken_categorie,model_bakker_koeken_categorie,base.group_user,1,1,1,1
+bakker_verkoop,access_bakker_verkoop,model_bakker_verkoop,base.group_user,1,1,1,1
+bakker_verkoop_wizard,access_bakker_verkoop_wizard,model_bakker_verkoop_wizard,base.group_user,1,1,1,1

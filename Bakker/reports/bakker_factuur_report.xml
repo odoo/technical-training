@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- PDF Rapport voor Factuur -->
+        <record id="report_bakker_factuur" model="ir.actions.report">
+            <field name="name">Bakkerij Factuur</field>
+            <field name="model">bakker_verkoop</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">Bakker.report_bakker_factuur_document</field>
+            <field name="report_file">Bakker.report_bakker_factuur_document</field>
+            <field name="binding_model_id" ref="model_bakker_verkoop"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="base.paperformat_euro"/>
+            <field name="print_report_name">'Factuur_' + object.name</field>
+            <field name="attachment_use">False</field>
+            <field name="attachment">False</field>
+        </record>
+
+        <!-- PDF Template -->
+        <template id="report_bakker_factuur_document">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <!-- Header met bakkerij info -->
+                            <div class="row mb-4">
+                                <div class="col-6">
+                                    <h1 class="text-primary" style="font-size: 28px;">🍪 Bakkerij Factuur</h1>
+                                    <p class="text-muted">Vers gebakken, elke dag!</p>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <h2 class="text-primary">
+                                        <span t-field="doc.name"/>
+                                    </h2>
+                                    <p class="text-muted">
+                                        Datum: <span t-field="doc.verkoop_datum" t-options="{'widget': 'datetime', 'format': 'dd/MM/yyyy HH:mm'}"/>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Klant informatie -->
+                            <div class="row mb-4">
+                                <div class="col-6">
+                                    <h4 class="text-primary border-bottom pb-2">Factuur aan:</h4>
+                                    <p><strong><span t-field="doc.partner_id.name"/></strong></p>
+                                    <p t-if="doc.partner_id.street"><span t-field="doc.partner_id.street"/></p>
+                                    <p t-if="doc.partner_id.city">
+                                        <span t-field="doc.partner_id.zip"/> <span t-field="doc.partner_id.city"/>
+                                    </p>
+                                    <p t-if="doc.partner_id.country_id">
+                                        <span t-field="doc.partner_id.country_id.name"/>
+                                    </p>
+                                    <p t-if="doc.partner_id.email">
+                                        Email: <span t-field="doc.partner_id.email"/>
+                                    </p>
+                                    <p t-if="doc.partner_id.phone">
+                                        Tel: <span t-field="doc.partner_id.phone"/>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <h4 class="text-primary border-bottom pb-2">Bakkerij Info:</h4>
+                                    <p><strong>Uw Lokale Bakkerij</strong></p>
+                                    <p>Bakkerijstraat 123</p>
+                                    <p>1000 Brussel</p>
+                                    <p>België</p>
+                                    <p>Email: info@bakkerij.be</p>
+                                    <p>Tel: +32 2 123 45 67</p>
+                                </div>
+                            </div>
+
+                            <!-- Factuur details tabel -->
+                            <table class="table table-sm mb-4">
+                                <thead>
+                                    <tr class="bg-primary text-white">
+                                        <th>Product</th>
+                                        <th class="text-center">Aantal</th>
+                                        <th class="text-right">Prijs per stuk</th>
+                                        <th class="text-right">Subtotaal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong><span t-field="doc.koek_id.name_koek"/></strong>
+                                            <br/>
+                                            <small class="text-muted">
+                                                Categorie: <span t-field="doc.koek_id.categorie_koek_id.name"/>
+                                            </small>
+                                            <div t-if="doc.koek_id.tags_ids" class="mt-1">
+                                                <t t-foreach="doc.koek_id.tags_ids" t-as="tag">
+                                                    <span class="badge badge-light mr-1">
+                                                        <span t-field="tag.name"/>
+                                                    </span>
+                                                </t>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="doc.aantal"/>
+                                        </td>
+                                        <td class="text-right">
+                                            €<span t-field="doc.prijs_per_stuk" t-options="{'widget': 'float', 'precision': 2}"/>
+                                        </td>
+                                        <td class="text-right">
+                                            €<span t-field="doc.subtotaal" t-options="{'widget': 'float', 'precision': 2}"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <!-- Totalen -->
+                            <div class="row">
+                                <div class="col-7"></div>
+                                <div class="col-5">
+                                    <table class="table table-sm">
+                                        <tr>
+                                            <td><strong>Subtotaal:</strong></td>
+                                            <td class="text-right">
+                                                €<span t-field="doc.subtotaal" t-options="{'widget': 'float', 'precision': 2}"/>
+                                            </td>
+                                        </tr>
+                                        <tr t-if="doc.korting_percentage > 0">
+                                            <td>
+                                                <strong>Korting (<span t-field="doc.korting_percentage"/>%):</strong>
+                                            </td>
+                                            <td class="text-right">
+                                                -€<span t-field="doc.korting_bedrag" t-options="{'widget': 'float', 'precision': 2}"/>
+                                            </td>
+                                        </tr>
+                                        <tr class="bg-light">
+                                            <td class="border-top border-primary"><strong>Totaal:</strong></td>
+                                            <td class="text-right border-top border-primary">
+                                                <strong>€<span t-field="doc.totaal_bedrag" t-options="{'widget': 'float', 'precision': 2}"/></strong>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Betaling info -->
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <div class="alert alert-success">
+                                        <h5>✅ Betaling Ontvangen</h5>
+                                        <p class="mb-0">
+                                            Betaalmethode: 
+                                            <t t-if="doc.betaal_methode == 'cash'">Contant</t>
+                                            <t t-if="doc.betaal_methode == 'card'">Bankkaart</t>
+                                            <t t-if="doc.betaal_methode == 'digital'">Digitaal</t>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Opmerkingen -->
+                            <div t-if="doc.opmerkingen" class="row mt-3">
+                                <div class="col-12">
+                                    <div class="alert alert-warning">
+                                        <h5>Opmerkingen:</h5>
+                                        <p class="mb-0"><span t-field="doc.opmerkingen"/></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Footer -->
+                            <div class="row mt-5 text-center text-muted">
+                                <div class="col-12">
+                                    <hr class="border-primary"/>
+                                    <p>
+                                        <strong>Dank u wel voor uw bezoek aan onze bakkerij!</strong><br/>
+                                        We hopen u snel weer te zien voor onze verse lekkernijen.
+                                    </p>
+                                    <p class="small">
+                                        🍪 Uw lokale bakkerij - Vers gebakken elke dag! 🥐
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

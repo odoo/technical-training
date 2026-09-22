@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Email Template voor Factuur -->
+        <record id="email_template_bakker_factuur" model="mail.template">
+            <field name="name">Bakkerij Factuur</field>
+            <field name="model_id" ref="model_bakker_verkoop"/>
+            <field name="subject">Factuur ${object.name} - Bakkerij</field>
+            <field name="email_from">${(object.env.user.email or '')|safe}</field>
+            <field name="email_to">${object.partner_id.email}</field>
+            <field name="body_html" type="html">
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+    <header style="background-color: #8B4513; color: white; padding: 20px; text-align: center;">
+        <h1>🍪 Bakkerij Factuur</h1>
+    </header>
+    
+    <div style="padding: 20px; background-color: #f9f9f9;">
+        <h2>Beste ${object.partner_id.name},</h2>
+        
+        <p>Bedankt voor uw aankoop bij onze bakkerij! Hier is uw factuur:</p>
+        
+        <div style="background-color: white; padding: 15px; border-radius: 5px; margin: 20px 0;">
+            <h3>Factuur Details</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Factuurnummer:</strong></td>
+                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">${object.name}</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Datum:</strong></td>
+                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">${format_datetime(object.verkoop_datum, tz=user.tz, dt_format='dd/MM/yyyy HH:mm')}</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Product:</strong></td>
+                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">${object.koek_id.name_koek}</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Aantal:</strong></td>
+                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">${object.aantal}</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Prijs per stuk:</strong></td>
+                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">€${object.prijs_per_stuk}</td>
+                </tr>
+                % if object.korting_percentage > 0:
+                <tr>
+                    <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Korting (${object.korting_percentage}%):</strong></td>
+                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">-€${object.korting_bedrag}</td>
+                </tr>
+                % endif
+                <tr style="background-color: #f0f0f0;">
+                    <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Totaal:</strong></td>
+                    <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>€${object.totaal_bedrag}</strong></td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Betaalmethode:</strong></td>
+                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">
+                        % if object.betaal_methode == 'cash':
+                            Contant
+                        % elif object.betaal_methode == 'card':
+                            Bankkaart
+                        % elif object.betaal_methode == 'digital':
+                            Digitaal
+                        % endif
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div style="background-color: #e8f5e8; padding: 15px; border-radius: 5px; margin: 20px 0;">
+            <h4 style="color: #4CAF50; margin: 0;">✅ Betaling Ontvangen</h4>
+            <p style="margin: 5px 0;">Uw betaling is succesvol verwerkt en ontvangen.</p>
+        </div>
+        
+        % if object.opmerkingen:
+        <div style="background-color: #fff3cd; padding: 15px; border-radius: 5px; margin: 20px 0;">
+            <h4>Opmerkingen:</h4>
+            <p>${object.opmerkingen}</p>
+        </div>
+        % endif
+        
+        <p>Dank u wel voor uw bezoek aan onze bakkerij! We hopen u snel weer te zien.</p>
+        
+        <div style="margin-top: 30px; text-align: center; color: #666;">
+            <p>Met vriendelijke groet,<br/>
+            <strong>Het Bakkerij Team</strong></p>
+        </div>
+    </div>
+    
+    <footer style="background-color: #8B4513; color: white; padding: 15px; text-align: center;">
+        <p style="margin: 0;">🍪 Uw lokale bakkerij - Vers gebakken elke dag!</p>
+    </footer>
+</div>
+            </field>
+        </record>
+    </data>
+</odoo>
